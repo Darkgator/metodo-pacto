@@ -1,0 +1,450 @@
+﻿Engineering the Autonomous Developer: A Technical Report on Agentic Software Development with Claude Code, Codex, and Spec-Driven Architectures
+Executive Summary
+The transition of artificial intelligence from a passive completion assistant to an autonomous coding agent represents a structural shift in software engineering1. Software development powered by tools like Anthropic’s Claude Code, OpenAI's Codex, Cursor, and Google’s Antigravity CLI requires a departure from traditional "vibe coding"—a process marked by loose prompts, rapid generation, and chaotic debugging cycles4. Unstructured interactions with these models introduce clear structural risks, including recursive debugging loops, context window saturation, and unexpected regressions where resolving an issue in one subsystem breaks another1.
+To capture the efficiency of coding agents without compromising code quality, advanced teams are adopting Spec-Driven Development (SDD)5. In this approach, specifications are treated as versioned, verifiable, and executable contracts5. The role of the human developer shifts from manually writing implementation details to defining system constraints, reviewing structural plans, and verifying outputs5.
+Furthermore, empirical evaluations—including the ETH Zurich 2025 study on repository-level context files—demonstrate that poorly configured rule files degrade agent success rates by an average of 3% while increasing API token costs by more than 20%13. This report provides a comprehensive guide to organizing multi-tier instruction files, minimizing token consumption, preventing loops, and structuring development workflows across diverse codebases14.
+Comprehensive Source Mapping
+The following index matches the technical claims, data points, and configuration rules analyzed in this report with their official documentation and community platforms:
+
+
+Source Platform / Organization
+	Resource Reference / URL
+	Core Strategic Contribution
+	Anthropic Official Docs
+	Claude Code Best Practices
+	Workflow phases (Explore, Plan, Implement, Commit), visual validation guidelines, and context management protocols16.
+	Anthropic Costs & Performance
+	Reducing Token Usage in Claude Code
+	Deep context optimization, subagent delegation, custom preprocessing hooks, and Model Context Protocol (MCP) overhead reduction16.
+	Linux Foundation / Agentic AI
+	AGENTS.md Specification
+	Open-standard format for guiding coding agents; details structural boundaries and the "Context is Code" philosophy12.
+	ETH Zurich Research (Gloaguen et al., 2026)
+	Evaluating AGENTS.md Study
+	Quantified empirical analysis of context files, demonstrating performance degradation of auto-generated configurations and token overhead13.
+	GitHub Spec Kit
+	GitHub Spec Kit Repository
+	Implementation steps and CLI scaffolding (specify-cli) for bootstrapping spec-driven engineering17.
+	Google Developer Blog
+	Transitioning to Antigravity CLI
+	Paradigm shift to multi-agent background architectures, asynchronous execution loops, and the Agent Development Kit6.
+	Google Cloud Products
+	Gemini Code Assist Enterprise
+	Local codebase awareness, IDE integrations, and automated smart actions18.
+	Developer Technical Analyses
+	Claude Code Rules for AI
+	Multi-tiered instruction configurations (~/.claude/CLAUDE.md), OOP boundary rules, and strict typing paradigms19.
+	Ecosystem Tooling
+	Implementing Claude.md Agent Skills
+	Designing specialized 3-tier task playbooks and on-demand markdown files15.
+	O-S Distribution Platforms
+	Ruler Centralized Instruction Manager
+	Centralization of rules across fragmented assistants (Copilot, Claude, Cursor) with nested rules support12.
+	Cursor Community Standards
+	Cursor 2026 Best Practices
+	Agentic standards for long-running looped sessions, defensive commits, and zero-placeholder policies2.
+	Multi-Layer Epistemic Classification
+To ensure technical accuracy, this analysis separates documented facts from community-reported experiences and analytical inferences. This classification prevents the implementation of fragile setups that break under heavy developer operations.
+
+
+Epistemic Class
+	Source / Origin
+	Validated Observations & Technical Implications
+	Documented Fact
+	ETH Zurich & LogicStar.ai (2025/2026 Study)13
+	Auto-generated configuration files reduce task success rates by an average of 3% and increase inference token costs by more than 20%13.
+	Documented Fact
+	Anthropic Documentation (2026)16
+	The entire conversation history, files loaded, and shell outputs are sent to the model with every prompt, making context management critical16.
+	Documented Fact
+	Google Developers (2026 Transition)6
+	Gemini CLI and Gemini Code Assist IDE tools will be fully retired on June 18, 2026, replaced by Google Antigravity CLI for asynchronous background multi-agent pipelines6.
+	Community Report
+	Core Developer Discussions & Forums19
+	Structuring files into three distinct layers (~/.claude/CLAUDE.md, ./CLAUDE.md, and CLAUDE.local.md) reduces cognitive fatigue in agents and prevents conflicting instructions19.
+	Community Report
+	Cursor Rules Repository (cursorrules-2026)2
+	Using an "Interface Freeze" instruction blocks agents from writing implementation code until typescript or module signatures receive explicit human approval2.
+	Analytical Inference
+	Engineering System Synthesis
+	"Zombie Reverts" occur because the model's attention weights degrade over long-running sessions as it processes compilation warnings, terminal outputs, and file diffs2.
+	Analytical Inference
+	Engineering System Synthesis
+	The primary bottleneck in agentic software engineering is no longer code generation speed, but the developer's ability to validate the output9.
+	Advanced Workflows vs. Official Documentation
+There is a distinct gap between how software companies design coding tools and the custom environments constructed by power users in production environments.
+1. What Advanced Users Actually Do
+Experienced developers build structured, defensive programming loops that treat AI agents as junior developers22. This includes:
+* Layered Instruction Files: Rather than relying on a single, large context file, power users separate preferences into global layers (e.g., ~/.claude/CLAUDE.md) for general styling rules and project-specific layers (e.g., ./CLAUDE.md) for local architectural guidelines19.
+* The "Interface Freeze" Rule: To avoid sprawling code changes, developers force the agent to define types, schemas, and public API interfaces first2. No implementation logic can be written until the developer approves these interfaces2.
+* The BMAD and Effective Delivery Workflows: For substantial initiatives, developers run comprehensive SDLC frameworks21. This involves using specialized agent personas (e.g., Lead Architect, Implementation Engineer, Adversarial Critic) to draft specifications and hunt for architectural edge cases before touching the codebase20.
+* Continuous Context Purging: To keep context windows small, power users run /clear or reset agent sessions as soon as a task changes from exploration to implementation16.
+2. What Official Documentation Recommends
+Official guides focus on tool capabilities, programmatic features, and optimization commands:
+* Claude Code Workflow: Anthropic recommends a strict 4-phase development cycle—Explore (understanding the codebase in plan mode), Plan (generating a technical approach), Implement (executing changes in default mode), and Commit (writing git messages and opening PRs)16.
+* Deterministic Self-Verification: The official documentation encourages developers to provide clear, executable verification criteria (e.g., test scripts or linters) and set goals via the /goal command16.
+* Visual Regression Checking: For UI updates, the official recommendations suggest taking screenshots of changes and having Claude compare them directly against design mocks16.
+* Proactive Session Management: Using /compact to summarize history, /btw to ask quick questions without polluting context, and custom PreToolUse hooks to filter verbose log outputs before they reach the model16.
+* Asynchronous Agent Orchestration: Google's Antigravity platform emphasizes asynchronous agent teams running in the background, allowing large-scale refactors to complete without blocking terminal sessions6.
+Consensus and Controversies in Agentic Coding
+The agentic development community has aligned on several foundational guidelines, though technical differences persist regarding context utilization and tool permissions.
+1. Consensus Practices
+* The Linter-First Rule: There is absolute agreement that LLM agents should never be used as code formatters13. Syntax style, sorting imports, and formatting rules must be handled by deterministic tools (e.g., ESLint, Ruff, Biome) and enforced via git hooks12.
+* Keep Context Files Lean: To preserve context space, root instruction files (CLAUDE.md, AGENTS.md) must be kept short (ideally under 100 lines)13. Developers should avoid long tutorials, file descriptions, and standard conventions that the model can easily infer from the code12.
+* Explicit Error Handling: Agents are instructed to raise errors explicitly and avoid silent exception blocks or default fallbacks that mask the root causes of failures19.
+2. Deep Controversies
+* Including Code Examples in Instruction Files:
+   * The "Anti-Example" Argument: Some practitioners point to data showing that strong models perform worse when instruction files contain static code examples20. They argue that models can dynamically locate accurate patterns in the repository, and that hardcoding examples wastes context space and encourages rigid, outdated implementations20.
+   * The "Pro-Example" Argument: Other engineers maintain that examples are necessary when a codebase contains multiple patterns (e.g., legacy services vs. modern async utilities)20. Without an explicit code snippet in the rules, the model may select the wrong pattern to follow20.
+* MCP Servers vs. Direct CLI Execution:
+   * The CLI Argument: Proponents of CLI execution point out that using CLI commands (e.g., gh, aws, or sentry-cli) is more context-efficient16. It avoids loading verbose JSON schemas and tool definitions that MCP servers add to every session turn16.
+   * The MCP Argument: Advocates for MCP point out that these servers expose structured tools directly to the model, reducing execution errors25. Some engineers replace MCP servers with lightweight custom skills, which provides transparency because the raw markdown instructions can be audited directly21.
+Evaluation of Instruction Files
+The core configuration standard relies on three instruction formats. The following comparison outlines their size limits, tooling support, and specific use cases:
+
+
+Dimension
+	CLAUDE.md[cite: 15, 16]
+	AGENTS.md[cite: 12, 26]
+	.cursorrules / .cursor/rules/*.mdc[cite: 2, 20, 27, 28]
+	Size Limit
+	Recommended < 200 lines to preserve context space15.
+	32 KiB default limit (enforced by Codex); content beyond is truncated26.
+	Always-apply rules must stay under 200 words to avoid context costs27.
+	Tool Support
+	Claude Code CLI (native), other tools via file imports19.
+	Compatible with over 30 agents, including Codex, Copilot, GitLab Duo, and Aider12.
+	Cursor IDE (Composer, Chat, Agent Mode)1.
+	Scoping
+	Root file for project constraints; subdirectory files for override rules14.
+	Directory-scoped automatically (closest file overrides root)29.
+	Scoped dynamically using globs and alwaysApply frontmatter20.
+	Features
+	Supports custom Pre/Post-Tool Hooks and custom user skills15.
+	Standardized plain markdown format; acts as a cross-tool README for agents12.
+	Integrates directly with Cursor-specific tools, IDE commands, and MCP1.
+	The Role of Ruler
+To address instruction file fragmentation, teams use open-source managers like Ruler12. Ruler acts as a single source of truth: it stores instructions in a central .ruler/ folder and automatically distributes them to tool-specific files (e.g., .cursorrules, CLAUDE.md, and AGENTS.md) based on the active environment12.
+Spec-Driven Software Architecture
+Spec-Driven Development (SDD) inverts the typical programming workflow: instead of writing code and then documenting it, developers treat versioned, verifiable specifications as the source of truth, and generate or verify code against them5.
+
+
+
+
+
+
+┌────────────────────────────────────────────────────────┐
+│                        SPECIFY                         │
+│ - Human authors high-level intent (SPEC.md)            │
+│ - Defines inputs, outputs, schemas, and edge cases     │
+│ - No implementation or coding-specific logic           │
+└───────────────────────────┬────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│                          PLAN                          │
+│ - Agent designs technical approach                     │
+│ - Maps files, schemas, and database migrations         │
+│ - Human reviews and approves via plan.md (Pause Gate)  │
+└───────────────────────────┬────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│                       IMPLEMENT                        │
+│ - Agent converts plan steps to tasks.md                │
+│ - Executes incremental code modifications              │
+│ - Automated tests and linters validate outputs         │
+└────────────────────────────────────────────────────────┘
+
+1. How to Write a High-Quality Specification
+* Focus on 'What' over 'How': A specification must describe user stories, system boundaries, and business constraints without prescribing internal execution details5. This gives the agent flexibility to choose the most efficient implementation paths5.
+* Specify Concrete Inputs, Outputs, and Schemas: Rather than writing "validate email addresses," define the Zod schema or exact regular expressions explicitly, including explicit success/failure outputs5.
+* Expose Edge Cases and Failure Modes: Detail expected system behavior during failure scenarios, such as API rate limits, network timeouts, and database constraints5.
+* Use Falsifiable Scenarios: Write validation criteria in structured formats like Given-When-Then:
+Scenario: User logs in with invalid password
+Given the login endpoint receives a POST request with invalid credentials
+When the authentication database returns a lookup rejection
+Then the application must return a 401 Unauthorized status
+And the response body must match the error schema: { "error": "Invalid password" }
+2. When to Request a Plan Before Generating Code
+   * Always Require a Technical Plan When:
+   * The task modifies more than one file or touches multiple system layers2.
+   * The code introduces database migrations or schema updates12.
+   * The change modifies security-critical files, such as authorization endpoints, session management, or encryption routines2.
+   * The modification changes shared interfaces or public library APIs2.
+   * Skip Planning Only When:
+   * The edit is trivial, highly self-contained, and can be executed within a single file (e.g., fixing a typo, updating local styles, or renaming a variable)16.
+Mitigating Loops, Context Decay, and Vibe-Coding Friction
+To prevent agents from wasting resources, developers must implement structural boundaries around agentic execution.
+1. Resolving the "Zombie Revert" and Apply Hangups
+   * The Issue: When modifying large files (exceeding 500 lines), agents often hang, output placeholders, or overwrite unrelated code2.
+   * The Solution: Enforce strict instructions requiring the agent to use limited SEARCH/REPLACE blocks rather than full file rewrites2. If the file exceeds a certain limit, the model should split it into smaller, decoupled modules2.
+2. Mitigating Infinite Bug-Fixing Loops
+   * The Issue: The agent encounters an error, attempts a fix, breaks another component, and loops indefinitely1.
+   * The Solution:
+   * Git Checkpoints: Require the agent to create a git checkpoint commit before starting any multi-file task2.
+   * Reversion Thresholds: Set a hard threshold of two failed test runs16. If a test fails more than twice, the agent must revert its uncommitted changes to the previous checkpoint, stop execution, and ask the developer for guidance16.
+3. Preventing Context Window Pollution
+   * The Issue: Conversation history fills up with verbose test runs and execution logs, degrading the agent's attention weights and reasoning capacity16.
+   * The Solution:
+   * Pre-Tool Filtering Hooks: Add custom hooks (e.g., in settings.json) to run script filters before terminal output enters the context16. For example, configure a script that parses test results and displays only the failing lines rather than the full, verbose log16.
+   * Aggressive Context Purging: Run /clear frequently between unrelated tasks, or use /compact to selectively preserve only relevant data structures16.
+Adaptability Across Scale and Complexity
+A successful agentic development process must adapt to the size, maturity, and lifecycle phase of the project.
+1. Adaptation Matrix
+
+
+Scale and Maturity
+	Core Rules File Placement
+	Indexing and Search Method
+	Verification and Testing Strategy
+	Model Selection Strategy
+	Greenfield / New Project
+	Root constitution.md and basic template guides11.
+	Broad directory scanning to establish file patterns17.
+	Build and verify initial CI configurations from scratch24.
+	High Reasoning: Use heavy reasoning models (Opus) to shape core architecture1.
+	Legacy / Existing Project
+	Lean, pointer-based CLAUDE.md pointing to verified patterns16.
+	Precise symbol navigation via Language Server Protocol (LSP)14.
+	Local test suites, type validation, and focused regression testing19.
+	Hybrid: Sonnet for daily iterations; Opus for major structural refactors1.
+	Small Project / Scripting
+	Single root file kept under 60 lines12.
+	Simple string searches and native terminal navigation12.
+	Basic visual verification or output assertions16.
+	High Throughput: Use faster, cheaper models (Sonnet) to reduce token costs16.
+	Large Monorepo
+	Hierarchical, subdirectory-scoped AGENTS.md and .cursorrules14.
+	Dynamic multi-root indexing and explicit .ignore files14.
+	Isolated directory test runners to prevent monorepo timeouts14.
+	Distributed: High-reasoning models for API boundaries; subagents for isolated tasks16.
+	2. Tailored Best Practices by Project Type
+Greenfield (New Project)
+The priority is establishing a robust technical foundation17. Use a CLI tool like specify-cli to bootstrap the project, and establish a clear constitution.md file to enforce architectural standards before generating code11. Use high-reasoning models during initial planning to establish database schemas and clean abstractions1.
+Existing (Legacy Project)
+The priority is avoiding regression errors and keeping context size small24. Write a lean CLAUDE.md file containing pointers to existing files that represent the project's golden standard16. Integrate LSPs so the agent can find precise symbols and types14.
+Small Projects / Scripting
+For small projects, heavy spec-driven templates are often overkill10. The developer relies on a small, global rules file (~/.claude/CLAUDE.md) under 60 lines, focusing instructions on basic coding styles13. Plan mode is used directly within the terminal to sketch out changes without compiling separate markdown plan files16.
+Large Enterprise / Monorepo Projects
+Large projects face context bloat and verification timeouts14.
+   * Directory Scoping: Implement nested AGENTS.md or CLAUDE.md files in subdirectories (e.g., /frontend and /backend)14. When an agent edits files in /frontend, it reads the frontend-scoped instruction file first, bypassing unrelated backend rules29.
+   * Test Isolation: Subdirectory-scoped rules should define local test commands (e.g., npm run test:ui) to avoid running the entire monorepo suite, preventing timeouts and context bloat from irrelevant log outputs14.
+   * Code Search Optimization: Setting up LSP servers allows the agent to search code by symbol rather than running generic string queries14. This minimizes token consumption by filtering references before files are read into the context window14.
+   * Subagent Delegation: High-context tasks (such as researching multi-file structures or parsing verbose compilation logs) should be offloaded to isolated subagents running smaller, cheaper models16. This isolates log-heavy tasks to the subagent's local window, returning only a clean summary to the main conversation16.
+Proposed Framework: Predictive Agentic Engineering
+The Predictive Agentic Engineering (PAE) Model is a unified development framework that integrates spec-driven design, tiered context isolation, and automated runtime verification loops to keep coding agents on track.
+
+
+
+
+
+
++───────────────────────────────────────────────────────────────+
+|               PHASE 1: GOVERNANCE AND INITIALIZATION          |
+| - Establish project constitution and developer parameters     |
+| - Mount pre-commit hooks and deterministic validation rules   |
++───────────────────────────────┬───────────────────────────────+
+                               │
+                               ▼
++───────────────────────────────────────────────────────────────+
+|                 PHASE 2: THE INTERFACE FREEZE                 |
+| - Write SPEC.md and define model types / TypeScript stubs     |
+| - Pause Gate: developer verifies and freezes interface        |
++───────────────────────────────┬───────────────────────────────+
+|                               │
++───────────────────────────────┴───────────────────────────────+
+|               PHASE 3: DETAILED TASK DECOMPOSITION            |
+| - Compile plan.md and break down into sequential tasks        |
+| - Human refines and edits plan step-by-step                   |
++───────────────────────────────┬───────────────────────────────+
+                               │
+                               ▼
++───────────────────────────────────────────────────────────────+
+|               PHASE 4: INCREMENTAL IMPLEMENTATION             |
+| - Execute git checkpoint before modifying files               |
+| - Implement edits incrementally (max 3 files modified)        |
++───────────────────────────────┬───────────────────────────────+
+                               │
+                               ▼
++───────────────────────────────────────────────────────────────+
+|               PHASE 5: RUNTIME VALIDATION & LOG FILTER        |
+| - Run test runner and filter verbose outputs via hooks        |
+| - Halt on failures: rollback to checkpoint on 2 failed runs   |
++───────────────────────────────┬───────────────────────────────+
+                               │
+                               ▼
++───────────────────────────────────────────────────────────────+
+|               PHASE 6: PR COMPILATION & CONTEXT CLEAR         |
+| - Generate clean pull request description using skills        |
+| - Run /clear command to reset context for the next task       |
++───────────────────────────────────────────────────────────────+
+
+Complete Repository Directory Blueprint
+your-project-workspace/
+AGENTS.md # Universal Tier 1 Overview (< 100 lines)
+CLAUDE.md # Claude Code Entry Point (Symlinked to AGENTS.md)
+.claude/
+settings.json # Custom Pre/Post hooks & compaction targets
+skills/
+build-test-verify/SKILL.md # Tier 2: Specialized build skill
+git-commit/SKILL.md # Tier 2: Conventional commits skill
+.cursor/
+rules/
+frontend-ui.mdc # Scoped Cursor rules using glob parameters
+docs/
+agent-guides/
+database-schemas.md # Tier 3: Comprehensive schema details
+api-contracts.md # Tier 3: Complete documentation references
+src/
+components/
+AGENTS.md # Subdirectory-scoped overrides (Frontend guidelines)
+Step 1: Configuration Specifications
+The Root AGENTS.md (Universal Layer)
+Universal Project Guidelines
+This is a Next.js 15 App Router codebase using TypeScript, Tailwind CSS, and Prisma.
+Global Boundaries
+   * STRICT TYPING: Banned: 'any' type. Use 'unknown' with type guards.
+   * ERROR HANDLING: Never ignore exceptions silently. Raise errors explicitly with specific types.
+   * MINIMAL CHANGES: Do not execute broad refactoring unless explicitly asked.
+Toolchain Mapping
+   * Build: npm run build
+   * Type-check: npx tsc --noEmit
+   * Lint: npx biome check --write .
+   * Test: npx vitest run
+Progressive Disclosure Links
+   * DB Schemas: docs/agent-guides/database-schemas.md
+   * Skills Folder: .claude/skills/
+Custom PreToolUse Filter Hook (.claude/settings.json)
+
+
+
+
+
+
+JSON
+{
+ "hooks": {
+   "PreToolUse": [
+     {
+       "matcher": "Bash",
+       "hooks": [
+         {
+           "type": "command",
+           "command": "./.claude/hooks/filter-test-output.sh"
+         }
+       ]
+     }
+   ]
+ }
+}
+
+Log Filtering Script (.claude/hooks/filter-test-output.sh)
+
+
+
+
+
+
+Bash
+#!/bin/bash
+# Read terminal tool inputs from stdin
+input=$(cat)
+cmd=$(echo "$input" | jq -r '.tool_input.command')
+
+# If running the test suite, filter output to show failures only
+if [[ "$cmd" =~ ^(npx vitest|npm test) ]]; then
+ filtered_cmd="$cmd 2>&1 | grep -A 5 -E '(FAIL|ERROR|error:)' | head -100"
+ echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"allow\",\"updatedInput\":{\"command\":\"$filtered_cmd\"}}}"
+else
+ # Pass other commands through unchanged
+ echo "{}"
+fi
+
+Tier 2 Skill Blueprint (.claude/skills/build-test-verify/SKILL.md)
+name: build-test-verify description: Explains how to run linting, type-checking, and tests. Run when validating changes.
+Procedural Execution Checklist
+Before completing your task, you must run the verification tools:
+   1. Run linting: npx biome check --write .
+   2. Run type-checking: npx tsc --noEmit
+   3. Execute unit tests: npx vitest run
+If any validation step fails, fix the errors and run the check again. Do not mark the task complete if any check fails.
+Production-Ready Prompt Templates
+These prompts enforce predictable agent behaviors, preventing conversational loops and avoiding the "vibe-coding" trap.
+1. Template A: Greenfield Project Constitution and Initialization
+This prompt bootstraps a new project workspace under strict architectural rules, establishing the non-negotiable standards before writing functional code.
+You are initializing a high-integrity software development environment. Establish the project constitution inside '.specify/memory/constitution.md' by executing the following requirements:
+   1. Identify the core technology stack: [Insert Tech Stack details, e.g., Next.js 15 App Router, TypeScript 5.6, Tailwind CSS v4, Prisma ORM, PostgreSQL].
+   2. Define non-negotiable engineering principles:
+   * Prefer functional programming paradigms with pure, stateless functions. Avoid object-oriented classes except when interfacing with external libraries.
+   * Enforce strict typing. The 'any' type is banned. Use 'unknown' combined with Zod validators or type guards for all external payloads.
+   * All asynchronous, I/O-bound operations must run async/await syntax with explicit exception mapping. Catch-all silent error ignoring is banned.
+   3. List the exact validation toolchain commands:
+   * Compile: [Insert build command, e.g., npm run build]
+   * Type-check: [Insert type-check command, e.g., npx tsc --noEmit]
+   * Lint & Format: [Insert command, e.g., npx biome check --write .]
+   * Test: [Insert test command, e.g., npx vitest run]
+Compile this constitution clearly. Do not write implementation code. Wait for manual verification before proceeding.
+2. Template B: The Interface Freeze Phase
+This prompt enforces a strict type-first boundary, preventing the agent from generating business logic before the API and model signatures are verified and frozen.
+We are initiating feature implementation for the following requirement: [Insert Feature Description, e.g., Google OAuth User Authentication Session management].
+You must execute the Interface Freeze Phase. Strictly adhere to these boundaries:
+   1. Identify all target files and schemas that must be created or modified.
+   2. Generate ONLY the TypeScript interfaces, type definitions, DB schemas, or empty function stubs (with complete type signatures).
+   3. Do not write any implementation logic, business rules, API handlers, or algorithms.
+   4. Place inline placeholder markers: '// INTERFACE_FREEZE_PENDING_APPROVAL' on every stub.
+   5. If any dependency is required, run your environment check tool (e.g., 'npm list' or 'pip show') to confirm its active installation state. Do not import package names based on training data.
+Output the complete type signatures and schemas. Ask for explicit user sign-off to freeze the interfaces. Do not proceed to implementation.
+3. Template C: Architectural Change Planning and Impact Assessment
+This prompt enforces a comprehensive impact analysis before modifying existing databases or cross-cutting API endpoints.
+We are planning a change that affects core system behavior: [Insert Change Description, e.g., Migrating User database schema to support multi-tenant organization IDs].
+Before modifying any code, compile an impact assessment and implementation plan. Output a markdown file 'plan_migration.md' detailing:
+   1. TARGET BOUNDARIES: List all files that must be modified and files that must remain untouched to prevent regressions.
+   2. SCHEMAS & CONTRACTS: Map out the existing types vs. the proposed types. Highlight database migrations and explain the fallback rollback strategy if the migration fails.
+   3. VERIFICATION PROTOCOL: Write out the exact test commands and list 5 edge cases (e.g., organizational schema lookup on null user IDs, token serialization during migration) that must be tested.
+   4. TASK STEPS: Break the execution into small tasks. Group modifications so they edit a maximum of 3 files per task.
+Verify that your plan respects the core principles in 'CLAUDE.md'. Output the plan and wait for my review and sign-off.
+4. Template D: Session Compaction and Context Clean-Up
+This prompt forces the agent to prune bloated conversational context, saving tokens and preserving model focus during long debugging loops.
+Our current session context is becoming saturated with repetitive compilation errors and verbose test execution output. We must prune the context window while preserving our current technical progress.
+Execute the following steps:
+   1. Compile a concise summary of the active code changes implemented in this session.
+   2. List the specific file paths we modified and the remaining uncompleted items from our 'tasks.md' plan.
+   3. Capture the exact error patterns we successfully solved and specify any temporary workarounds or environment variables we configured.
+   4. Once you output this clean status summary, prepare to receive a '/clear' command to purge the session history. You will use this summary as your starting context when we resume the session.
+Referências citadas
+   1. App Development with Cursor in 2026: The Definitive Technical Guide - DEV Community, https://dev.to/asad1/app-development-with-cursor-in-2026-the-definitive-technical-guide-27m6
+   2. cursor-ai-tips/rules/cursorrules-2026-best-practices.md at main - GitHub, https://github.com/murataslan1/cursor-ai-tips/blob/main/rules/cursorrules-2026-best-practices.md
+   3. GitHub Copilot Workspace & The Agentic Era - Java Code Geeks, https://www.javacodegeeks.com/2026/02/github-copilot-workspace-the-agentic-era.html
+   4. CLAUDE CODE — BEST PRACTICES. Introduction | by Sourav Roy | Medium, https://medium.com/@knowsouravroy/claude-code-best-practices-564fa5f2a568
+   5. Spec-Driven Development: From Code to Contract in the Age of AI Coding Assistants - arXiv, https://arxiv.org/html/2602.00180v1
+   6. An important update: Transitioning Gemini CLI to Antigravity CLI - Google Developers Blog, https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/
+   7. Um papo sobre Spec-Driven Development + exemplos com Spec Kit e Angular - Medium, https://medium.com/@ortegavan/um-papo-sobre-spec-driven-development-exemplos-em-angular-8afdefe4ee7e
+   8. GitHub Spec-Kit: From Vibe Coding to Spec-Driven Development - DEV Community, https://dev.to/petersaktor/github-spec-kit-from-vibe-coding-to-spec-driven-development-1pgd
+   9. Spec-Driven Development: A Spec-First Approach to AI-Native Engineering, https://developer.microsoft.com/blog/spec-driven-development-ai-native-engineering
+   10. From Vibe Coding to Spec-Driven Development - Towards Data Science, https://towardsdatascience.com/from-vibe-coding-to-spec-driven-development/
+   11. Spec-Driven Development with SpecKit and Claude Code - GitHub Gist, https://gist.github.com/arun-gupta/e1c2c3a826a0605f6b615d25da918f75
+   12. AGENTS.md Specification: A Research-Backed Guide | ASDLC.io, https://asdlc.io/practices/agents-md-spec/
+   13. Writing a Good AGENTS.md - Philschmid, https://www.philschmid.de/writing-good-agents
+   14. How Claude Code works in large codebases: Best practices and where to start, https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start
+   15. Implementing CLAUDE.md and Agent Skills In Your Repository - Matthew Groff, https://www.groff.dev/blog/implementing-claude-md-agent-skills
+   16. Best practices for Claude Code - Claude Code Docs, https://code.claude.com/docs/en/best-practices
+   17. GitHub - github/spec-kit: Toolkit to help you get started with Spec-Driven Development, https://github.com/github/spec-kit
+   18. Gemini Code Assist, https://codeassist.google/products/business
+   19. Claude Code Rules: CLAUDE.md Global Instructions for AI - Kirill Markin, https://kirill-markin.com/articles/claude-code-rules-for-ai/
+   20. Invest in Cursor Rules: A Four-Level Maturity Framework - Guides, https://forum.cursor.com/t/invest-in-cursor-rules-a-four-level-maturity-framework/148569
+   21. Claude Code Best Practices: Lessons From Real Projects - Ran the Builder, https://ranthebuilder.cloud/blog/claude-code-best-practices-lessons-from-real-projects/
+   22. Anyone here trying spec-driven development while coding with AI? - Reddit, https://www.reddit.com/r/ArtificialInteligence/comments/1rng6zo/anyone_here_trying_specdriven_development_while/
+   23. Advanced Gemini CLI: Part 3—Dynamic Isolated Agents | by Prashanth Subrahmanyam | Google Cloud - Medium, https://medium.com/google-cloud/advanced-gemini-cli-part-3-isolated-agents-b9dbab70eeff
+   24. Claude Code Best Practices: A Guide to Agentic Coding | QuantumByte Success Story, https://quantumbyte.ai/articles/claude-code-best-practices
+   25. Gemini CLI | Gemini Code Assist - Google for Developers, https://developers.google.com/gemini-code-assist/docs/gemini-cli
+   26. AGENTS.md Spec (2026): Recommended Sections + AGENTS.md vs CLAUDE.md vs .cursorrules - Morph LLM, https://www.morphllm.com/agents-md-guide
+   27. Cursor Rules: Complete .mdc Guide & 15 Templates (2026) - Vibe Coding Academy, https://www.vibecodingacademy.ai/blog/cursor-rules-complete-guide
+   28. Cursor Rules: Why You Need Them and How to Set Them Up (2025 Guide) - Startupbricks, https://www.startupbricks.in/blog/cursor-rules-why-needed-setup-guide/
+   29. AGENTS.md customization files | GitLab Docs, https://docs.gitlab.com/user/duo_agent_platform/customize/agents_md/
+   30. How to Write an AGENTS.md File: The Complete Guide 2026 - Atlan, https://atlan.com/know/how-to-write-agents-md/
+   31. AGENTS.md - Devin Docs, https://docs.devin.ai/desktop/cascade/agents-md
+   32. What is Spec-Driven Development? - IBM, https://www.ibm.com/think/topics/spec-driven-development
+   33. Best practices for using AI in VS Code, https://code.visualstudio.com/docs/agents/best-practices
+   34. Introdução ao Spec-Driven Development e ao GitHub Spec Kit - Training - Microsoft Learn, https://learn.microsoft.com/pt-br/training/modules/spec-driven-development-github-spec-kit-greenfield-intro/
+   35. Diving Into Spec-Driven Development With GitHub Spec Kit - Microsoft for Developers, https://developer.microsoft.com/blog/spec-driven-development-spec-kit

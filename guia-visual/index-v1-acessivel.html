@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Método PACTO | Fluxo Visual</title>
+  <meta name="author" content="Alexandre Barroso de Miranda">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --text: #1e293b;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --line-soft: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0f766e;
+      --warning: #b45309;
+      --danger: #b91c1c;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent 28rem),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(148, 163, 184, 0.14) 32px),
+        var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    :focus-visible {
+      outline: 4px solid rgba(37, 99, 235, 0.28);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 20;
+      padding: 0.75rem 1rem;
+      background: var(--text);
+      color: white;
+      border-radius: var(--radius);
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.75rem;
+      height: 0.75rem;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin: 32px 0 24px;
+      align-items: stretch;
+    }
+
+    .card,
+    .step,
+    .panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h2,
+    .card h3,
+    .step h2,
+    .step h3,
+    .panel h2 {
+      margin: 0 0 0.85rem;
+    }
+
+    .quick-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quick-list li {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--text);
+      color: white;
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .rule {
+      border-left: 4px solid var(--primary);
+      background: #eff6ff;
+    }
+
+    .rule strong {
+      color: var(--primary-dark);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin: 0 auto 32px;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0;
+    }
+
+    .nav a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: white;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav a:hover {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      background: #eff6ff;
+    }
+
+    main {
+      padding-bottom: 56px;
+    }
+
+    .flow {
+      display: grid;
+      gap: 24px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 24px;
+      padding: 24px;
+      scroll-margin-top: 86px;
+    }
+
+    .step-marker {
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 12px;
+    }
+
+    .step-index {
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      background: white;
+      color: var(--text);
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .step-kind {
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: #155e75;
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .mini {
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: #f8fafc;
+    }
+
+    .mini b {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.82rem;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .mini p,
+    .mini ul {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    ul.clean {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .prompt {
+      margin-top: 16px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
+      border-radius: var(--radius);
+      background: var(--code-bg);
+    }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 52px;
+      padding: 8px 10px 8px 16px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.18);
+      color: #cbd5e1;
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .copy-btn {
+      min-height: 44px;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid rgba(226, 232, 240, 0.35);
+      border-radius: 6px;
+      background: #1e293b;
+      color: white;
+      font: inherit;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      border-color: white;
+      background: #334155;
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      color: var(--code-text);
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .decision {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .decision .card {
+      box-shadow: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tag.green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .tag.amber {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .tag.red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .matrix-item {
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: white;
+    }
+
+    .matrix-item b {
+      display: block;
+      color: var(--text);
+      font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      font-size: 0.83rem;
+    }
+
+    .matrix-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    footer {
+      padding: 28px 0 56px;
+      color: var(--muted);
+      border-top: 1px solid var(--line-soft);
+    }
+
+    @media (max-width: 920px) {
+      .top-grid,
+      .step,
+      .step-grid,
+      .decision,
+      .matrix {
+        grid-template-columns: 1fr;
+      }
+
+      .step-marker {
+        grid-template-columns: auto 1fr;
+        justify-items: start;
+        align-items: center;
+      }
+
+      .step-index {
+        width: 56px;
+        height: 56px;
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="shell">
+    <div class="eyebrow">Método PACTO · Alexandre Barroso de Miranda</div>
+    <h1>Fluxo visual para começar um projeto do zero com agente de código</h1>
+    <p class="subtitle">Um roteiro “olhar e fazer”: siga a etapa, cole o prompt, aprove o gate e avance para a próxima fatia.</p>
+
+    <div class="top-grid" aria-label="Resumo operacional">
+      <section class="card">
+        <h2>Como usar</h2>
+        <ol class="quick-list">
+          <li><span class="num">1</span><span>Prepare o contexto fora do chat, sem segredos reais.</span></li>
+          <li><span class="num">2</span><span>Cole o prompt de descoberta e escolha a stack com base nos prós e contras.</span></li>
+          <li><span class="num">3</span><span>Mande o agente criar a base inicial usando a pasta oficial de templates.</span></li>
+          <li><span class="num">4</span><span>Valide a base e implemente apenas a primeira fatia da <code>SPEC.md</code>.</span></li>
+        </ol>
+      </section>
+
+      <section class="card rule">
+        <h2>Regra de ouro</h2>
+        <p><strong>Antes de pedir código:</strong> defina o contrato.</p>
+        <p><strong>Antes de aceitar código:</strong> exija prova.</p>
+        <p>Se você não consegue dizer “pronto significa X, verificado por Y”, ainda não é hora de implementação autônoma.</p>
+      </section>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Navegação do fluxo">
+    <div class="shell nav-inner">
+      <a href="#etapa-0">0. Contexto</a>
+      <a href="#etapa-1">1. Descoberta</a>
+      <a href="#etapa-2">2. Aprovação</a>
+      <a href="#etapa-3">3. Base</a>
+      <a href="#etapa-4">4. Revisão</a>
+      <a href="#etapa-5">5. Fatia</a>
+      <a href="#etapa-6">6. Review</a>
+      <a href="#etapa-7">7. Ciclo</a>
+      <a href="#parametrizacao">Parametrizar</a>
+    </div>
+  </nav>
+
+  <main id="conteudo" class="shell">
+    <section class="flow" aria-label="Fluxo passo a passo">
+      <article class="step" id="etapa-0">
+        <div class="step-marker">
+          <div class="step-index">0</div>
+          <div class="step-kind">fora do chat</div>
+        </div>
+        <div>
+          <h2>Preparar contexto</h2>
+          <p>Objetivo: entregar ao agente material suficiente para ele não inventar produto, stack ou regra de negócio.</p>
+          <div class="step-grid">
+            <div class="mini">
+              <b>Você faz</b>
+              <ul class="clean">
+                <li>Define problema, usuário e objetivo.</li>
+                <li>Separa MVP, não escopo e referências.</li>
+                <li>Remove dados sensíveis.</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <b>Agente faz</b>
+              <p>Nada ainda. O agente só entra quando o contexto estiver minimamente organizado.</p>
+            </div>
+            <div class="mini">
+              <b>Nasce aqui</b>
+              <p>Briefing, pasta de referências e materiais de apoio. Ainda não precisa nascer código.</p>
+            </div>
+          </div>
+          <div class="matrix" aria-label="Checklist de contexto">
+            <div class="matrix-item"><b>Produto</b><span>O que será resolvido?</span></div>
+            <div class="matrix-item"><b>Usuário</b><span>Quem usa e com qual dor?</span></div>
+            <div class="matrix-item"><b>Limites</b><span>O que não entra agora?</span></div>
+            <div class="matrix-item"><b>Risco</b><span>Há dados, licença, pagamento ou produção?</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-1">
+        <div class="step-marker">
+          <div class="step-index">1</div>
+          <div class="step-kind">colar prompt</div>
+        </div>
+        <div>
+          <h2>Descoberta sem código</h2>
+          <p>Objetivo: fazer o agente entender o problema, separar fases, comparar até duas stacks e propor a primeira fatia verificável.</p>
+          <div class="step-grid">
+            <div class="mini">
+              <b>Você faz</b>
+              <p>Cola o briefing e exige que o agente não escreva código.</p>
+            </div>
+            <div class="mini">
+              <b>Agente faz</b>
+              <p>Reformula o problema, compara stacks, aponta riscos e pergunta só o que for crítico.</p>
+            </div>
+            <div class="mini">
+              <b>Nasce aqui</b>
+              <p>Diagnóstico, proposta de MVP, até duas stacks e primeira fatia verificável.</p>
+            </div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 1: descoberta</span>
+              <button class="copy-btn" type="button" data-copy="prompt-1" aria-label="Copiar prompt de descoberta">Copiar prompt</button>
+            </div>
+            <pre id="prompt-1">Estamos começando um projeto do zero.
+
+Não escreva código ainda.
+
+Leia o contexto abaixo e faça:
+1. Reescreva o problema em linguagem objetiva.
+2. Separe MVP, fase 2 e futuro.
+3. Liste riscos técnicos, de segurança, legais e de produto.
+4. Faça até 5 perguntas críticas, apenas se forem necessárias.
+5. Proponha até 2 modelos de stack, com prós, contras, riscos e quando escolher cada uma.
+6. Recomende uma das stacks e explique por quê.
+7. Proponha o menor primeiro contrato verificável.
+
+Contexto:
+[cole aqui o briefing]</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-2">
+        <div class="step-marker">
+          <div class="step-index">2</div>
+          <div class="step-kind">gate humano</div>
+        </div>
+        <div>
+          <h2>Aprovar decisões</h2>
+          <p>Objetivo: impedir que o agente escolha sozinho decisões que mudam custo, risco, arquitetura ou obrigação legal.</p>
+          <div class="decision">
+            <div class="card">
+              <span class="tag green">Aprovar</span>
+              <h3>Produto</h3>
+              <p>MVP, não escopo, primeira fatia, fluxos principais e critérios de aceite.</p>
+            </div>
+            <div class="card">
+              <span class="tag amber">Validar</span>
+              <h3>Técnico</h3>
+              <p>Stack, banco, autenticação, integrações, dependências novas e estratégia de deploy.</p>
+            </div>
+            <div class="card">
+              <span class="tag red">Bloquear se incerto</span>
+              <h3>Risco</h3>
+              <p>Licença comercial, dados reais, segurança, pagamento, produção e operação destrutiva.</p>
+            </div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 2: registrar aprovação</span>
+              <button class="copy-btn" type="button" data-copy="prompt-2" aria-label="Copiar prompt de aprovação">Copiar prompt</button>
+            </div>
+            <pre id="prompt-2">Aprovado com os seguintes ajustes:
+
+- Stack escolhida: [preencher]
+- MVP aprovado: [preencher]
+- Fora de escopo nesta fase: [preencher]
+- Primeira fatia verificável: [preencher]
+- Riscos aceitos: [preencher]
+- Riscos pendentes de validação humana: [preencher]
+
+Use isso como base para criar a documentação e o setup inicial.
+Ainda não implemente a feature principal.</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-3">
+        <div class="step-marker">
+          <div class="step-index">3</div>
+          <div class="step-kind">criar base</div>
+        </div>
+        <div>
+          <h2>Base inicial com templates</h2>
+          <p>Objetivo: criar documentos-base e setup técnico mínimo usando a pasta oficial de templates, sem iniciar a feature principal.</p>
+          <div class="step-grid">
+            <div class="mini">
+              <b>Você faz</b>
+              <p>Aponta a pasta de templates e confirma que a stack já foi aprovada.</p>
+            </div>
+            <div class="mini">
+              <b>Agente faz</b>
+              <p>Cria docs, estrutura mínima, comandos e validação inicial.</p>
+            </div>
+            <div class="mini">
+              <b>Nasce aqui</b>
+              <p><code>README.md</code>, <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>SPEC.md</code>, <code>.env.example</code> e setup.</p>
+            </div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 3: criar base inicial</span>
+              <button class="copy-btn" type="button" data-copy="prompt-3" aria-label="Copiar prompt de base inicial">Copiar prompt</button>
+            </div>
+            <pre id="prompt-3">Agora crie a base inicial do projeto, mas ainda não implemente a feature principal.
+
+Use os templates oficiais do framework em:
+C:\Users\abmme\OneDrive\CODE\framework-agentic-code\templates
+
+Crie ou atualize:
+- README.md
+- AGENTS.md
+- CLAUDE.md, se aplicável
+- SPEC.md
+- .env.example, se aplicável
+- PLAN.md, se o plano precisar sobreviver ao chat
+- estrutura inicial do projeto
+- configuração mínima de build/test/lint, se aplicável
+
+Regras:
+- não implemente a feature principal ainda;
+- não invente stack além da aprovada;
+- não inclua segredos reais;
+- não adicione dependências sem licença/termos compatíveis;
+- mantenha os docs curtos;
+- rode a validação mínima possível.
+
+Ao final, informe:
+- arquivos criados;
+- comandos disponíveis;
+- validações executadas;
+- o que ainda falta antes da primeira fatia.</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-4">
+        <div class="step-marker">
+          <div class="step-index">4</div>
+          <div class="step-kind">checklist</div>
+        </div>
+        <div>
+          <h2>Revisar a base</h2>
+          <p>Objetivo: validar que a base está boa antes de entrar em produto real.</p>
+          <div class="matrix">
+            <div class="matrix-item"><b>SPEC</b><span>Tem objetivo, não objetivos, critérios e verificação?</span></div>
+            <div class="matrix-item"><b>AGENTS</b><span>Está curto e sem tutorial gigante?</span></div>
+            <div class="matrix-item"><b>Segurança</b><span><code>.env.example</code> está sem segredo real?</span></div>
+            <div class="matrix-item"><b>Setup</b><span>Instala, roda e valida algo confiável?</span></div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 4: revisão da base</span>
+              <button class="copy-btn" type="button" data-copy="prompt-4" aria-label="Copiar prompt de revisão da base">Copiar prompt</button>
+            </div>
+            <pre id="prompt-4">Revise a base inicial antes de começarmos a feature principal.
+
+Verifique:
+- README.md explica como rodar?
+- AGENTS.md está curto e útil?
+- CLAUDE.md aponta para AGENTS.md e SPEC.md sem duplicação excessiva?
+- SPEC.md tem objetivo, não objetivos, critérios de aceite, riscos e verificação?
+- .env.example usa apenas valores fictícios?
+- dependências novas têm licença/termos compatíveis com o uso pretendido?
+- existe pelo menos uma validação confiável?
+- o projeto instala e roda?
+
+Não implemente feature ainda. Apenas revise e corrija problemas de base se necessário.</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-5">
+        <div class="step-marker">
+          <div class="step-index">5</div>
+          <div class="step-kind">primeira fatia</div>
+        </div>
+        <div>
+          <h2>Implementar o checkpoint 1</h2>
+          <p>Objetivo: entregar a primeira fatia vertical real, pequena e verificável.</p>
+          <div class="step-grid">
+            <div class="mini">
+              <b>Você faz</b>
+              <p>Autoriza apenas o primeiro checkpoint da <code>SPEC.md</code>.</p>
+            </div>
+            <div class="mini">
+              <b>Agente faz</b>
+              <p>Implementa, testa, valida e para. Não adianta checkpoints futuros.</p>
+            </div>
+            <div class="mini">
+              <b>Nasce aqui</b>
+              <p>Código de produto, teste ou validação, e resumo do que falta.</p>
+            </div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 5: primeira fatia</span>
+              <button class="copy-btn" type="button" data-copy="prompt-5" aria-label="Copiar prompt da primeira fatia">Copiar prompt</button>
+            </div>
+            <pre id="prompt-5">Implemente apenas o checkpoint 1 da SPEC.md.
+
+Regras:
+- não implemente checkpoints futuros;
+- mantenha o diff pequeno;
+- atualize testes ou validação mínima;
+- verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
+- rode o menor comando confiável que prova a fatia;
+- pare ao concluir o checkpoint 1 e resuma.
+
+Ao final, informe:
+- o que mudou;
+- quais arquivos foram alterados;
+- qual validação foi executada;
+- quais checkpoints ainda faltam.</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-6">
+        <div class="step-marker">
+          <div class="step-index">6</div>
+          <div class="step-kind">review</div>
+        </div>
+        <div>
+          <h2>Revisar contra o contrato</h2>
+          <p>Objetivo: checar o diff contra a <code>SPEC.md</code>, não contra gosto pessoal solto.</p>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 6: revisar diff</span>
+              <button class="copy-btn" type="button" data-copy="prompt-6" aria-label="Copiar prompt de revisão">Copiar prompt</button>
+            </div>
+            <pre id="prompt-6">Revise o diff atual contra SPEC.md.
+
+Procure:
+- bug;
+- regressão;
+- escopo extra;
+- ausência de teste;
+- risco de segurança;
+- risco legal/licenciamento;
+- dados sensíveis;
+- problemas de UX, se houver UI.
+
+Não implemente nada ainda. Apenas revise.
+
+Formato:
+- Achados bloqueantes
+- Achados opcionais
+- Testes faltantes
+- Pontos aprovados</pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="etapa-7">
+        <div class="step-marker">
+          <div class="step-index">7</div>
+          <div class="step-kind">repetir</div>
+        </div>
+        <div>
+          <h2>Continuar ou fechar a fase</h2>
+          <p>Objetivo: repetir o ciclo por checkpoint ou encerrar a fase com documentação e próximos passos claros.</p>
+          <div class="step-grid">
+            <div class="mini">
+              <b>Continuar</b>
+              <p>Use o prompt de próxima fatia para o checkpoint seguinte.</p>
+            </div>
+            <div class="mini">
+              <b>Parar</b>
+              <p>Se o mesmo erro se repetir, peça resumo e decisão humana.</p>
+            </div>
+            <div class="mini">
+              <b>Fechar</b>
+              <p>Atualize docs, registre riscos restantes e prepare a próxima fase.</p>
+            </div>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 7A: próxima fatia</span>
+              <button class="copy-btn" type="button" data-copy="prompt-7a" aria-label="Copiar prompt da próxima fatia">Copiar prompt</button>
+            </div>
+            <pre id="prompt-7a">Avance apenas para o próximo checkpoint da SPEC.md.
+
+Regras:
+- não misture checkpoints;
+- mantenha o diff pequeno;
+- preserve o comportamento já validado;
+- rode a validação mínima confiável;
+- pare e resuma antes de continuar para outro checkpoint.</pre>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head">
+              <span>Prompt 7B: fechamento da fase</span>
+              <button class="copy-btn" type="button" data-copy="prompt-7b" aria-label="Copiar prompt de fechamento">Copiar prompt</button>
+            </div>
+            <pre id="prompt-7b">Faça o fechamento da fase atual.
+
+Atualize apenas documentação e registros necessários:
+- SPEC.md
+- README.md
+- CHANGELOG.md, se aplicável
+- docs de decisão, se houver decisão arquitetural relevante
+
+Informe:
+- critérios de aceite atendidos;
+- validações executadas;
+- riscos restantes;
+- dívidas técnicas;
+- próxima fatia recomendada.
+
+Não implemente novas features neste passo.</pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel card" id="parametrizacao" aria-labelledby="param-title">
+      <h2 id="param-title">Parametrização Claude Code e Codex</h2>
+      <p>Dá para aumentar muito a aderência ao framework, mas não existe 100% garantido só por prompt. O adequado é parametrizar o que é universal e deixar adaptável o que depende do projeto.</p>
+      <div class="decision">
+        <div class="card">
+          <span class="tag green">Recomendado</span>
+          <h3>Fixar sempre</h3>
+          <p>Segurança, verificação, escopo claro, aprovação para risco, parada em loop e licença/termos antes de item externo.</p>
+        </div>
+        <div class="card">
+          <span class="tag amber">Adaptável</span>
+          <h3>Decidir por projeto</h3>
+          <p>Quantidade de docs, profundidade da SPEC, tipos de teste, stack, autonomia e uso de hooks/skills.</p>
+        </div>
+        <div class="card">
+          <span class="tag red">Evitar</span>
+          <h3>Travar demais</h3>
+          <p>Não obrigue SPEC pesada, todos os testes ou todos os docs em toda tarefa. Isso burocratiza correção simples.</p>
+        </div>
+      </div>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span>Bloco global sugerido</span>
+          <button class="copy-btn" type="button" data-copy="prompt-global" aria-label="Copiar bloco global">Copiar prompt</button>
+        </div>
+        <pre id="prompt-global"># Regras globais para agentes
+
+- Trabalhe por contrato: objetivo, não objetivos, critérios de aceite e verificação.
+- Não implemente código quando o pedido estiver ambíguo, multiarquivo ou crítico sem antes propor plano.
+- Para tarefas triviais, mantenha o fluxo leve.
+- Nunca inclua segredos reais em código, testes, logs, documentação ou commits.
+- Antes de adicionar dependências, assets, modelos, datasets, APIs ou serviços externos, verifique licença/termos e compatibilidade com o uso pretendido.
+- Tarefas envolvendo segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais exigem aprovação humana antes de ações de risco.
+- Use o menor teste confiável que prove a mudança.
+- Pare após erro repetido e peça orientação em vez de entrar em loop.</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+        <p>Material operacional do Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos. Use como guia visual e ajuste os prompts ao contexto real do projeto.</p>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-copy]");
+
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      return Promise.resolve();
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copy);
+        if (!target) return;
+
+        const original = button.textContent;
+        await copyText(target.textContent.trim());
+        button.textContent = "Copiado";
+        window.setTimeout(() => {
+          button.textContent = original;
+        }, 1600);
+      });
+    });
+  </script>
+</body>
+</html>

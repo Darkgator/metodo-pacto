@@ -1,0 +1,4 @@
+# Método PACTO
+
+@AGENTS.md
+
