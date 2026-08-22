@@ -10,6 +10,10 @@ Estas regras valem para desenvolvimento de qualquer solução com agente de cód
 
 - Nunca colocar segredos reais no código, testes, documentação, logs, screenshots ou commits.
 - Tratar como segredo: API key, token, senha, cookie, certificado, chave privada, credencial de banco, webhook secret e URL com credencial embutida.
+- Se o usuário fornecer um segredo no chat, avisar de forma breve sobre o risco de exposição, mas não bloquear a tarefa somente por esse envio. O chat não substitui um mecanismo de gestão de segredos.
+- Não repetir, revelar, gravar, versionar ou incluir o segredo fornecido no chat em comandos visíveis, arquivos, prompts reutilizáveis, logs, screenshots, relatórios ou commits.
+- Quando for necessário usar um segredo fornecido no chat, usar apenas o mecanismo seguro disponível no ambiente, como variável de ambiente temporária, secret manager ou mecanismo equivalente da stack. Evitar passá-lo como argumento de linha de comando.
+- Recomendar a rotação da chave se ela puder ter sido exposta a pessoas não autorizadas, em canal público ou em local persistente inadequado.
 - Usar variáveis de ambiente, secrets do ambiente, vault ou mecanismo equivalente da stack.
 - Manter `.env.example` apenas com valores fictícios quando houver configuração por ambiente.
 - Validar toda entrada externa antes de processar, persistir ou executar: usuário, API, webhook, upload, arquivo, áudio, imagem, planilha, prompt, HTML, URL, query string e dados de terceiros.
@@ -55,7 +59,14 @@ Todo trabalho precisa ter uma forma clara de prova. O tipo de teste depende do r
 - Para respostas JSON, APIs, importações e exportações, garantir `UTF-8` no transporte ou na configuração equivalente da stack.
 - Não "resolver" removendo acentos. Em pt-BR, a saída correta deve preservar a acentuação.
 
-## 5. Obsoletos, Backups e Turning Points
+## 5. Escrita Natural e Pontuação
+
+- Não usar travessões em textos explicativos, documentação, UI, prompts, mensagens de erro ou respostas de agentes, exceto quando for indispensável preservar uma citação literal.
+- Ajustar a pontuação com vírgulas, parênteses, dois-pontos, ponto e vírgula ou reestruturação das frases, para manter leitura fluida, clara e gramaticalmente correta.
+- Evitar construções artificiais ou excessivamente padronizadas que deixem o texto com aparência genérica de saída de IA.
+- Hífens continuam permitidos quando forem necessários em palavras compostas, identificadores, comandos, URLs, listas Markdown, sintaxe ou termos técnicos.
+
+## 6. Obsoletos, Backups e Turning Points
 
 - Git ou outro versionamento deve ser a fonte primária de histórico.
 - Pastas de obsoletos e backups são exceções úteis, não substitutos de versionamento.
@@ -68,7 +79,7 @@ Todo trabalho precisa ter uma forma clara de prova. O tipo de teste depende do r
 - Não criar backup por reflexo em toda alteração pequena.
 - Se houver dúvida, o agente deve perguntar antes de mover, copiar ou arquivar arquivos.
 
-## 6. Critério Prático
+## 7. Critério Prático
 
 Antes de implementar, responder:
 
@@ -77,6 +88,7 @@ Pronto significa: [resultado observável]
 Verificado por: [teste, comando, revisão, screenshot ou validação manual]
 Risco legal/segurança: [nenhum, baixo, médio, alto, ou pendente de validação]
 Codificação/idioma: [UTF-8 preservado, se houver texto em pt-BR]
+Escrita: [sem travessões e com pontuação natural, se houver texto destinado a pessoas]
 Turning point/backups: [não aplicável, coberto por Git, ou backup/obsoleto necessário]
 ```
 

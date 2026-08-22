@@ -15,6 +15,7 @@ Aplicar o Método PACTO ao próprio projeto do framework e deixar a raiz pronta 
 - Registrar SPEC da fase atual.
 - Registrar plano de continuidade.
 - Atualizar README com os novos arquivos de raiz.
+- Consolidar regras universais novas nos contratos, templates, kit e guia visual.
 
 ## Fora de Escopo
 
@@ -50,11 +51,17 @@ Aplicar o Método PACTO ao próprio projeto do framework e deixar a raiz pronta 
 - `SPEC.md`
 - `PLAN.md`
 - `README.md`
+- `docs/regras-universais.md`
+- `docs/framework-v1-proposta.md`
+- `docs/briefing-assistido.md`
+- `templates/`
+- `kit-pacto/`
+- `guia-visual/`
 
 ## Checkpoints
 
 - [x] Checkpoint 1: criar contratos operacionais na raiz.
-- [ ] Checkpoint 2: revisar guia visual contra os contratos da raiz.
+- [x] Checkpoint 2: revisar guia visual contra os contratos da raiz.
 - [ ] Checkpoint 3: decidir licença e política de distribuição do método.
 - [ ] Checkpoint 4: criar pacote final ensinável, se desejado.
 
@@ -74,14 +81,13 @@ Aplicar o Método PACTO ao próprio projeto do framework e deixar a raiz pronta 
 
 ## Rollback
 
-Como não há Git detectado no workspace pai, o rollback deve ser manual se necessário: remover os arquivos de raiz criados nesta fase e restaurar o README anterior a partir de cópia local, histórico do editor ou backup externo.
+O repositório Git local e o remoto público são a fonte primária de rollback. Para uma mudança isolada, reverter o commit correspondente após revisar o impacto.
 
 ## Obsoletos e Backups
 
 - É turning point? Não. É formalização documental sem remoção ou reestruturação destrutiva.
-- Git cobre o histórico? Não foi detectado Git no workspace pai.
+- Git cobre o histórico? Sim, com repositório local e remoto público.
 - Backup adicional necessário? Não para esta alteração pequena.
 - Arquivos que ficarão obsoletos: nenhum.
 - Pasta prevista: não aplicável.
 - `README.md` de arquivamento necessário: não.
-

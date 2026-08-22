@@ -28,6 +28,8 @@ Método: PACTO
 ## Segurança
 
 - Nunca inclua chaves reais, tokens, senhas ou credenciais no código, testes, documentação ou commits.
+- Se o usuário fornecer uma chave no chat, avise brevemente sobre o risco de exposição, mas não bloqueie a tarefa somente por isso. Não repita, revele, grave ou inclua a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
+- Use credenciais fornecidas no chat apenas pelo mecanismo seguro disponível no ambiente. Prefira variável de ambiente ou secret manager e recomende rotação se houver exposição a pessoas não autorizadas.
 - Use variáveis de ambiente.
 - Mantenha `.env.example` com valores fictícios.
 - Valide toda entrada externa antes de processar ou persistir.
@@ -56,6 +58,8 @@ Método: PACTO
 - Ao escrever em pt-BR, preserve acentuação correta e caracteres como ç, ã, õ, á, é, í, ó, ú, â, ê, ô e à.
 - Não aceite mojibake como `Ã§`, `Ã£`, `Ã©`, `Ã³`, `â€“` ou `Â`; verifique se o problema está no arquivo ou apenas na visualização do terminal antes de corrigir.
 - Não remova acentos para contornar problema de codificação.
+- Não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses ou frases reestruturadas, com pontuação fluida e gramaticalmente correta.
+- Hífens necessários em termos técnicos, identificadores, comandos, URLs, listas Markdown ou sintaxe continuam permitidos.
 
 ## Testes e Verificação
 

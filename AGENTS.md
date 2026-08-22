@@ -27,6 +27,8 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 ## Segurança
 
 - Nunca inclua chaves reais, tokens, senhas ou credenciais no código, docs, exemplos, prompts, testes, logs ou commits.
+- Se o usuário fornecer uma chave no chat, avise de forma breve sobre o risco de exposição, mas não bloqueie a tarefa somente por esse motivo. Não repita, revele, grave ou inclua a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
+- Quando for necessário usar uma credencial fornecida no chat, use o mecanismo seguro disponível no ambiente e prefira variável de ambiente ou secret manager. Se a chave puder ter sido exposta a pessoas não autorizadas, recomende sua rotação.
 - Use dados fictícios em exemplos.
 - Não exponha dados sensíveis em screenshots, fixtures, HTML ou relatórios.
 - Ações destrutivas, migrações, remoções grandes e reestruturações devem ser tratadas como turning points.
@@ -52,6 +54,8 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 - Salve arquivos textuais em UTF-8.
 - Não aceite mojibake como `Ã§`, `Ã£`, `Ã©`, `Ã³`, `â€“` ou `Â`.
 - Não remova acentos para contornar problema de codificação.
+- Não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Ajuste a pontuação com vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, preservando fluidez e correção gramatical.
+- Hífens necessários em termos técnicos, identificadores, comandos, URLs, listas Markdown ou sintaxe da linguagem continuam permitidos.
 - Mantenha documentos curtos quando forem carregados por agentes.
 - Mova detalhes longos para `docs/`.
 
@@ -61,4 +65,3 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 - Use smoke visual para `guia-visual/index.html` após mudanças relevantes.
 - Revise consistência entre prompts do guia visual e documentos em `docs/`.
 - Verifique se templates refletem as regras universais.
-

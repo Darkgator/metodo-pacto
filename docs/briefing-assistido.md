@@ -54,6 +54,7 @@ Ao final, a IA deve entregar:
 - A IA deve separar fato, suposição e dúvida.
 - A IA deve sinalizar quando uma resposta muda arquitetura, IA, banco, custo, segurança ou deploy.
 - A IA deve preservar UTF-8 e acentuação correta em pt-BR.
+- A IA não deve usar travessões em textos explicativos. Deve preferir vírgulas, parênteses ou frases reestruturadas, com leitura clara e gramaticalmente correta.
 
 ## Prompt Mestre
 
@@ -76,6 +77,7 @@ Regras:
 - Quando uma resposta puder mudar stack, banco, IA, segurança, custo, deploy ou risco legal, destaque isso.
 - Se o usuário não souber responder, proponha opções simples e peça escolha.
 - Preserve acentuação correta em pt-BR e saída UTF-8.
+- Não use travessões em textos explicativos. Prefira vírgulas, parênteses ou frases reestruturadas, com pontuação natural.
 
 Conduza a entrevista cobrindo, quando aplicável:
 1. Problema e contexto atual.
@@ -128,4 +130,3 @@ Faça:
 6. Recomende uma das stacks e explique por quê.
 7. Proponha o menor primeiro contrato verificável.
 ```
-

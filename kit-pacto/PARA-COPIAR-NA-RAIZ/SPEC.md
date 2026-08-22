@@ -23,6 +23,7 @@ Fase: [nome ou número]
 - Stack e motivo, se decidida:
 - Arquitetura ou integração afetada:
 - Segurança, privacidade, licença e risco legal:
+- Credenciais fornecidas no chat, se houver, e mecanismo seguro de uso:
 
 ## Critérios de aceite
 
@@ -34,6 +35,7 @@ Fase: [nome ou número]
 
 - Testes, validações ou revisão manual:
 - Comando, ambiente ou evidência esperada:
+- Escrita e pontuação, se houver texto destinado a pessoas:
 - Limitações conhecidas:
 
 ## Aprovação humana
@@ -41,4 +43,3 @@ Fase: [nome ou número]
 - Responsável:
 - Data:
 - Observações:
-

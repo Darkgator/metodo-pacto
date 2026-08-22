@@ -54,3 +54,4 @@ Método: PACTO
 - Arquivos textuais devem ser salvos em UTF-8.
 - Textos em pt-BR devem preservar acentuação correta.
 - Não remover acentos para contornar problema de codificação.
+- Não usar travessões em textos explicativos. Ajustar a pontuação com vírgulas, parênteses ou frases reestruturadas, mantendo clareza e correção gramatical.

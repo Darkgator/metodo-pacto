@@ -159,6 +159,8 @@ Estas regras valem para qualquer solução, com qualquer stack. Elas orientam de
 ### Segurança
 
 - Nunca inserir chaves reais, tokens, senhas, cookies, certificados, credenciais ou segredos no código, nos testes, na documentação, em logs ou commits.
+- Se o usuário fornecer uma chave no chat, avisar brevemente sobre o risco de exposição, mas não bloquear a tarefa somente por isso. Não repetir, revelar, gravar, versionar ou incluir a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
+- Quando for necessário usar uma credencial fornecida no chat, usar o mecanismo seguro disponível no ambiente, preferindo variável de ambiente ou secret manager. Evitar argumentos de linha de comando e recomendar rotação se houver exposição a pessoas não autorizadas.
 - Usar variáveis de ambiente, secrets do ambiente, vault ou mecanismo equivalente da stack.
 - Manter `.env.example` apenas com valores fictícios quando o projeto usar configuração por ambiente.
 - Validar toda entrada externa: usuário, API, webhook, upload, arquivo, áudio, planilha, prompt, HTML, URL, query string e dados de terceiros.
@@ -199,6 +201,8 @@ Estas regras valem para qualquer solução, com qualquer stack. Elas orientam de
 - Não aceitar mojibake em arquivos, documentos, UI ou prompts. Exemplos: `Ã§`, `Ã£`, `Ã©`, `Ã³`, `â€“`, `Â`.
 - Se o terminal exibir caracteres quebrados, verificar se o problema está no arquivo ou apenas na visualização antes de reescrever.
 - Não remover acentos para contornar codificação.
+- Não usar travessões em textos explicativos, documentação, UI, prompts ou respostas. Usar vírgulas, parênteses, dois-pontos, ponto e vírgula ou reestruturar a frase para manter a leitura natural e correta.
+- Hífens continuam permitidos quando necessários em termos técnicos, identificadores, comandos, URLs, listas Markdown ou sintaxe.
 
 ### Obsoletos e backups
 

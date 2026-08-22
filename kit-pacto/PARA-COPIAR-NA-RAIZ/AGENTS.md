@@ -37,6 +37,8 @@ Este projeto segue o Método PACTO: Preparar, Avaliar, Contratar, Trabalhar e Ob
 ## Segurança e dados
 
 - Nunca exponha chaves, tokens, senhas, credenciais, dados pessoais, dados de clientes ou segredos em código, documentação, prompts, exemplos, testes, fixtures, logs, screenshots ou commits.
+- Se o usuário fornecer uma chave no chat, avise brevemente sobre o risco de exposição, mas não bloqueie a tarefa somente por isso. Não repita, revele, grave ou inclua a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
+- Use credenciais fornecidas no chat apenas pelo mecanismo seguro disponível no ambiente. Prefira variável de ambiente ou secret manager e recomende rotação se houver exposição a pessoas não autorizadas.
 - Use variáveis de ambiente e mantenha exemplos com valores fictícios.
 - Valide entradas externas antes de processar, persistir ou encaminhar dados.
 - Ações destrutivas, migrações, remoções grandes, mudanças de autenticação/autorização, deploys e uso de dados reais exigem aprovação humana explícita.
@@ -62,3 +64,7 @@ Este projeto segue o Método PACTO: Preparar, Avaliar, Contratar, Trabalhar e Ob
 - Não remova acentos para contornar problemas de codificação.
 - Não aceite mojibake como `Ã§`, `Ã£`, `Ã©`, `Ã³`, `â€“` ou `Â`. Antes de corrigir, confirme se o problema está no arquivo ou somente na exibição do terminal.
 
+## Escrita Natural
+
+- Não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, mantendo leitura fluida, clara e gramaticalmente correta.
+- Hífens necessários em termos técnicos, identificadores, comandos, URLs, listas Markdown ou sintaxe continuam permitidos.

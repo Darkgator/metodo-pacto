@@ -784,6 +784,7 @@
         </section>
 
         <p class="note">Regra fixa para pt-BR: todo arquivo textual deve ser salvo em UTF-8, com acentuação correta. Não aceite mojibake como <code>Ã§</code>, <code>Ã£</code>, <code>Ã©</code>, <code>â€“</code> ou <code>Â</code>, e não remova acentos para contornar codificação.</p>
+        <p class="note">Regra de escrita: não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, para manter a leitura natural e correta.</p>
         <p class="note">Regra de turning point: Git é a fonte primária de histórico. Antes de migração, troca de stack, refatoração grande, reestruturação de UI ou remoção de muitos arquivos, avalie se precisa de backup mínimo ou mover obsoletos para <code>_archive/</code>.</p>
 
         <article class="step" id="briefing-assistido">
@@ -824,6 +825,7 @@ Regras:
 - Quando uma resposta puder mudar stack, banco, IA, segurança, custo, deploy ou risco legal, destaque isso.
 - Se o usuário não souber responder, proponha opções simples e peça escolha.
 - Preserve acentuação correta em pt-BR e saída UTF-8.
+- Não use travessões em textos explicativos. Prefira vírgulas, parênteses ou frases reestruturadas, com pontuação natural.
 
 Ao final, gere:
 - BRIEF.md completo;
@@ -974,8 +976,11 @@ Regras:
 - não implemente a feature principal ainda;
 - não invente stack além da aprovada;
 - não inclua segredos reais;
+- se o usuário fornecer uma chave no chat, avise brevemente sobre o risco, mas não bloqueie a tarefa somente por isso; não repita, grave ou exponha a chave;
+- use a chave fornecida no chat apenas pelo mecanismo seguro disponível no ambiente, sem colocá-la em comandos visíveis, arquivos, logs ou commits;
 - não adicione dependências sem licença/termos compatíveis;
 - salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR;
+- não use travessões em textos explicativos; prefira pontuação natural e frases reestruturadas;
 - se criar ou substituir estrutura relevante, avalie se há turning point e necessidade de backup/obsoletos;
 - mantenha os docs curtos;
 - rode a validação mínima possível.
@@ -1014,6 +1019,7 @@ Verifique:
 - .env.example usa apenas valores fictícios?
 - dependências novas têm licença/termos compatíveis com o uso pretendido?
 - arquivos textuais estão em UTF-8 e textos pt-BR estão sem mojibake?
+- textos explicativos evitam travessões e mantêm pontuação natural?
 - há turning point que exige backup mínimo ou pasta de obsoletos?
 - existe pelo menos uma validação confiável?
 - o projeto instala e roda?
@@ -1182,10 +1188,13 @@ Não implemente novas features neste passo.</pre>
 - Não implemente código quando o pedido estiver ambíguo, multiarquivo ou crítico sem antes propor plano.
 - Para tarefas triviais, mantenha o fluxo leve.
 - Nunca inclua segredos reais em código, testes, logs, documentação ou commits.
+- Se o usuário fornecer uma chave no chat, avise brevemente sobre o risco, mas não bloqueie a tarefa somente por isso. Não repita, revele, grave ou exponha a chave.
+- Use a chave fornecida no chat apenas pelo mecanismo seguro disponível no ambiente, sem colocá-la em comandos visíveis, arquivos, logs ou commits. Recomende rotação se houver exposição a pessoas não autorizadas.
 - Antes de adicionar dependências, assets, modelos, datasets, APIs ou serviços externos, verifique licença/termos e compatibilidade com o uso pretendido.
 - Tarefas envolvendo segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais exigem aprovação humana antes de ações de risco.
 - Use o menor teste confiável que prove a mudança.
 - Salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR; não aceite mojibake.
+- Não use travessões em textos explicativos; prefira vírgulas, parênteses ou frases reestruturadas.
 - Antes de turning points, avalie se Git basta ou se precisa de backup mínimo/obsoletos em `_archive/`.
 - Pare após erro repetido e peça orientação em vez de entrar em loop.</pre>
             </div>

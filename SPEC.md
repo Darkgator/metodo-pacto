@@ -42,11 +42,14 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 - [x] `PLAN.md` existe na raiz e define próximos checkpoints.
 - [x] README aponta para os contratos operacionais da raiz.
 - [x] Regras de UTF-8, segurança, licenciamento, testes e turning points estão refletidas nos contratos.
+- [x] Regra de escrita natural, sem travessões em textos explicativos, está refletida nos contratos, templates, kit e guia visual.
+- [x] Chave fornecida pelo usuário no chat gera aviso de risco, sem bloqueio automático da tarefa, e não pode ser persistida ou reexposta.
 - [x] Não há backup desnecessário para esta mudança documental.
 
 ## Segurança, Dados e Risco Legal
 
 - [x] Nenhum segredo real foi inserido.
+- [x] A regra de tratamento de chaves fornecidas no chat foi documentada sem adicionar exemplos com chaves reais.
 - [x] Dados sensíveis não foram adicionados.
 - [x] Licença pública final permanece como decisão pendente.
 - [x] Dependências externas novas não foram adicionadas.
@@ -54,7 +57,7 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 ## Obsoletos, Backups e Turning Points
 
 - [x] A mudança foi avaliada como não destrutiva.
-- [x] Git não foi detectado no workspace pai durante a aplicação inicial do método.
+- [x] Repositório Git local e remoto público estão configurados para o histórico do método.
 - [x] Backup adicional não é necessário para esta alteração documental.
 - [x] Arquivos obsoletos não foram gerados.
 

@@ -38,6 +38,7 @@ Método: PACTO
 
 - [ ] [Entradas externas validadas, se aplicável.]
 - [ ] [Dados sensíveis protegidos em logs, UI, testes e armazenamento, se aplicável.]
+- [ ] [Credenciais fornecidas no chat, se houver, não foram persistidas, reexpostas ou incluídas em comandos visíveis, arquivos, logs ou commits.]
 - [ ] [Permissões, autenticação e autorização revisadas, se aplicável.]
 - [ ] [Dependências, assets, modelos, datasets, APIs ou serviços novos tiveram licença/termos avaliados, se aplicável.]
 - [ ] [Uso comercial, redistribuição, SaaS, copyleft, atribuição e privacidade verificados quando houver item externo novo.]
@@ -81,6 +82,7 @@ Método: PACTO
 - [ ] `.env.example` atualizado, se aplicável.
 - [ ] `CHANGELOG.md` atualizado.
 - [ ] Arquivos textuais salvos em UTF-8 e textos em pt-BR sem mojibake, se aplicável.
+- [ ] Textos explicativos sem travessões e com pontuação natural, se aplicável.
 
 ## Definition of Done
 
@@ -92,5 +94,6 @@ Método: PACTO
 - [ ] Acessibilidade básica verificada, se aplicável.
 - [ ] Seeds e `.env.example` atualizados, se aplicável.
 - [ ] Codificação UTF-8 preservada e acentuação pt-BR correta em chat, docs, arquivos e UI, se aplicável.
+- [ ] Textos destinados a pessoas revisados para evitar travessões e manter leitura fluida, se aplicável.
 - [ ] Obsoletos e backups tratados conforme turning point, se aplicável.
 - [ ] Mensagem de commit preparada em Conventional Commits.

@@ -29,6 +29,7 @@ Regras de condução:
 - Preserve UTF-8 e acentuação correta em pt-BR.
 - Não remova acentos.
 - Não aceite mojibake.
+- Não use travessões em textos explicativos. Prefira vírgulas, parênteses ou frases reestruturadas, com leitura clara e gramaticalmente correta.
 
 Você deve cobrir, conforme o caso:
 - problema e contexto;
@@ -94,4 +95,3 @@ Formato final obrigatório:
 
 ## Prompt para Agente de Coding
 ```
-
