@@ -785,6 +785,7 @@
 
         <p class="note">Regra fixa para pt-BR: todo arquivo textual deve ser salvo em UTF-8, com acentuação correta. Não aceite mojibake como <code>Ã§</code>, <code>Ã£</code>, <code>Ã©</code>, <code>â€“</code> ou <code>Â</code>, e não remova acentos para contornar codificação.</p>
         <p class="note">Regra de escrita: não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, para manter a leitura natural e correta.</p>
+        <p class="note">Regra de validação: classifique a mudança como T0, T1, T2 ou T3. Ajuste trivial não abre navegador nem gera teste, plano ou checklist. Smoke clássico é obrigatório apenas ao fechar fase executável, PR relevante, release ou deploy.</p>
         <p class="note">Regra de turning point: Git é a fonte primária de histórico. Antes de migração, troca de stack, refatoração grande, reestruturação de UI ou remoção de muitos arquivos, avalie se precisa de backup mínimo ou mover obsoletos para <code>_archive/</code>.</p>
 
         <article class="step" id="briefing-assistido">
@@ -1054,16 +1055,18 @@ Não implemente feature ainda. Apenas revise e corrija problemas de base se nece
 Regras:
 - não implemente checkpoints futuros;
 - mantenha o diff pequeno;
-- atualize testes ou validação mínima;
+- classifique o checkpoint silenciosamente como T0, T1, T2 ou T3;
+- em T0, implemente e encerre sem teste, navegador, build, lint, typecheck, checklist ou plano de teste;
+- em T1, rode uma única prova curta; em T2, apenas as validações necessárias; em T3, smoke clássico e testes relevantes da fase;
 - verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
 - se for turning point, avalie backup mínimo e obsoletos antes de alterar;
-- rode o menor comando confiável que prova a fatia;
+- não abra navegador ou capture screenshot por reflexo;
 - pare ao concluir o checkpoint 1 e resuma.
 
 Ao final, informe:
 - o que mudou;
 - quais arquivos foram alterados;
-- qual validação foi executada;
+- validação executada, somente se o nível não for T0;
 - quais checkpoints ainda faltam.</pre>
             </div>
           </div>
@@ -1090,7 +1093,7 @@ Procure:
 - bug;
 - regressão;
 - escopo extra;
-- ausência de teste;
+- validação incompatível com o nível T0, T1, T2 ou T3;
 - risco de segurança;
 - risco legal/licenciamento;
 - dados sensíveis;
@@ -1101,7 +1104,7 @@ Não implemente nada ainda. Apenas revise.
 Formato:
 - Achados bloqueantes
 - Achados opcionais
-- Testes faltantes
+- Validações faltantes, quando aplicáveis
 - Pontos aprovados</pre>
             </div>
           </div>
@@ -1192,7 +1195,10 @@ Não implemente novas features neste passo.</pre>
 - Use a chave fornecida no chat apenas pelo mecanismo seguro disponível no ambiente, sem colocá-la em comandos visíveis, arquivos, logs ou commits. Recomende rotação se houver exposição a pessoas não autorizadas.
 - Antes de adicionar dependências, assets, modelos, datasets, APIs ou serviços externos, verifique licença/termos e compatibilidade com o uso pretendido.
 - Tarefas envolvendo segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais exigem aprovação humana antes de ações de risco.
-- Use o menor teste confiável que prove a mudança.
+- Classifique a mudança silenciosamente como T0, T1, T2 ou T3.
+- Em T0, faça ajuste trivial e encerre sem teste, navegador, build, lint, typecheck, checklist ou plano de teste.
+- Em T1, execute uma prova curta. Em T2, somente validações necessárias. Em T3, smoke clássico e testes relevantes da fase.
+- Não abra navegador ou capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
 - Salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR; não aceite mojibake.
 - Não use travessões em textos explicativos; prefira vírgulas, parênteses ou frases reestruturadas.
 - Antes de turning points, avalie se Git basta ou se precisa de backup mínimo/obsoletos em `_archive/`.

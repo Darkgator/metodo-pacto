@@ -31,10 +31,18 @@ Fase: [nome ou número]
 - [ ] Critério observável 2
 - [ ] Critério observável 3
 
+## Nível de validação
+
+- Nível da alteração ou checkpoint: [`T0` direta | `T1` leve | `T2` relevante | `T3` marco]
+- Prova automatizada ou determinística: [preencher ou não aplicável em T0]
+- Validação humana necessária: [nenhuma ou ação objetiva do usuário em T2/T3]
+- Smoke clássico ao fechar a fase: [sim/não/não aplicável]
+
 ## Verificação necessária
 
 - Testes, validações ou revisão manual:
 - Comando, ambiente ou evidência esperada:
+- Navegador ou screenshot: [somente se pedido, exigido pela SPEC ou necessário para fluxo funcional relevante]
 - Escrita e pontuação, se houver texto destinado a pessoas:
 - Limitações conhecidas:
 

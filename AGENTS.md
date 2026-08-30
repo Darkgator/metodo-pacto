@@ -17,7 +17,7 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 
 ## Fluxo de Trabalho
 
-- Leia `BRIEF.md`, `SPEC.md`, `PLAN.md` e `docs/regras-universais.md` antes de alterar o método.
+- Leia `BRIEF.md`, `SPEC.md`, `PLAN.md`, `docs/regras-universais.md` e `docs/validacao-proporcional.md` antes de alterar o método.
 - Em mudanças conceituais, atualize também o guia visual e os templates afetados.
 - Trabalhe em fatias pequenas e verificáveis.
 - Não implemente fora do escopo aprovado na `SPEC.md`.
@@ -61,7 +61,9 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 
 ## Testes e Verificação
 
-- Todo trabalho deve ter forma clara de verificação: revisão documental, validação visual, teste manual, busca por termos ou renderização do HTML.
-- Use smoke visual para `guia-visual/index.html` após mudanças relevantes.
+- Siga `docs/validacao-proporcional.md`: classifique a alteração silenciosamente como `T0`, `T1`, `T2` ou `T3`.
+- Em `T0`, não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste. Apenas confira o diff silenciosamente.
+- Em `T1`, use uma única prova curta. Em `T2`, valide somente o necessário para a fatia. Em `T3`, rode smoke clássico e as verificações relevantes da fase.
+- Não abra `guia-visual/index.html` por reflexo. Faça smoke visual somente ao fechar uma fase visual, por pedido explícito ou após mudança funcional relevante no guia.
 - Revise consistência entre prompts do guia visual e documentos em `docs/`.
 - Verifique se templates refletem as regras universais.

@@ -13,6 +13,7 @@ Método: PACTO
 - Não escreva código ou documentação nova antes de entender o escopo da tarefa.
 - Para mudanças grandes, planeje antes de implementar.
 - Para mudanças no método, atualize documentos, templates e guia visual quando aplicável.
+- Siga `docs/validacao-proporcional.md`. Em `T0`, não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste. Em `T1`, rode uma única prova curta; em `T2`, apenas o necessário; em `T3`, smoke clássico e verificações relevantes da fase.
 - Nunca inclua segredos reais em código, docs, exemplos, prompts, logs ou commits.
 - Se o usuário fornecer uma chave no chat, avise brevemente sobre o risco, mas não bloqueie a tarefa somente por isso. Não repita, revele, grave ou inclua a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
 - Use credenciais fornecidas no chat apenas pelo mecanismo seguro disponível no ambiente. Prefira variável de ambiente ou secret manager e recomende rotação se houver exposição a pessoas não autorizadas.
@@ -29,6 +30,7 @@ Método: PACTO
 - `PLAN.md`: plano de continuidade.
 - `AGENTS.md`: regras para agentes.
 - `docs/regras-universais.md`: regras universais.
+- `docs/validacao-proporcional.md`: política de validação por alteração, checkpoint, fase e release.
 - `docs/variaveis-decisivas.md`: perguntas que mudam stack, IA, arquitetura, custo e deploy.
 - `docs/gestao-obsoletos-backups.md`: regra para obsoletos, backups e turning points.
 - `guia-visual/index.html`: guia visual atual.

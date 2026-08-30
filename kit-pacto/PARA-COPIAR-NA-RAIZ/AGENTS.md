@@ -52,10 +52,14 @@ Este projeto segue o Método PACTO: Preparar, Avaliar, Contratar, Trabalhar e Ob
 
 ## Qualidade e verificação
 
-- Toda entrega deve ter uma forma objetiva de verificação: teste, build, lint, typecheck, inspeção manual, screenshot, smoke test ou outro sinal adequado.
-- Escolha o menor teste confiável para a mudança e amplie a cobertura quando o risco justificar.
-- Use smoke para fluxos essenciais; unitário para regras isoladas; integração para fronteiras; E2E para jornadas críticas. Spider/crawl serve para descoberta de rotas e links, não substitui testes funcionais.
-- Ao corrigir defeito, adicione ou atualize uma proteção contra regressão quando for viável.
+- Classifique a alteração silenciosamente como `T0`, `T1`, `T2` ou `T3`.
+- `T0`: texto, cor, espaçamento, posição estática, ajuste visual isolado, comentário ou documentação simples. Faça a alteração e confira o diff silenciosamente. Não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste.
+- `T1`: comportamento local, regra pequena, endpoint simples ou configuração com risco local. Rode somente uma prova curta e determinística.
+- `T2`: integração, banco, autenticação, vários módulos, fluxo funcional de UI ou risco de regressão. Execute somente as validações necessárias e peça ao usuário apenas o que exigir percepção humana ou ambiente real.
+- `T3`: fechamento de fase, PR relevante, release, deploy ou fluxo crítico. Rode smoke clássico obrigatório e os testes relevantes definidos para a fase.
+- Não abra navegador nem capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
+- Use unitário para regra isolada, integração para fronteira entre módulos e E2E para jornada crítica. Não execute todos por padrão. Spider/crawl serve para descoberta de rotas e links, não substitui teste funcional.
+- Ao corrigir defeito, adicione ou atualize teste de regressão quando for viável e proporcional ao risco.
 
 ## UTF-8 e pt-BR
 

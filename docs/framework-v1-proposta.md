@@ -181,18 +181,15 @@ Estas regras valem para qualquer solução, com qualquer stack. Elas orientam de
 
 ### Testes e verificação
 
-- Todo contrato precisa dizer como será verificado. O tipo de teste depende do risco, da stack e do tipo de mudança.
-- Usar o menor teste confiável primeiro, depois ampliar a validação se a mudança justificar.
-- `Smoke test`: verifica rapidamente se o essencial sobe e responde. É recomendado para projeto novo, deploy, mudança de configuração e fluxo crítico.
-- `Unit test`: valida regra, função, componente ou módulo isolado. É útil para lógica de negócio e transformação de dados.
-- `Integration test`: valida a comunicação entre partes, como API e banco, serviço e fila, autenticação e sessão, ou componente e estado.
-- `E2E test`: valida jornada real do usuário. Deve cobrir fluxos críticos, não todas as combinações possíveis.
-- `Regression test`: deve ser criado ou atualizado quando um bug é corrigido para impedir retorno do problema.
-- `Accessibility test`: deve existir quando houver interface relevante, junto com validação manual mínima de navegação, labels e contraste.
-- `Performance/load test`: aplicar quando tempo de resposta, escala, volume, concorrência ou custo operacional forem riscos reais.
-- `Fuzz/property test`: aplicar quando entradas malformadas, formatos variáveis, parsers, importadores, segurança ou robustez forem importantes.
-- `Spider/crawl`: usar para descobrir rotas, links, páginas quebradas e superfície exposta. É técnica de descoberta e segurança; não substitui smoke, integração ou E2E.
-- Se não houver automação viável, registrar teste manual objetivo com passos, entrada esperada e resultado esperado.
+- Todo contrato relevante precisa dizer seu nível de validação: `T0`, `T1`, `T2` ou `T3`. A política completa está em `docs/validacao-proporcional.md`.
+- `T0: direta`: texto, cor, espaçamento, posição estática, ajuste visual isolado, comentário ou documentação simples. Não gera plano de teste, lista para o usuário, navegador, build, lint ou typecheck.
+- `T1: leve`: comportamento local, regra pequena, endpoint simples ou configuração com risco local. Executar uma única prova curta e determinística.
+- `T2: relevante`: integração, banco, autenticação, vários módulos, fluxo funcional de UI ou risco de regressão. Executar apenas testes necessários à fatia e pedir validação humana somente quando ela for a única evidência confiável.
+- `T3: marco`: fechamento de fase, PR relevante, release, deploy ou fluxo crítico. Smoke clássico é obrigatório, acompanhado dos testes aplicáveis ao risco real.
+- Navegador e screenshot não são validação padrão de UI. Usar apenas por pedido explícito, requisito da SPEC, alteração de fluxo funcional, fechamento visual de fase ou investigação de falha.
+- `Unit test` valida regra isolada. `Integration test` valida fronteira entre partes. `E2E test` valida jornada crítica. Não executar todos por reflexo.
+- `Regression test` deve ser criado ou atualizado para bug corrigido quando for viável e proporcional ao risco.
+- `Accessibility test`, `performance/load test`, `fuzz/property test` e `spider/crawl` só entram quando risco, fase ou requisito justificar. Spider/crawl não substitui teste funcional.
 
 ### Codificação e idioma
 
@@ -389,12 +386,14 @@ Regras:
 
 ### 7. Verificar
 
-Validação mínima obrigatória:
+Aplicar o nível de validação do checkpoint:
 
-- menor teste/comando que prova a fatia;
-- build/lint/typecheck quando aplicável;
-- screenshot ou inspeção visual para UI;
-- teste manual quando automação não existir.
+- `T0`: encerrar após conferir o diff, sem teste ou relatório de validação vazio;
+- `T1`: rodar uma única prova curta;
+- `T2`: rodar somente as provas necessárias e pedir ao usuário apenas o que ele precisa observar;
+- `T3`: rodar smoke clássico e verificações relevantes ao fechar fase ou preparar entrega.
+
+Não abrir navegador ou capturar screenshot por reflexo.
 
 ### 8. Revisar
 
@@ -450,7 +449,7 @@ Se o mesmo erro acontecer duas vezes:
    - `BRIEF.md`, se for útil manter o briefing no repositório
    - estrutura técnica mínima
    - comandos mínimos de build/test/lint quando aplicáveis
-7. Validar que a base instala, roda e tem pelo menos uma verificação confiável.
+7. Validar que a base instala, roda e tem pelo menos uma verificação confiável. Esta validação inicial é um marco `T3` da base, não uma obrigação repetida em cada ajuste trivial posterior.
 8. Revisar documentos e setup antes de produto real.
 9. Implementar a primeira fatia vertical da `SPEC.md`.
 

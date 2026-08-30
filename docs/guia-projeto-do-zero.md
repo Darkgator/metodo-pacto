@@ -123,7 +123,8 @@ Regras:
 - não inclua segredos reais;
 - não adicione dependências sem licença/termos compatíveis;
 - mantenha os docs curtos;
-- rode a validação mínima possível.
+- classifique a base como marco `T3` e rode smoke clássico somente para provar que ela instala e roda;
+- não abra navegador por reflexo, a menos que a base tenha fluxo visual funcional que precise ser comprovado.
 
 Ao final, informe:
 - arquivos criados;
@@ -151,6 +152,7 @@ Antes de seguir, confira:
 - as dependências têm licença/termos aceitáveis?
 - existe pelo menos uma verificação confiável?
 - o projeto instala e roda?
+- o nível de validação de cada checkpoint está definido como `T0`, `T1`, `T2` ou `T3` quando não for óbvio?
 - há turning point que exige backup mínimo ou pasta de obsoletos?
 
 ## Etapa 5: Primeira fatia vertical
@@ -163,17 +165,19 @@ Implemente apenas o checkpoint 1 da SPEC.md.
 Regras:
 - não implemente checkpoints futuros;
 - mantenha o diff pequeno;
-- atualize testes ou validação mínima;
+- classifique o checkpoint silenciosamente como `T0`, `T1`, `T2` ou `T3`;
+- em `T0`, não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste;
+- em `T1`, rode apenas uma prova curta; em `T2`, somente o necessário; em `T3`, smoke clássico e verificações relevantes;
 - verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
 - se for turning point, avalie backup mínimo e obsoletos antes de alterar;
-- rode o menor comando confiável que prova a fatia;
+- não abra navegador ou capture screenshot por reflexo;
 - pare ao concluir o checkpoint 1 e resuma.
 ```
 
 Saída esperada:
 
 - primeira funcionalidade real;
-- teste ou validação;
+- validação correspondente ao nível do checkpoint, quando aplicável;
 - resumo do que mudou;
 - próximos checkpoints ainda não implementados.
 

@@ -31,6 +31,7 @@ Este projeto está em rascunho. A versão inicial foi baseada nos seus prompts a
 - `docs/sintese-pesquisa.md`: síntese dos relatórios de pesquisa aprofundada.
 - `docs/framework-v1-proposta.md`: proposta v1, redesenhada a partir da pesquisa.
 - `docs/regras-universais.md`: regras universais de segurança, testes e risco legal.
+- `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.
 - `docs/guia-projeto-do-zero.md`: passo a passo operacional para começar um projeto novo.
 - `docs/decisoes-abertas.md`: pontos que ainda precisamos decidir juntos.
 - `guia-visual/index.html`: versão atual do fluxo visual "olhar e fazer", em estilo Claude/Claude Code.

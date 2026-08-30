@@ -33,20 +33,20 @@ Estas regras valem para desenvolvimento de qualquer solução com agente de cód
 - Se a licença ou os termos não forem claros, não prosseguir por inferência. Parar e pedir validação humana.
 - Não copiar código, imagens, textos, datasets, templates ou prompts de origem incerta para dentro do projeto.
 
-## 3. Testes e Verificação
+## 3. Validação Proporcional
 
-Todo trabalho precisa ter uma forma clara de prova. O tipo de teste depende do risco e do tipo de mudança.
+Sempre classificar o risco da alteração, mas não testar tudo sempre. A política completa está em `docs/validacao-proporcional.md`.
 
-- `Smoke test`: checagem rápida de que o essencial sobe e responde. Usar em setup, deploy, mudanças críticas e fluxos principais.
-- `Unit test`: valida regra, função, componente ou módulo isolado. Usar para lógica de negócio, cálculos, parsing e transformação de dados.
-- `Integration test`: valida a comunicação entre partes. Usar para API + banco, serviço + fila, autenticação + sessão, componente + estado ou integrações externas mockadas.
-- `E2E test`: valida jornada real do usuário. Usar para fluxos críticos, não para todas as combinações.
-- `Regression test`: criado ou atualizado quando um bug é corrigido para impedir que o problema volte.
-- `Accessibility test`: usar quando houver interface relevante. Deve cobrir pelo menos labels, navegação, foco, contraste e estados básicos.
-- `Performance/load test`: usar quando tempo de resposta, concorrência, volume, escala ou custo operacional forem riscos.
-- `Fuzz/property test`: usar quando entradas malformadas, parsers, importadores, segurança ou robustez forem relevantes.
-- `Spider/crawl`: usar para descobrir rotas, links, páginas quebradas e superfície exposta. É descoberta, não substitui smoke, integração ou E2E.
-- Teste manual é aceitável quando automação ainda não existe, mas deve ter passos claros, entrada esperada e resultado esperado.
+- `T0: direta`: para texto, cor, espaçamento, posição estática, ajuste visual isolado, comentário ou documentação simples. Não rodar teste, navegador, build, lint, typecheck, checklist ou plano de teste. O agente só confere o diff silenciosamente.
+- `T1: leve`: para comportamento local, regra pequena, endpoint simples ou configuração com risco local. Rodar somente uma prova curta e determinística.
+- `T2: relevante`: para integração, banco, autenticação, vários módulos, fluxo funcional de UI ou risco de regressão. Executar apenas as validações necessárias e pedir ao usuário somente o que exigir percepção humana ou ambiente real.
+- `T3: marco`: para fechamento de fase, PR relevante, release, deploy ou fluxo crítico. Smoke clássico é obrigatório, junto dos testes realmente aplicáveis.
+- Navegador, screenshot e inspeção visual não são padrão para toda mudança de UI. Usar apenas por pedido explícito, requisito da `SPEC.md`, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
+- `Smoke test`: checagem rápida de que o essencial sobe e responde. É obrigatório ao fechar uma fase com comportamento executável e antes de PR relevante, release ou deploy.
+- `Unit test`: para regra, função, componente ou módulo isolado. `Integration test`: para fronteiras entre partes. `E2E test`: para jornadas críticas. Não executar todos por reflexo.
+- `Regression test`: criar ou atualizar quando um bug for corrigido, se for viável e proporcional ao risco.
+- `Accessibility test`, `performance/load test`, `fuzz/property test` e `spider/crawl` só entram quando o risco ou a fase justificar. Spider/crawl é descoberta, não substitui teste funcional.
+- Teste manual é aceitável quando a automação não existe ou não compensa. Em `T2` e `T3`, deve ter passos e resultado esperado. Em `T0` e `T1`, não criar lista para o usuário por padrão.
 
 ## 4. Codificação, Idioma e Mojibake
 
@@ -85,7 +85,9 @@ Antes de implementar, responder:
 
 ```text
 Pronto significa: [resultado observável]
-Verificado por: [teste, comando, revisão, screenshot ou validação manual]
+Nível de validação: [T0, T1, T2 ou T3]
+Verificado por: [somente a prova proporcional, ou não aplicável em T0]
+Teste do usuário: [nenhum, ou uma ação humana específica em T2/T3]
 Risco legal/segurança: [nenhum, baixo, médio, alto, ou pendente de validação]
 Codificação/idioma: [UTF-8 preservado, se houver texto em pt-BR]
 Escrita: [sem travessões e com pontuação natural, se houver texto destinado a pessoas]

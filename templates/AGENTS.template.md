@@ -63,10 +63,10 @@ Método: PACTO
 
 ## Testes e Verificação
 
-- Todo trabalho deve ter uma forma clara de verificação: teste automatizado, build, lint, typecheck, screenshot, inspeção manual ou outro sinal objetivo.
-- Escolha o menor teste confiável para a mudança e amplie quando o risco justificar.
-- Use smoke tests para checar rapidamente fluxos essenciais após setup, deploy ou mudanças críticas.
-- Use testes unitários para regras isoladas, integração para fronteiras entre módulos e E2E para jornadas críticas.
-- Crie ou atualize teste de regressão ao corrigir bug.
-- Para UI, valide estados, responsividade e acessibilidade básica quando aplicável.
-- Use spider/crawl apenas como descoberta de rotas, links e superfície exposta; isso não substitui smoke, integração ou E2E.
+- Siga a matriz `T0`, `T1`, `T2` e `T3` definida em `docs/validacao-proporcional.md`, se existir.
+- Em `T0`, faça alteração trivial e confira o diff silenciosamente. Não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste.
+- Em `T1`, rode uma única prova curta e determinística. Em `T2`, escolha somente os testes necessários à fatia. Em `T3`, rode smoke clássico e as validações relevantes para fechamento de fase, PR, release ou deploy.
+- Não abra navegador ou capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante ou fechamento visual de fase.
+- Use unitário para regra isolada, integração para fronteira entre módulos e E2E para jornada crítica. Não execute todos por padrão.
+- Crie ou atualize teste de regressão ao corrigir bug quando for viável e proporcional ao risco.
+- Spider/crawl serve para descoberta de rotas e links, não substitui teste funcional.

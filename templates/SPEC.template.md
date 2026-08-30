@@ -34,6 +34,13 @@ Método: PACTO
 - [ ] [Regra binária.]
 - [ ] [Regra binária.]
 
+## Nível de Validação
+
+- Nível da alteração ou checkpoint: [`T0` direta | `T1` leve | `T2` relevante | `T3` marco]
+- Prova automatizada ou determinística esperada: [preencher ou não aplicável em T0]
+- Validação humana necessária: [nenhuma ou ação objetiva do usuário em T2/T3]
+- Smoke clássico obrigatório ao fechar a fase: [sim/não/não aplicável]
+
 ## Segurança, Dados e Risco Legal
 
 - [ ] [Entradas externas validadas, se aplicável.]
@@ -67,14 +74,12 @@ Método: PACTO
 
 ### Testes
 
-- [ ] [Smoke test ou validação mínima do fluxo essencial, se aplicável.]
-- [ ] [Testes unitários para regras isoladas, se aplicável.]
-- [ ] [Testes de integração para fronteiras entre módulos, se aplicável.]
-- [ ] [E2E para jornadas críticas, se aplicável.]
-- [ ] [Teste de regressão para bug corrigido, se aplicável.]
-- [ ] [Acessibilidade, responsividade ou validação visual para UI, se aplicável.]
-- [ ] [Spider/crawl para descoberta de rotas, links ou superfície exposta, se aplicável.]
-- [ ] [Testes manuais críticos.]
+- [ ] [T0: nenhuma execução de teste, navegador, build, lint, typecheck ou checklist, se aplicável.]
+- [ ] [T1: uma única prova curta e direcionada, se aplicável.]
+- [ ] [T2: somente testes unitários, integração, regressão ou E2E necessários à fatia, se aplicável.]
+- [ ] [T3: smoke clássico e verificações relevantes ao fechar fase, PR, release ou deploy, se aplicável.]
+- [ ] [Validação visual no navegador apenas por requisito da SPEC, pedido explícito, fluxo funcional relevante ou fechamento visual de fase.]
+- [ ] [Teste manual pedido ao usuário apenas quando ele for a única evidência confiável disponível.]
 
 ### Documentação
 
@@ -87,11 +92,9 @@ Método: PACTO
 ## Definition of Done
 
 - [ ] Implementação concluída.
-- [ ] Lint/formatador aprovado.
-- [ ] Build aprovado.
-- [ ] Testes aprovados.
-- [ ] UI validada, se aplicável.
-- [ ] Acessibilidade básica verificada, se aplicável.
+- [ ] Validação correspondente ao nível T0, T1, T2 ou T3 concluída.
+- [ ] Smoke clássico executado se a fase criou ou alterou comportamento executável.
+- [ ] Build, lint, typecheck, UI e acessibilidade executados apenas quando exigidos pelo nível, pela SPEC ou pela fase.
 - [ ] Seeds e `.env.example` atualizados, se aplicável.
 - [ ] Codificação UTF-8 preservada e acentuação pt-BR correta em chat, docs, arquivos e UI, se aplicável.
 - [ ] Textos destinados a pessoas revisados para evitar travessões e manter leitura fluida, se aplicável.

@@ -44,12 +44,16 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 - [x] Regras de UTF-8, segurança, licenciamento, testes e turning points estão refletidas nos contratos.
 - [x] Regra de escrita natural, sem travessões em textos explicativos, está refletida nos contratos, templates, kit e guia visual.
 - [x] Chave fornecida pelo usuário no chat gera aviso de risco, sem bloqueio automático da tarefa, e não pode ser persistida ou reexposta.
+- [x] Política de validação proporcional T0 a T3 relaciona alteração individual, checkpoint, fechamento de fase e pré-release.
+- [x] Mudança trivial não gera teste, navegador, build, lint, typecheck, checklist, plano de teste ou lista para o usuário.
+- [x] Smoke clássico permanece obrigatório ao fechar fase com comportamento executável e antes de PR relevante, release ou deploy.
 - [x] Não há backup desnecessário para esta mudança documental.
 
 ## Segurança, Dados e Risco Legal
 
 - [x] Nenhum segredo real foi inserido.
 - [x] A regra de tratamento de chaves fornecidas no chat foi documentada sem adicionar exemplos com chaves reais.
+- [x] A política de validação não reduz exigências para segurança, dados, autenticação, integração crítica, release ou deploy.
 - [x] Dados sensíveis não foram adicionados.
 - [x] Licença pública final permanece como decisão pendente.
 - [x] Dependências externas novas não foram adicionadas.
@@ -85,6 +89,7 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 ### Verificação
 
 - [x] Buscar termos principais: `Método PACTO`, `Alexandre Barroso de Miranda`, `turning point`, `UTF-8`.
+- [x] Buscar termos principais: `T0`, `T1`, `T2`, `T3`, `smoke clássico`, `navegador`.
 - [x] Verificar ausência de mojibake real nos arquivos alterados.
 - [x] Revisar links e caminhos citados.
 
