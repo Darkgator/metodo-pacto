@@ -15,6 +15,7 @@ Método: PACTO
 ## Regras
 
 - `SPEC.md` é a fonte de verdade da fase atual.
+- Antes de iniciar ou retomar trabalho em repositório Git com remoto, execute `git fetch --prune` e compare a branch local com o upstream. Não edite antes de saber se o local está sincronizado, à frente, atrás ou divergente. Use `git pull --ff-only` somente com árvore limpa e avanço remoto sem conflito. Em divergência ou alterações locais pendentes, peça decisão. Nunca use `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` sem aprovação explícita.
 - Não escreva código antes de entender o escopo da tarefa.
 - Em projeto novo ou decisão de stack, levante variáveis decisivas antes de recomendar arquitetura: usuários simultâneos, dados, IA, segurança, integrações, operação, custo, licenciamento e risco legal.
 - Para mudanças grandes, planeje antes de implementar.

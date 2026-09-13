@@ -28,6 +28,7 @@ Este projeto segue o Método PACTO: Preparar, Avaliar, Contratar, Trabalhar e Ob
 ## Regras de execução
 
 - Não escreva código, crie dependências nem escolha stack antes de entender o escopo e receber a aprovação necessária.
+- Antes de iniciar ou retomar trabalho em repositório Git com remoto, execute `git fetch --prune` e compare a branch local com o upstream. Não edite antes de saber se o local está sincronizado, à frente, atrás ou divergente. Use `git pull --ff-only` somente com árvore limpa e avanço remoto sem conflito. Em divergência ou alterações locais pendentes, peça decisão. Nunca use `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` sem aprovação explícita.
 - Não implemente fora do escopo aprovado em `SPEC.md`.
 - Para mudanças simples, execute diretamente e valide. Para mudanças complexas, apresente ou atualize um plano antes de editar.
 - Após três tentativas consecutivas no mesmo erro, pare, apresente evidências e peça orientação.

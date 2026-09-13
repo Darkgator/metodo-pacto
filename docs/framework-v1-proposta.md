@@ -204,6 +204,7 @@ Estas regras valem para qualquer solução, com qualquer stack. Elas orientam de
 ### Obsoletos e backups
 
 - Git é a fonte primária de histórico.
+- Ao iniciar ou retomar trabalho em outro ambiente, executar `git fetch --prune` e comparar a branch local com o upstream antes de editar. Se o remoto estiver apenas à frente e a árvore estiver limpa, usar `git pull --ff-only`. Em divergência ou alterações locais pendentes, parar e pedir decisão, sem `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` automático.
 - Antes de turning points, avaliar se Git basta ou se é necessário backup mínimo.
 - Turning points incluem troca de stack, migração de banco, refatoração grande, reestruturação de UI, substituição de protótipo, remoção de muitos arquivos, integração crítica ou operação destrutiva.
 - Arquivos substituídos mas ainda úteis como referência temporária devem ir para `_archive/obsolete/YYYY-MM-DD_descricao/`.

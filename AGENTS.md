@@ -18,6 +18,7 @@ Este repositório documenta e organiza o Método PACTO, um framework prático pa
 ## Fluxo de Trabalho
 
 - Leia `BRIEF.md`, `SPEC.md`, `PLAN.md`, `docs/regras-universais.md` e `docs/validacao-proporcional.md` antes de alterar o método.
+- Antes de iniciar ou retomar trabalho em um repositório Git com remoto, atualize as referências com `git fetch --prune` e compare a branch local com o upstream. Não edite até saber se o local está sincronizado, à frente, atrás ou divergente. Use `git pull --ff-only` apenas com árvore limpa e avanço remoto sem conflito. Em divergência ou mudanças locais pendentes, pare e peça decisão. Nunca use `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` para sincronizar sem aprovação explícita.
 - Em mudanças conceituais, atualize também o guia visual e os templates afetados.
 - Trabalhe em fatias pequenas e verificáveis.
 - Não implemente fora do escopo aprovado na `SPEC.md`.

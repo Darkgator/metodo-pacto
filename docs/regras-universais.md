@@ -66,7 +66,18 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A polít
 - Evitar construções artificiais ou excessivamente padronizadas que deixem o texto com aparência genérica de saída de IA.
 - Hífens continuam permitidos quando forem necessários em palavras compostas, identificadores, comandos, URLs, listas Markdown, sintaxe ou termos técnicos.
 
-## 6. Obsoletos, Backups e Turning Points
+## 6. Sincronização entre Ambientes e Repositório Remoto
+
+- Ao iniciar ou retomar um projeto Git que tenha remoto configurado, atualizar as referências remotas com `git fetch --prune` antes de analisar ou editar o código. Esse comando atualiza a informação sobre o remoto sem alterar os arquivos de trabalho.
+- Comparar a branch atual com seu upstream e registrar mentalmente uma destas situações: sincronizada, local à frente, local atrás ou histórico divergente. Conferir também se há alterações locais pendentes.
+- Se a árvore estiver limpa e o remoto estiver apenas à frente, usar `git pull --ff-only` para atualizar o local sem criar merge automático. Só então começar a tarefa.
+- Se o local estiver à frente, ele contém commits ainda não publicados. Trabalhar nele é possível, mas o agente deve informar esse estado antes de concluir ou publicar.
+- Se houver histórico divergente, ou alterações locais pendentes junto de novidades no remoto, não editar até apresentar o estado e pedir uma decisão sobre integração. Não presumir que o local ou o GitHub é a fonte mais atual.
+- Nunca resolver sincronização com `git reset`, descarte de arquivos, `git clean`, `git stash`, `git rebase`, `git merge` ou `force push` sem aprovação humana explícita. Essas ações podem ocultar, reordenar ou perder trabalho.
+- Executar essa checagem uma vez ao abrir ou retomar uma sessão em outro ambiente, e novamente apenas se houver sinal de mudança remota ou antes de ação compartilhada relevante. Não fazer `fetch` repetido a cada alteração pequena.
+- Se não houver Git, remoto ou upstream configurado, registrar essa limitação e seguir o fluxo local aplicável.
+
+## 7. Obsoletos, Backups e Turning Points
 
 - Git ou outro versionamento deve ser a fonte primária de histórico.
 - Pastas de obsoletos e backups são exceções úteis, não substitutos de versionamento.
@@ -79,7 +90,7 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A polít
 - Não criar backup por reflexo em toda alteração pequena.
 - Se houver dúvida, o agente deve perguntar antes de mover, copiar ou arquivar arquivos.
 
-## 7. Critério Prático
+## 8. Critério Prático
 
 Antes de implementar, responder:
 
@@ -92,6 +103,7 @@ Risco legal/segurança: [nenhum, baixo, médio, alto, ou pendente de validação
 Codificação/idioma: [UTF-8 preservado, se houver texto em pt-BR]
 Escrita: [sem travessões e com pontuação natural, se houver texto destinado a pessoas]
 Turning point/backups: [não aplicável, coberto por Git, ou backup/obsoleto necessário]
+Sincronização Git: [não aplicável, sincronizado, local à frente, remoto à frente ou divergente com decisão pendente]
 ```
 
 Se qualquer uma dessas respostas estiver vaga em tarefa relevante, a implementação ainda não deve começar.

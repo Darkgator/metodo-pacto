@@ -47,6 +47,7 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 - [x] Política de validação proporcional T0 a T3 relaciona alteração individual, checkpoint, fechamento de fase e pré-release.
 - [x] Mudança trivial não gera teste, navegador, build, lint, typecheck, checklist, plano de teste ou lista para o usuário.
 - [x] Smoke clássico permanece obrigatório ao fechar fase com comportamento executável e antes de PR relevante, release ou deploy.
+- [x] Retomada em outro ambiente exige comparação segura entre branch local e upstream antes de editar, sem integração ou descarte automático diante de divergência.
 - [x] Não há backup desnecessário para esta mudança documental.
 
 ## Segurança, Dados e Risco Legal
@@ -62,6 +63,7 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 
 - [x] A mudança foi avaliada como não destrutiva.
 - [x] Repositório Git local e remoto público estão configurados para o histórico do método.
+- [x] A sincronização entre ambiente local e remoto foi documentada sem permitir `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` automático.
 - [x] Backup adicional não é necessário para esta alteração documental.
 - [x] Arquivos obsoletos não foram gerados.
 
@@ -90,6 +92,7 @@ O projeto já possui conteúdo avançado do Método PACTO, incluindo regras univ
 
 - [x] Buscar termos principais: `Método PACTO`, `Alexandre Barroso de Miranda`, `turning point`, `UTF-8`.
 - [x] Buscar termos principais: `T0`, `T1`, `T2`, `T3`, `smoke clássico`, `navegador`.
+- [x] Buscar termos de sincronização: `git fetch --prune`, `git pull --ff-only`, `divergente`, `upstream`.
 - [x] Verificar ausência de mojibake real nos arquivos alterados.
 - [x] Revisar links e caminhos citados.
 

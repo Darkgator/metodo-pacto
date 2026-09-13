@@ -786,6 +786,7 @@
         <p class="note">Regra fixa para pt-BR: todo arquivo textual deve ser salvo em UTF-8, com acentuação correta. Não aceite mojibake como <code>Ã§</code>, <code>Ã£</code>, <code>Ã©</code>, <code>â€“</code> ou <code>Â</code>, e não remova acentos para contornar codificação.</p>
         <p class="note">Regra de escrita: não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, para manter a leitura natural e correta.</p>
         <p class="note">Regra de validação: classifique a mudança como T0, T1, T2 ou T3. Ajuste trivial não abre navegador nem gera teste, plano ou checklist. Smoke clássico é obrigatório apenas ao fechar fase executável, PR relevante, release ou deploy.</p>
+        <p class="note">Regra de retomada: ao abrir o projeto em outro computador, atualize referências com <code>git fetch --prune</code> e compare a branch local com o upstream antes de editar. Use <code>git pull --ff-only</code> apenas com árvore limpa e remoto à frente. Se houver divergência ou alterações locais, pare e peça decisão.</p>
         <p class="note">Regra de turning point: Git é a fonte primária de histórico. Antes de migração, troca de stack, refatoração grande, reestruturação de UI ou remoção de muitos arquivos, avalie se precisa de backup mínimo ou mover obsoletos para <code>_archive/</code>.</p>
 
         <article class="step" id="briefing-assistido">
@@ -1021,6 +1022,7 @@ Verifique:
 - dependências novas têm licença/termos compatíveis com o uso pretendido?
 - arquivos textuais estão em UTF-8 e textos pt-BR estão sem mojibake?
 - textos explicativos evitam travessões e mantêm pontuação natural?
+- se houver Git remoto, a branch local foi comparada com o upstream antes de retomar?
 - há turning point que exige backup mínimo ou pasta de obsoletos?
 - existe pelo menos uma validação confiável?
 - o projeto instala e roda?
@@ -1201,6 +1203,7 @@ Não implemente novas features neste passo.</pre>
 - Não abra navegador ou capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
 - Salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR; não aceite mojibake.
 - Não use travessões em textos explicativos; prefira vírgulas, parênteses ou frases reestruturadas.
+- Ao iniciar ou retomar trabalho em repositório Git com remoto, execute git fetch --prune e compare a branch local com o upstream antes de editar. Use git pull --ff-only somente com árvore limpa e remoto à frente. Em divergência ou alterações locais pendentes, peça decisão e nunca faça reset, descarte, stash, rebase, merge ou force push sem aprovação explícita.
 - Antes de turning points, avalie se Git basta ou se precisa de backup mínimo/obsoletos em `_archive/`.
 - Pare após erro repetido e peça orientação em vez de entrar em loop.</pre>
             </div>

@@ -10,6 +10,7 @@ Método: PACTO
 - `AGENTS.md` contém as regras operacionais para agentes.
 - `BRIEF.md` contém o contexto consolidado do projeto.
 - `PLAN.md` contém a sequência de continuidade.
+- Antes de iniciar ou retomar trabalho em um repositório Git com remoto, execute `git fetch --prune` e compare a branch local com o upstream. Não edite antes de saber se o local está sincronizado, à frente, atrás ou divergente. Use `git pull --ff-only` somente com árvore limpa e avanço remoto sem conflito. Em divergência ou alterações locais pendentes, peça decisão. Nunca use `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` sem aprovação explícita.
 - Não escreva código ou documentação nova antes de entender o escopo da tarefa.
 - Para mudanças grandes, planeje antes de implementar.
 - Para mudanças no método, atualize documentos, templates e guia visual quando aplicável.

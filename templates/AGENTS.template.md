@@ -19,6 +19,7 @@ Método: PACTO
 ## Fluxo de Trabalho
 
 - Leia `SPEC.md` antes de implementar qualquer mudança de produto.
+- Antes de iniciar ou retomar trabalho em repositório Git com remoto, execute `git fetch --prune` e compare a branch local com o upstream. Não edite antes de saber se o local está sincronizado, à frente, atrás ou divergente. Use `git pull --ff-only` somente com árvore limpa e avanço remoto sem conflito. Em divergência ou alterações locais pendentes, peça decisão. Nunca use `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` sem aprovação explícita.
 - Em projeto novo ou decisão de stack, avalie variáveis decisivas antes de recomendar arquitetura: usuários simultâneos, dados, IA, segurança, integrações, operação, custo, licenciamento e risco legal.
 - Para mudanças complexas ou multiarquivo, proponha um plano antes de editar.
 - Trabalhe em fatias pequenas e verificáveis.

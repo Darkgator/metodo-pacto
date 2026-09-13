@@ -17,6 +17,7 @@ Aplicar o Método PACTO ao próprio projeto do framework e deixar a raiz pronta 
 - Atualizar README com os novos arquivos de raiz.
 - Consolidar regras universais novas nos contratos, templates, kit e guia visual.
 - Definir validação proporcional por alteração, checkpoint, fase e pré-release.
+- Definir checagem segura de sincronização entre ambiente local e repositório remoto antes de retomar trabalho.
 
 ## Fora de Escopo
 
@@ -65,6 +66,7 @@ Aplicar o Método PACTO ao próprio projeto do framework e deixar a raiz pronta 
 - [x] Checkpoint 1: criar contratos operacionais na raiz.
 - [x] Checkpoint 2: revisar guia visual contra os contratos da raiz.
 - [x] Checkpoint 2a: aplicar a política de validação proporcional T0 a T3 nos contratos, templates, kit e guia visual.
+- [x] Checkpoint 2b: aplicar regra de comparação entre local e remoto antes de retomar trabalho em outro ambiente.
 - [ ] Checkpoint 3: decidir licença e política de distribuição do método.
 - [ ] Checkpoint 4: criar pacote final ensinável, se desejado.
 

@@ -44,6 +44,8 @@ Antes do chat, reúna:
 
 Não coloque segredos, credenciais ou dados reais sensíveis nos materiais.
 
+Se você estiver retomando um projeto em outro computador, peça ao agente para executar `git fetch --prune` e comparar a branch local com o upstream antes de analisar ou editar. Se o remoto estiver apenas à frente e a árvore estiver limpa, ele pode usar `git pull --ff-only`. Se houver divergência ou alterações locais pendentes, ele deve mostrar o estado e pedir sua decisão, sem descartar ou integrar trabalho automaticamente.
+
 Use `templates/BRIEF.template.md` quando quiser uma estrutura pronta para levantar as variáveis decisivas.
 
 ## Etapa 1: Descoberta sem código
@@ -148,6 +150,7 @@ Antes de seguir, confira:
 - `SPEC.md` tem objetivo, não objetivos, critérios de aceite e verificação?
 - `AGENTS.md` está curto?
 - `CLAUDE.md` aponta para `AGENTS.md` e `SPEC.md`?
+- se o projeto usa Git remoto, o agente verificou se a branch local está sincronizada, à frente, atrás ou divergente antes de retomar?
 - `.env.example` não tem segredo real?
 - as dependências têm licença/termos aceitáveis?
 - existe pelo menos uma verificação confiável?
