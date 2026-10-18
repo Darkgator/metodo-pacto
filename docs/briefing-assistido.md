@@ -1,7 +1,7 @@
 # Briefing Assistido
 
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
 ## Objetivo
@@ -117,12 +117,12 @@ Estamos começando um projeto do zero usando o Método PACTO.
 
 Não escreva código ainda.
 
-Use o briefing abaixo como contexto validado:
+Use o briefing abaixo como contexto; confirme somente lacunas decisivas e aguarde respostas bloqueantes antes de recomendar stack:
 
 [colar BRIEF.md gerado]
 
 Faça:
-1. Reescreva o problema em linguagem objetiva.
+1. Confirme o problema somente se houver ambiguidade.
 2. Separe MVP, fase 2 e futuro.
 3. Liste riscos técnicos, de segurança, legais e de produto.
 4. Valide se faltam variáveis decisivas antes de sugerir stack.

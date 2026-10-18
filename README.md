@@ -1,11 +1,11 @@
 # Método PACTO
 
-Criador: Alexandre Barroso de Miranda  
+Criador: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
 
 Repositório oficial: [github.com/Darkgator/metodo-pacto](https://github.com/Darkgator/metodo-pacto)
 
-Projeto para construirmos, do zero e de forma iterativa, um framework de desenvolvimento de software com agentes de código.
+Método prático para desenvolver software com agentes de código, com contexto e validação proporcionais ao risco.
 
 O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar. O objetivo é chegar a um processo prático, independente de stack, que funcione bem com **Claude Code** e **Codex**, cobrindo tanto:
 
@@ -14,9 +14,18 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Este projeto está em rascunho. A versão inicial foi baseada nos seus prompts atuais e em uma pesquisa preliminar, mas ainda precisa ser confrontada com uma investigação mais profunda.
+Método consolidado com contratos proporcionais ao risco. templates/ é a fonte oficial; o kit distribui cópias idênticas dos cinco modelos principais. Documentos históricos são referências, não instruções de execução.
 
-## Estrutura
+## Comece aqui
+
+1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
+2. Use `AGENTS.md` e, para Claude Code, a ponte `CLAUDE.md`. Preencha os comandos do projeto no `AGENTS.md`.
+3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
+4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
+
+Os [templates](templates/) são a fonte oficial. O kit contém cópias idênticas dos cinco modelos principais, prontas para copiar com os nomes corretos. O método não exige instalação, serviço ou ferramenta adicional.
+
+## Arquivos de referência
 
 - `BRIEF.md`: contexto consolidado do próprio projeto.
 - `AGENTS.md`: regras operacionais para agentes atuarem neste projeto.
@@ -29,7 +38,7 @@ Este projeto está em rascunho. A versão inicial foi baseada nos seus prompts a
 - `docs/resumo-atual.md`: resumo curto do que existe hoje.
 - `docs/framework-v0-rascunho.md`: rascunho inicial completo, mantido como material de referência.
 - `docs/sintese-pesquisa.md`: síntese dos relatórios de pesquisa aprofundada.
-- `docs/framework-v1-proposta.md`: proposta v1, redesenhada a partir da pesquisa.
+- `docs/framework-v1-proposta.md`: orientação vigente consolidada; o nome do arquivo foi preservado para manter os links.
 - `docs/regras-universais.md`: regras universais de segurança, testes e risco legal.
 - `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.
 - `docs/guia-projeto-do-zero.md`: passo a passo operacional para começar um projeto novo.
@@ -51,7 +60,4 @@ Este projeto está em rascunho. A versão inicial foi baseada nos seus prompts a
 
 ## Próximo passo
 
-1. Revisar `docs/framework-v1-proposta.md`.
-2. Decidir se o nome e o loop "Contrato Primeiro" fazem sentido.
-3. Ajustar os templates para refletir a v1.
-4. Criar o kit inicial final.
+Licença e política de distribuição permanecem pendentes. Novas ferramentas e o piloto de custo são opcionais; economia de tokens por tarefa ainda não foi medida.

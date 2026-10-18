@@ -1,7 +1,7 @@
 # Gestão de Obsoletos e Backups
 
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
 ## Objetivo
@@ -81,6 +81,8 @@ Turning points típicos:
 
 O backup deve ser mínimo. Não copie dependências, caches, builds ou arquivos gerados que possam ser recriados.
 
+Antes de excluir ou migrar, confira os alvos e as premissas. Consulta falha ou inesperadamente vazia interrompe a ação. Git cobre arquivos versionados, não todo banco ou upload. Backup no mesmo disco não protege contra perda do disco; quando necessário, confira a integridade de arquivos restaurados.
+
 ## Prompt operacional
 
 ```text
@@ -115,4 +117,3 @@ Não faça backup por reflexo. Faça apenas se houver valor real de recuperaçã
 - [ ] A pasta criada tem `README.md` explicando o motivo?
 - [ ] Dependências, caches e builds foram excluídos do backup?
 - [ ] Há condição de limpeza futura?
-

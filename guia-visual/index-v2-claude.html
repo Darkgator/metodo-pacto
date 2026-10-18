@@ -785,6 +785,7 @@
 
         <p class="note">Regra fixa para pt-BR: todo arquivo textual deve ser salvo em UTF-8, com acentuação correta. Não aceite mojibake como <code>Ã§</code>, <code>Ã£</code>, <code>Ã©</code>, <code>â€“</code> ou <code>Â</code>, e não remova acentos para contornar codificação.</p>
         <p class="note">Regra de escrita: não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, para manter a leitura natural e correta.</p>
+        <p class="note">Fonte oficial: templates/. Copie apenas contratos necessários; o kit distribui cópias idênticas. Tarefa trivial dispensa documentos novos. Regras de contexto e segurança ficam em AGENTS.md; decisões e tentativas relevantes ficam no PLAN existente.</p>
         <p class="note">Regra de validação: classifique a mudança como T0, T1, T2 ou T3. Ajuste trivial não abre navegador nem gera teste, plano ou checklist. Smoke clássico é obrigatório apenas ao fechar fase executável, PR relevante, release ou deploy.</p>
         <p class="note">Regra de retomada: ao abrir o projeto em outro computador, atualize referências com <code>git fetch --prune</code> e compare a branch local com o upstream antes de editar. Use <code>git pull --ff-only</code> apenas com árvore limpa e remoto à frente. Se houver divergência ou alterações locais, pare e peça decisão.</p>
         <p class="note">Regra de turning point: Git é a fonte primária de histórico. Antes de migração, troca de stack, refatoração grande, reestruturação de UI ou remoção de muitos arquivos, avalie se precisa de backup mínimo ou mover obsoletos para <code>_archive/</code>.</p>
@@ -886,8 +887,10 @@ Comece perguntando apenas:
 
 Não escreva código ainda.
 
-Leia o contexto abaixo e faça:
-1. Reescreva o problema em linguagem objetiva.
+Aproveite o briefing existente, sem reescrever respostas consolidadas. Pergunte apenas o que falta. Aguarde respostas bloqueantes antes de recomendar stack.
+
+Com contexto suficiente, faça:
+1. Confirme o problema somente se houver ambiguidade.
 2. Separe MVP, fase 2 e futuro.
 3. Liste riscos técnicos, de segurança, legais e de produto.
 4. Antes de sugerir stack, levante variáveis decisivas que possam mudar arquitetura, IA, banco, custo, segurança ou deploy.
@@ -951,7 +954,7 @@ Ainda não implemente a feature principal.</pre>
             <div class="triad">
               <div class="mini"><b>Você faz</b><p>Aponta a pasta <code>templates/</code> e confirma que a stack está aprovada.</p></div>
               <div class="mini"><b>Agente faz</b><p>Cria documentação, estrutura mínima, comandos e validação inicial.</p></div>
-              <div class="mini"><b>Nasce aqui</b><p><code>README.md</code>, <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>SPEC.md</code>, <code>.env.example</code> e setup.</p></div>
+              <div class="mini"><b>Nasce aqui</b><p>Somente contratos e setup aplicáveis. Preserve arquivos existentes; tarefa trivial dispensa documentos novos.</p></div>
             </div>
             <div class="prompt-card">
               <div class="prompt-head">
@@ -961,9 +964,10 @@ Ainda não implemente a feature principal.</pre>
               <pre id="prompt-3">Agora crie a base inicial do projeto, mas ainda não implemente a feature principal.
 
 Use os templates oficiais do framework em:
-C:\Users\abmme\OneDrive\CODE\framework-agentic-code\templates
+[caminho do repositório metodo-pacto]/templates
 
-Crie ou atualize:
+Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; não preencha campos irrelevantes:
+
 - BRIEF.md, se for útil manter o briefing e variáveis decisivas no repositório
 - README.md
 - AGENTS.md
@@ -1016,7 +1020,7 @@ Ao final, informe:
 Verifique:
 - README.md explica como rodar?
 - AGENTS.md está curto e útil?
-- CLAUDE.md aponta para AGENTS.md e SPEC.md sem duplicação excessiva?
+- CLAUDE.md usa a ponte curta para AGENTS.md, se aplicável?
 - SPEC.md tem objetivo, não objetivos, critérios de aceite, riscos e verificação?
 - .env.example usa apenas valores fictícios?
 - dependências novas têm licença/termos compatíveis com o uso pretendido?
@@ -1059,7 +1063,7 @@ Regras:
 - mantenha o diff pequeno;
 - classifique o checkpoint silenciosamente como T0, T1, T2 ou T3;
 - em T0, implemente e encerre sem teste, navegador, build, lint, typecheck, checklist ou plano de teste;
-- em T1, rode uma única prova curta; em T2, apenas as validações necessárias; em T3, smoke clássico e testes relevantes da fase;
+- em T1, rode a menor prova curta suficiente; em T2, apenas as validações necessárias; em T3, smoke clássico e testes relevantes da fase;
 - verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
 - se for turning point, avalie backup mínimo e obsoletos antes de alterar;
 - não abra navegador ou capture screenshot por reflexo;
@@ -1199,11 +1203,11 @@ Não implemente novas features neste passo.</pre>
 - Tarefas envolvendo segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais exigem aprovação humana antes de ações de risco.
 - Classifique a mudança silenciosamente como T0, T1, T2 ou T3.
 - Em T0, faça ajuste trivial e encerre sem teste, navegador, build, lint, typecheck, checklist ou plano de teste.
-- Em T1, execute uma prova curta. Em T2, somente validações necessárias. Em T3, smoke clássico e testes relevantes da fase.
+- Em T1, execute a menor prova curta suficiente. Em T2, somente validações necessárias. Em T3, smoke clássico e testes relevantes da fase.
 - Não abra navegador ou capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
 - Salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR; não aceite mojibake.
 - Não use travessões em textos explicativos; prefira vírgulas, parênteses ou frases reestruturadas.
-- Ao iniciar ou retomar trabalho em repositório Git com remoto, execute git fetch --prune e compare a branch local com o upstream antes de editar. Use git pull --ff-only somente com árvore limpa e remoto à frente. Em divergência ou alterações locais pendentes, peça decisão e nunca faça reset, descarte, stash, rebase, merge ou force push sem aprovação explícita.
+- Ao iniciar ou retomar trabalho em repositório Git com remoto, execute git fetch --prune e compare a branch local com o upstream antes de editar. Use git pull --ff-only somente com árvore limpa e remoto à frente. Em divergência, integração remota com pendências ou sobreposição não preservável, peça decisão e nunca faça reset, descarte, stash, rebase, merge ou force push sem aprovação explícita.
 - Antes de turning points, avalie se Git basta ou se precisa de backup mínimo/obsoletos em `_archive/`.
 - Pare após erro repetido e peça orientação em vez de entrar em loop.</pre>
             </div>

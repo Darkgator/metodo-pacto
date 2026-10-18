@@ -1,84 +1,44 @@
-# Briefing Inicial
+# Briefing da Solução
 
-Criador do método: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador do método: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
-Use este arquivo antes da descoberta com o agente.
+Status: rascunho | em descoberta | aprovado
+Última atualização: [AAAA-MM-DD]
 
-Se o usuário ainda não souber preencher este arquivo, use antes o Briefing Assistido em `prompts/briefing-assistido-customgpt.md`.
+Use apenas quando faltar contexto. Não repita respostas já consolidadas.
 
-## Problema
+## Problema e objetivo
 
-[Explique o problema em linguagem de negócio.]
+- Problema que será resolvido:
+- Resultado esperado:
+- Público e usuários principais:
+- Como saberemos que deu certo:
 
-## Usuários
+## Contexto e restrições
 
-- Usuário principal: [preencher]
-- Outros perfis: [preencher]
+- Processo atual ou alternativa existente:
+- Prazo, orçamento e operação:
+- Plataformas e ambientes necessários:
+- Integrações, arquivos ou fontes de dados:
 
-## Resultado Esperado
+## Variáveis decisivas
 
-[O que precisa estar diferente quando a solução funcionar.]
+- Usuários totais, simultâneos e picos de uso:
+- Dados sensíveis, requisitos de privacidade e LGPD:
+- Login, perfis, permissões ou múltiplos clientes:
+- Papel da IA, dados enviados a terceiros, retenção e custo:
+- Uso comercial, licenças e obrigações legais:
 
-## MVP
+## Escopo inicial
 
-[O mínimo validável.]
+- MVP:
+- Próxima fase:
+- Fora de escopo por enquanto:
 
-## Fora de Escopo
+## Riscos, dúvidas e decisões pendentes
 
-[O que não será feito agora.]
-
-## Variáveis Decisivas
-
-### Uso e Escala
-
-- Usuários iniciais: [preencher]
-- Usuários simultâneos esperados: [preencher]
-- Pico de uso: [preencher]
-- Crescimento esperado: [preencher]
-
-### Dados
-
-- Tipos de dados: [preencher]
-- Dados sensíveis: [sim/não/quais]
-- Arquivos e anexos: [preencher]
-- Auditoria/histórico: [preencher]
-
-### IA
-
-- IA é central ou auxiliar: [preencher]
-- Tipo de uso de IA: [preencher]
-- Pode enviar dados para API externa: [sim/não/restrições]
-- Limite de custo: [preencher]
-
-### Segurança e Acesso
-
-- Login: [sim/não]
-- Perfis de acesso: [preencher]
-- Multi-cliente/multi-tenant: [sim/não]
-- Requisitos especiais: [MFA, SSO, auditoria, outros]
-
-### Integrações
-
-- APIs externas: [preencher]
-- Serviços pagos: [preencher]
-- Webhooks, e-mail, WhatsApp, pagamentos ou automações: [preencher]
-
-### Operação
-
-- Plataforma: [web/mobile/desktop/CLI/backend/outro]
-- Hospedagem desejada: [preencher]
-- Orçamento de infraestrutura: [preencher]
-- Quem manterá: [preencher]
-
-### Legal e Licenciamento
-
-- Uso comercial: [sim/não]
-- Distribuição para terceiros: [sim/não]
-- Restrições de licença: [preencher]
-- LGPD/contratos/normas: [preencher]
-
-## Referências
-
-[Links, arquivos, imagens, exemplos e observações.]
+- Riscos:
+- Perguntas que exigem resposta humana:
+- Decisões aprovadas:

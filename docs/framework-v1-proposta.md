@@ -1,9 +1,9 @@
 # Framework v1 Proposto: Método PACTO
 
-Status: proposta para discussão  
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
-Stack: independente  
+Status: orientação vigente consolidada; modelos oficiais em templates/
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
+Stack: independente
 Agentes prioritários: Claude Code e Codex
 
 ## Tese
@@ -146,7 +146,7 @@ Artefatos:
 
 - `README.md`
 - `AGENTS.md`
-- `CLAUDE.md`
+- `CLAUDE.md`, somente se usar Claude Code
 - `SPEC.md`
 - `.env.example`
 - `PLAN.md`, quando necessário
@@ -156,62 +156,7 @@ Artefatos:
 
 Estas regras valem para qualquer solução, com qualquer stack. Elas orientam decisões, mas não obrigam o projeto a criar todos os artefatos em todos os casos.
 
-### Segurança
-
-- Nunca inserir chaves reais, tokens, senhas, cookies, certificados, credenciais ou segredos no código, nos testes, na documentação, em logs ou commits.
-- Se o usuário fornecer uma chave no chat, avisar brevemente sobre o risco de exposição, mas não bloquear a tarefa somente por isso. Não repetir, revelar, gravar, versionar ou incluir a chave em comandos visíveis, arquivos, logs, screenshots ou commits.
-- Quando for necessário usar uma credencial fornecida no chat, usar o mecanismo seguro disponível no ambiente, preferindo variável de ambiente ou secret manager. Evitar argumentos de linha de comando e recomendar rotação se houver exposição a pessoas não autorizadas.
-- Usar variáveis de ambiente, secrets do ambiente, vault ou mecanismo equivalente da stack.
-- Manter `.env.example` apenas com valores fictícios quando o projeto usar configuração por ambiente.
-- Validar toda entrada externa: usuário, API, webhook, upload, arquivo, áudio, planilha, prompt, HTML, URL, query string e dados de terceiros.
-- Não registrar dados sensíveis em logs. Logs devem conter o suficiente para depurar, sem vazar segredo, dado pessoal ou conteúdo confidencial.
-- Separar dados reais de dados de desenvolvimento, testes e seeds.
-- Aplicar menor privilégio para usuários, serviços, tokens, banco, buckets, filas, APIs e permissões do agente.
-- Exigir aprovação humana para ações destrutivas, alteração de permissões, mudanças em autenticação/autorização, publicação em produção, migração de dados, envio externo de mensagens ou uso de dados sensíveis.
-- Se a tarefa tocar segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais, tratar como tarefa crítica.
-
-### Licenciamento e risco legal
-
-- Antes de adicionar dependência, biblioteca, template, fonte, ícone, imagem, áudio, modelo de IA, dataset, SDK, API, plugin ou serviço externo, confirmar se o uso pretendido é permitido.
-- "Disponível na internet", "gratuito", "source-available" e "free for personal use" não significam permissão para uso comercial.
-- Se a solução tiver restrição de uso comercial, redistribuição, SaaS, marca, patente, atribuição, privacidade, treinamento de IA ou copyleft, registrar o risco e pedir aprovação humana.
-- Para dependências novas de produção, registrar quando relevante: nome, fonte, licença/termos, uso no projeto, permissão comercial, obrigações e alternativa considerada.
-- Se a licença ou os termos não forem claros, não assumir compatibilidade. A decisão deve ficar bloqueada até validação humana.
-- Não copiar código, imagens, fontes, textos, datasets ou templates de origem incerta para dentro do projeto.
-
-### Testes e verificação
-
-- Todo contrato relevante precisa dizer seu nível de validação: `T0`, `T1`, `T2` ou `T3`. A política completa está em `docs/validacao-proporcional.md`.
-- `T0: direta`: texto, cor, espaçamento, posição estática, ajuste visual isolado, comentário ou documentação simples. Não gera plano de teste, lista para o usuário, navegador, build, lint ou typecheck.
-- `T1: leve`: comportamento local, regra pequena, endpoint simples ou configuração com risco local. Executar uma única prova curta e determinística.
-- `T2: relevante`: integração, banco, autenticação, vários módulos, fluxo funcional de UI ou risco de regressão. Executar apenas testes necessários à fatia e pedir validação humana somente quando ela for a única evidência confiável.
-- `T3: marco`: fechamento de fase, PR relevante, release, deploy ou fluxo crítico. Smoke clássico é obrigatório, acompanhado dos testes aplicáveis ao risco real.
-- Navegador e screenshot não são validação padrão de UI. Usar apenas por pedido explícito, requisito da SPEC, alteração de fluxo funcional, fechamento visual de fase ou investigação de falha.
-- `Unit test` valida regra isolada. `Integration test` valida fronteira entre partes. `E2E test` valida jornada crítica. Não executar todos por reflexo.
-- `Regression test` deve ser criado ou atualizado para bug corrigido quando for viável e proporcional ao risco.
-- `Accessibility test`, `performance/load test`, `fuzz/property test` e `spider/crawl` só entram quando risco, fase ou requisito justificar. Spider/crawl não substitui teste funcional.
-
-### Codificação e idioma
-
-- Todo arquivo textual criado ou editado deve ser salvo em UTF-8.
-- Ao escrever em pt-BR, preservar acentuação correta e caracteres como ç, ã, õ, á, é, í, ó, ú, â, ê, ô e à.
-- Não aceitar mojibake em arquivos, documentos, UI ou prompts. Exemplos: `Ã§`, `Ã£`, `Ã©`, `Ã³`, `â€“`, `Â`.
-- Se o terminal exibir caracteres quebrados, verificar se o problema está no arquivo ou apenas na visualização antes de reescrever.
-- Não remover acentos para contornar codificação.
-- Não usar travessões em textos explicativos, documentação, UI, prompts ou respostas. Usar vírgulas, parênteses, dois-pontos, ponto e vírgula ou reestruturar a frase para manter a leitura natural e correta.
-- Hífens continuam permitidos quando necessários em termos técnicos, identificadores, comandos, URLs, listas Markdown ou sintaxe.
-
-### Obsoletos e backups
-
-- Git é a fonte primária de histórico.
-- Ao iniciar ou retomar trabalho em outro ambiente, executar `git fetch --prune` e comparar a branch local com o upstream antes de editar. Se o remoto estiver apenas à frente e a árvore estiver limpa, usar `git pull --ff-only`. Em divergência ou alterações locais pendentes, parar e pedir decisão, sem `reset`, descarte, `stash`, `rebase`, `merge` ou `force push` automático.
-- Antes de turning points, avaliar se Git basta ou se é necessário backup mínimo.
-- Turning points incluem troca de stack, migração de banco, refatoração grande, reestruturação de UI, substituição de protótipo, remoção de muitos arquivos, integração crítica ou operação destrutiva.
-- Arquivos substituídos mas ainda úteis como referência temporária devem ir para `_archive/obsolete/YYYY-MM-DD_descricao/`.
-- Snapshots necessários além do Git devem ir para `_archive/backups/YYYY-MM-DD_HHMM_descricao/`.
-- Toda pasta arquivada deve ter `README.md` com motivo, origem, conteúdo e condição de remoção.
-- Não arquivar dependências, caches, builds ou arquivos recriáveis.
-- Não fazer backup por reflexo em alteração pequena.
+As políticas completas estão em `docs/regras-universais.md` e `docs/validacao-proporcional.md`. Não as duplique em cada contrato. Os modelos operacionais oficiais estão em `templates/`, com cópias idênticas no kit.
 
 ## O que fica fora do chat
 
@@ -330,7 +275,9 @@ O humano define:
 
 ### 2. Avaliar variáveis decisivas
 
-O agente identifica perguntas que mudam a solução:
+O agente aproveita respostas já consolidadas e pergunta somente o que falta. Aguarda respostas bloqueantes antes de recomendar stack. Em decisões estruturais, compara com a alternativa mais simples que atende ao objetivo, inclusive sem IA ou nova dependência.
+
+As perguntas podem envolver:
 
 - usuários totais e simultâneos;
 - dados e sensibilidade;
@@ -390,7 +337,7 @@ Regras:
 Aplicar o nível de validação do checkpoint:
 
 - `T0`: encerrar após conferir o diff, sem teste ou relatório de validação vazio;
-- `T1`: rodar uma única prova curta;
+- `T1`: rodar a menor prova curta suficiente;
 - `T2`: rodar somente as provas necessárias e pedir ao usuário apenas o que ele precisa observar;
 - `T3`: rodar smoke clássico e verificações relevantes ao fechar fase ou preparar entrega.
 
@@ -406,7 +353,7 @@ Preferir revisão com contexto limpo:
 
 ### 9. Externalizar
 
-Se o mesmo erro acontecer duas vezes:
+Somente quando houver causa recorrente confirmada, e não uma falha passageira:
 
 - atualizar `AGENTS.md` ou `CLAUDE.md`, se for regra permanente;
 - criar template/prompt, se for procedimento;
@@ -415,8 +362,7 @@ Se o mesmo erro acontecer duas vezes:
 
 ## Regras de parada
 
-- Em tarefa crítica: se o mesmo erro persistir após 2 tentativas, parar e pedir orientação.
-- Em tarefa simples: 3 tentativas é o máximo absoluto.
+- Três tentativas no mesmo erro são o teto geral. Pare antes se não houver evidência nova ou houver risco. Cada hipótese nova precisa de prova e resultado observável.
 - Nunca entrar em ciclo de "corrige uma coisa, quebra outra" sem resumir o estado e pedir decisão.
 - Se o contexto estiver poluído, gerar resumo curto e iniciar nova sessão/thread.
 
@@ -468,7 +414,7 @@ Se o mesmo erro acontecer duas vezes:
 Documentação mínima:
 
 - `AGENTS.md`
-- `CLAUDE.md`
+- `CLAUDE.md`, somente se usar Claude Code
 - `SPEC.md` leve, se houver feature não trivial
 
 Evitar:

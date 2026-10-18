@@ -1,13 +1,15 @@
 # Síntese da Pesquisa Aprofundada
 
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
 Fontes recebidas:
 
 - `research/gemini-deep-research-report.txt`
 - `research/chatgpt-deep-research-report.md`
+
+Este documento registra pesquisa histórica. Para execução atual, prevalecem os modelos de templates/ e as políticas vigentes. A proposta de duas tentativas em tarefa crítica foi substituída pelo teto geral de três, com parada antecipada por estagnação ou risco.
 
 ## Conclusão central
 

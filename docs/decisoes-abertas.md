@@ -1,10 +1,10 @@
 # Decisões Abertas
 
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
-Precisamos decidir isso juntos depois da pesquisa aprofundada.
+Registro de decisões. As propostas históricas não substituem os modelos oficiais em templates/.
 
 ## 1. Forma final do framework
 
@@ -29,7 +29,7 @@ Resposta atual do usuário: **independente**.
 
 ## 4. Nível de documentação
 
-Ponto em aberto: definir o mínimo obrigatório para não burocratizar projetos pequenos.
+Decidido: tarefa trivial não exige documentos novos; criar e preencher somente contratos necessários. PLAN e BRIEF são condicionais.
 
 ## 5. Papel do usuário humano
 
@@ -49,13 +49,8 @@ PACTO significa: Preparar, Avaliar, Contratar, Trabalhar e Observar.
 
 ## 8. Regra de parada
 
-Proposta atual:
-
-- 2 tentativas para o mesmo erro em tarefa crítica.
-- 3 tentativas como máximo absoluto em tarefa simples.
-
-Ponto em aberto: decidir se mantemos essa diferença ou usamos uma regra única.
+Decidido: três tentativas no mesmo erro como teto geral, com parada antecipada por risco ou falta de evidência nova.
 
 ## 9. Templates finais
 
-Ponto em aberto: atualizar os templates para refletir a v1, depois que a proposta for aprovada.
+Consolidados em templates/, com cópias idênticas dos cinco modelos principais no kit. Licença e distribuição final continuam pendentes.

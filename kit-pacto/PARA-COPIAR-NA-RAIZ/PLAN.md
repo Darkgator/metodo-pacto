@@ -1,11 +1,11 @@
 # Plano da Fase Atual
 
-Criador do método: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador do método: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
-Status: rascunho | em andamento | bloqueado | concluído  
-Relacionado à SPEC: [fase ou link]  
+Status: rascunho | em andamento | bloqueado | concluído
+Relacionado à SPEC: [fase ou link]
 Última atualização: [AAAA-MM-DD]
 
 ## Estado atual
@@ -13,6 +13,7 @@ Relacionado à SPEC: [fase ou link]
 - Fase PACTO:
 - Último resultado verificável:
 - Bloqueios e decisões pendentes:
+- Decisão e motivo; tentativas descartadas, se houver:
 
 ## Menor fatia verificável
 
@@ -32,4 +33,3 @@ Relacionado à SPEC: [fase ou link]
 - Validações não executadas e motivo:
 - Riscos residuais:
 - Próxima decisão ou fatia:
-

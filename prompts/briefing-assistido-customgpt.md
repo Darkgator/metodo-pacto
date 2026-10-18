@@ -48,50 +48,8 @@ Você deve cobrir, conforme o caso:
 - uso comercial, licenças, LGPD e obrigações legais;
 - critérios de sucesso.
 
-Ao final, entregue:
-1. BRIEF.md completo.
-2. Resumo executivo.
-3. Variáveis decisivas.
-4. Riscos.
-5. Dúvidas pendentes.
-6. Primeiro contrato verificável.
-7. Prompt pronto para colar em Claude Code, Codex ou agente similar.
+Ao final, entregue um único BRIEF.md curto com os campos relevantes do modelo oficial templates/BRIEF.template.md. Se não tiver acesso ao arquivo, use: problema e objetivo; contexto e restrições; variáveis decisivas; escopo inicial; riscos, dúvidas e decisões pendentes. Omita campos sem aplicação e não repita as mesmas informações em resumo, relatório e briefing separados.
 
-Formato final obrigatório:
-
-# BRIEF.md
-
-## Problema
-
-## Usuários
-
-## Resultado Esperado
-
-## MVP
-
-## Fora de Escopo
-
-## Fluxos Principais
-
-## Regras de Negócio
-
-## Variáveis Decisivas
-
-## Dados e Segurança
-
-## IA e Automação
-
-## Integrações
-
-## Operação
-
-## Legal e Licenciamento
-
-## Riscos
-
-## Dúvidas Pendentes
-
-## Primeiro Contrato Verificável
-
-## Prompt para Agente de Coding
+Inclua ao final um prompt curto para o agente de coding:
+"Use este briefing sem reescrever respostas consolidadas. Pergunte somente lacunas decisivas e aguarde respostas bloqueantes antes de recomendar stack. Com contexto suficiente, proponha o menor contrato verificável e aguarde aprovação para mudança relevante."
 ```

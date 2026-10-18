@@ -1,11 +1,13 @@
 # Briefing da Solução
 
-Criador do método: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador do método: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
-Status: rascunho | em descoberta | aprovado  
+Status: rascunho | em descoberta | aprovado
 Última atualização: [AAAA-MM-DD]
+
+Use apenas quando faltar contexto. Não repita respostas já consolidadas.
 
 ## Problema e objetivo
 
@@ -40,4 +42,3 @@ Status: rascunho | em descoberta | aprovado
 - Riscos:
 - Perguntas que exigem resposta humana:
 - Decisões aprovadas:
-

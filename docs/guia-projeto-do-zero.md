@@ -1,7 +1,7 @@
 # Guia Prático: Projeto do Zero
 
-Criador: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
 Este guia mostra como iniciar um desenvolvimento do zero usando o Método PACTO.
@@ -44,7 +44,7 @@ Antes do chat, reúna:
 
 Não coloque segredos, credenciais ou dados reais sensíveis nos materiais.
 
-Se você estiver retomando um projeto em outro computador, peça ao agente para executar `git fetch --prune` e comparar a branch local com o upstream antes de analisar ou editar. Se o remoto estiver apenas à frente e a árvore estiver limpa, ele pode usar `git pull --ff-only`. Se houver divergência ou alterações locais pendentes, ele deve mostrar o estado e pedir sua decisão, sem descartar ou integrar trabalho automaticamente.
+Se você estiver retomando um projeto em outro computador, peça ao agente para executar `git fetch --prune` e comparar a branch local com o upstream antes de analisar ou editar. Se o remoto estiver apenas à frente e a árvore estiver limpa, ele pode usar `git pull --ff-only`. Se houver divergência, integração remota com pendências ou sobreposição não preservável, ele deve mostrar o estado e pedir sua decisão, sem descartar ou integrar trabalho automaticamente.
 
 Use `templates/BRIEF.template.md` quando quiser uma estrutura pronta para levantar as variáveis decisivas.
 
@@ -57,8 +57,10 @@ Estamos começando um projeto do zero.
 
 Não escreva código ainda.
 
-Leia o contexto abaixo e faça:
-1. Reescreva o problema em linguagem objetiva.
+Aproveite o briefing existente, sem reescrever respostas consolidadas. Pergunte apenas o que falta. Se houver dúvida bloqueante, aguarde a resposta antes de recomendar stack.
+
+Com o contexto suficiente, faça:
+1. Confirme o problema somente se houver ambiguidade.
 2. Separe MVP, fase 2 e futuro.
 3. Liste riscos técnicos, de segurança, legais e de produto.
 4. Antes de sugerir stack, levante variáveis decisivas que possam mudar arquitetura, IA, banco, custo, segurança ou deploy.
@@ -73,7 +75,7 @@ Contexto:
 
 Saída esperada:
 
-- problema reescrito;
+- problema confirmado, sem repetir o briefing;
 - MVP e fases;
 - variáveis decisivas respondidas ou pendentes;
 - até 2 stacks comparadas;
@@ -106,9 +108,10 @@ Use este prompt:
 Agora crie a base inicial do projeto, mas ainda não implemente a feature principal.
 
 Use os templates oficiais do framework em:
-C:\Users\abmme\OneDrive\CODE\framework-agentic-code\templates
+[caminho do repositório metodo-pacto]/templates
 
-Crie ou atualize:
+Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; não preencha campos irrelevantes:
+
 - BRIEF.md, se for útil manter o briefing no repositório
 - README.md
 - AGENTS.md
@@ -149,7 +152,7 @@ Antes de seguir, confira:
 
 - `SPEC.md` tem objetivo, não objetivos, critérios de aceite e verificação?
 - `AGENTS.md` está curto?
-- `CLAUDE.md` aponta para `AGENTS.md` e `SPEC.md`?
+- `CLAUDE.md` usa a ponte curta para `AGENTS.md`, se aplicável?
 - se o projeto usa Git remoto, o agente verificou se a branch local está sincronizada, à frente, atrás ou divergente antes de retomar?
 - `.env.example` não tem segredo real?
 - as dependências têm licença/termos aceitáveis?

@@ -1,4 +1,3 @@
 # Método PACTO
 
 @AGENTS.md
-

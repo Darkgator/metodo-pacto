@@ -1,12 +1,14 @@
 # Especificação da Fase Atual
 
-Criador do método: Alexandre Barroso de Miranda  
-Atuação: Consultor de Processos  
+Criador do método: Alexandre Barroso de Miranda
+Atuação: Consultor de Processos
 Método: PACTO
 
-Status: rascunho | aguardando aprovação | aprovado | concluído  
-Fase: [nome ou número]  
+Status: rascunho | aguardando aprovação | aprovado | concluído
+Fase: [nome ou número]
 Última atualização: [AAAA-MM-DD]
+
+Preencha somente campos relevantes. Tarefa trivial dispensa este arquivo.
 
 ## Objetivo
 
