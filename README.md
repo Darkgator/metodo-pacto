@@ -41,6 +41,7 @@ Os [templates](templates/) são a fonte oficial. O kit contém cópias idêntica
 - `docs/framework-v1-proposta.md`: orientação vigente consolidada; o nome do arquivo foi preservado para manter os links.
 - `docs/regras-universais.md`: regras universais de segurança, testes e risco legal.
 - `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.
+- [Benefícios observados](docs/evidencias-de-beneficios.md): catálogo de evidências, atribuição ao método e limites das promessas de economia e produtividade.
 - `docs/guia-projeto-do-zero.md`: passo a passo operacional para começar um projeto novo.
 - `docs/decisoes-abertas.md`: pontos que ainda precisamos decidir juntos.
 - `guia-visual/index.html`: versão atual do fluxo visual "olhar e fazer", em estilo Claude/Claude Code.
