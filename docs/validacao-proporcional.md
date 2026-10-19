@@ -23,6 +23,8 @@ A prova verifica o resultado esperado, não apenas a implementação. Para bug, 
 
 Confirme que o reteste usa a revisão corrigida; se a base mudar durante uma análise, reconfirme os achados.
 
+Em edição parcial, confira também que dados e saídas não afetados foram preservados.
+
 Ao corrigir um bug, confira variantes próximas que compartilhem a causa, como os geradores de documento padrão e específico. Valide somente os caminhos afetados e informe limitação relevante do que não pôde verificar. Isso não exige auditoria global, documento novo, suíte completa ou revisão de áreas sem relação com o defeito.
 
 ## Relação com etapas e fases do PACTO
