@@ -26,5 +26,5 @@ Documentação Markdown e guia HTML estático de um método de desenvolvimento c
 
 - T0 somente cosmético ou documental sem efeito operacional: confira diff silenciosamente, sem testes ou relatório vazio.
 - T1 usa a menor prova curta suficiente; T2 verifica riscos da fatia; T3 exige smoke quando houver comportamento executável.
-- Prove o resultado esperado; em correção de bug, confira variantes próximas afetadas pela mesma causa, sem auditoria global. Não enfraqueça testes para obter sucesso. Integrações alteradas exigem prova da fronteira afetada, sem dados sensíveis.
+- Prove o resultado esperado; em correção de bug, confira variantes próximas afetadas pela mesma causa, sem auditoria global. Preserve o aceite; não enfraqueça testes. Integrações alteradas exigem prova da fronteira afetada, sem dados sensíveis.
 - Memória e regras precisam de causa recorrente confirmada. Prefira correção ou teste; registre no PLAN apenas decisões, tentativas e próximos passos que precisem sobreviver à sessão.

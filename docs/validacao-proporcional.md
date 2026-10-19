@@ -19,7 +19,9 @@ O agente não deve gastar tokens criando plano de testes, lista para o usuário,
 | `T2: relevante` | Integração, banco, autenticação, autorização, vários módulos, fluxo funcional de UI ou mudança com risco de regressão | Define apenas as validações necessárias para aquela fatia. Pode executar teste unitário, integração, regressão ou E2E focado. | Testa apenas o que exige percepção humana, ambiente real, credencial real, dispositivo específico ou serviço de terceiros. |
 | `T3: marco` | Fechamento de fase, PR relevante, release, deploy ou fluxo crítico | Executa smoke clássico obrigatório, mais os testes relevantes já definidos para a fase. | Valida a jornada principal e itens humanos pendentes antes de aprovar entrega ou publicação. |
 
-A prova verifica o resultado esperado, não apenas a implementação. Para bug, reproduza antes e confira depois quando viável; não enfraqueça testes ou suprima alertas para obter sucesso. Ao alterar integração, confira a fronteira afetada com amostras seguras e representativas; mock sozinho não comprova compatibilidade. Não exigir serviço pago ou dados de produção por padrão.
+A prova verifica o resultado esperado, não apenas a implementação. Para bug, reproduza antes e confira depois quando viável; não enfraqueça testes, suprima alertas ou redefina o aceite. Ao alterar integração, confira a fronteira afetada com amostras seguras e representativas; mock sozinho não comprova compatibilidade. Não exigir serviço pago ou dados de produção por padrão.
+
+Confirme que o reteste usa a revisão corrigida; se a base mudar durante uma análise, reconfirme os achados.
 
 Ao corrigir um bug, confira variantes próximas que compartilhem a causa, como os geradores de documento padrão e específico. Valide somente os caminhos afetados e informe limitação relevante do que não pôde verificar. Isso não exige auditoria global, documento novo, suíte completa ou revisão de áreas sem relação com o defeito.
 

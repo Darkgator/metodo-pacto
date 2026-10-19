@@ -4,7 +4,7 @@
 
 Consolidar o PACTO sem inflar o núcleo de instruções.
 
-Complementos aprovados em 19/10/2026: POC-01, reconciliação do estado vigente na retomada; regressão de variantes próximas afetadas pela mesma causa; R2-01, smoke pelo caminho principal do pacote entregue; R2-02, comparação inicial com a referência visual aprovada. Sem alterações nos aplicativos de referência.
+Complementos aprovados em 19/10/2026: POC-01, reconciliação do estado vigente na retomada; regressão de variantes próximas afetadas pela mesma causa; R2-01, smoke pelo caminho principal do pacote entregue; R2-02, comparação inicial com a referência visual aprovada; P4-01, preservar o aceite; P4-02, retestar a revisão corrigida e reconfirmar achados se a base mudar. Sem alterações nos aplicativos de referência.
 
 ## Escopo aprovado
 
@@ -22,6 +22,7 @@ O piloto 14 continua opcional, sem automação, ferramenta ou documento obrigat�
 - [x] PLAN orienta atualizar resumo e próximo passo quando decisão os substituir; registros anteriores são identificados como históricos, sem checklist novo.
 - [x] Regra de regressão e prompts de revisão incluem variantes próximas afetadas pela mesma causa, sem auditoria global ou suíte completa obrigatória.
 - [x] R2-01 e R2-02 incorporados à política de validação sob demanda, sem ampliar modelos ou instruções permanentes.
+- [x] P4-01 substitui a frase existente sem aumentar a contagem de palavras do núcleo; P4-02 fica na política sob demanda. Prompts de revisão alinhados, sem checklist novo.
 
 ## Verificação
 

@@ -42,7 +42,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - T0: confira apenas o diff, sem testes, navegador, build, lint ou relatório vazio. Texto que altera regra operacional não é T0 só por ser texto.
 - T1: use a menor prova curta suficiente, sem bateria por reflexo. T2: valide somente os riscos da fatia. T3: smoke clássico para comportamento executável e verificações relevantes da fase.
 - Navegador e screenshot só por pedido, requisito, fluxo relevante, fechamento visual de fase ou investigação que dependa deles.
-- A prova deve verificar o resultado esperado. Para bug, reproduza antes e confira depois quando viável, incluindo variantes próximas afetadas pela mesma causa. Não enfraqueça testes ou suprima alertas para obter sucesso.
+- A prova deve verificar o resultado esperado. Para bug, reproduza antes e confira depois quando viável, incluindo variantes próximas afetadas pela mesma causa. Não enfraqueça testes, suprima alertas ou redefina o aceite.
 - Ao alterar integração, confira a fronteira real afetada com amostras seguras e representativas; mock sozinho não prova compatibilidade. Não exija serviço pago ou dados de produção por padrão.
 - Informe validações e limitações reais proporcionalmente à tarefa; peça ao usuário somente o que depende dele.
 - Preserve UTF-8 e acentuação pt-BR. Confirme se mojibake está no arquivo antes de corrigir; nunca remova acentos como solução.
