@@ -10,6 +10,8 @@ Relacionado à SPEC: [fase ou link]
 
 ## Estado atual
 
+Quando uma decisão mudar o estado vigente, atualize este resumo e o próximo passo na mesma alteração. Identifique registros substituídos como histórico, sem obrigar releitura de toda a cronologia.
+
 - Fase PACTO:
 - Último resultado verificável:
 - Bloqueios e decisões pendentes:

@@ -240,6 +240,8 @@ Formato recomendado:
 
 Opcional. Use quando o plano for importante o suficiente para sobreviver ao chat.
 
+Mantenha o resumo vigente e o próximo passo reconciliados quando uma decisão os substituir. Acrescentar uma entrada no histórico não atualiza a retomada: marque a orientação anterior como histórica no mesmo ajuste, sem revisar toda a documentação a cada tarefa.
+
 Deve conter:
 
 - arquivos a alterar;
