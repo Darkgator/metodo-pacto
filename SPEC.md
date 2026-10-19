@@ -4,7 +4,7 @@
 
 Consolidar o PACTO sem inflar o núcleo de instruções.
 
-Complemento aprovado em 19/10/2026: POC-01, reconciliação do estado vigente na retomada. Demais achados do piloto permanecem em análise, sem autorização para novas regras ou correções nos projetos de referência.
+Complementos aprovados em 19/10/2026: POC-01, reconciliação do estado vigente na retomada; e refinamento da regressão para conferir variantes próximas afetadas pela mesma causa. Sem alterações nos aplicativos de referência.
 
 ## Escopo aprovado
 
@@ -20,6 +20,7 @@ O piloto 14 continua opcional, sem automação, ferramenta ou documento obrigat�
 - [x] Núcleo de instruções menor, sem arquivos ou dependências novos.
 - [x] Guia e documentação operacional alinhados.
 - [x] PLAN orienta atualizar resumo e próximo passo quando decisão os substituir; registros anteriores são identificados como históricos, sem checklist novo.
+- [x] Regra de regressão e prompts de revisão incluem variantes próximas afetadas pela mesma causa, sem auditoria global ou suíte completa obrigatória.
 
 ## Verificação
 

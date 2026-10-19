@@ -351,6 +351,7 @@ Preferir revisão com contexto limpo:
 
 - revisar diff contra `SPEC.md`;
 - procurar regressões, escopo extra e testes ausentes;
+- em correção de bug, conferir variantes próximas afetadas pela mesma causa, sem ampliar para auditoria global;
 - não focar estilo se a ferramenta determinística já cuida disso.
 
 ### 9. Externalizar

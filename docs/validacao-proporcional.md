@@ -21,6 +21,8 @@ O agente não deve gastar tokens criando plano de testes, lista para o usuário,
 
 A prova verifica o resultado esperado, não apenas a implementação. Para bug, reproduza antes e confira depois quando viável; não enfraqueça testes ou suprima alertas para obter sucesso. Ao alterar integração, confira a fronteira afetada com amostras seguras e representativas; mock sozinho não comprova compatibilidade. Não exigir serviço pago ou dados de produção por padrão.
 
+Ao corrigir um bug, confira variantes próximas que compartilhem a causa, como os geradores de documento padrão e específico. Valide somente os caminhos afetados e informe limitação relevante do que não pôde verificar. Isso não exige auditoria global, documento novo, suíte completa ou revisão de áreas sem relação com o defeito.
+
 ## Relação com etapas e fases do PACTO
 
 ### Durante uma alteração individual

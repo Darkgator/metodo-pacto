@@ -47,7 +47,7 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A polít
 - Navegador, screenshot e inspeção visual não são padrão para toda mudança de UI. Usar apenas por pedido explícito, requisito da `SPEC.md`, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
 - `Smoke test`: checagem rápida de que o essencial sobe e responde. É obrigatório ao fechar uma fase com comportamento executável e antes de PR relevante, release ou deploy.
 - `Unit test`: para regra, função, componente ou módulo isolado. `Integration test`: para fronteiras entre partes. `E2E test`: para jornadas críticas. Não executar todos por reflexo.
-- `Regression test`: criar ou atualizar quando um bug for corrigido, se for viável e proporcional ao risco.
+- `Regression test`: criar ou atualizar quando um bug for corrigido, se for viável e proporcional ao risco, incluindo variantes próximas afetadas pela mesma causa, sem auditoria global.
 - `Accessibility test`, `performance/load test`, `fuzz/property test` e `spider/crawl` só entram quando o risco ou a fase justificar. Spider/crawl é descoberta, não substitui teste funcional.
 - Teste manual é aceitável quando a automação não existe ou não compensa. Em `T2` e `T3`, deve ter passos e resultado esperado. Em `T0` e `T1`, não criar lista para o usuário por padrão.
 
