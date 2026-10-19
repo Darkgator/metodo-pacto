@@ -76,6 +76,8 @@ Usar navegador apenas quando:
 
 Quando houver requisito de fidelidade visual, compare a primeira tela representativa com a referência aprovada antes de replicar o padrão.
 
+Quando a mudança exigir layout, responsividade, imagem ou legibilidade, observe o artefato final no viewport e estado relevantes, com dados representativos. Build, teste de dados, DOM ou CSS não substituem essa prova; sem ela, não declare a validação visual concluída.
+
 ## O que pedir ao usuário
 
 Não gerar lista de testes para o usuário em `T0` ou `T1`.
@@ -89,6 +91,8 @@ Em `T2` ou `T3`, pedir somente validações que o agente não possa executar com
 - aprovação de resultado de negócio.
 
 O pedido deve ser curto, acionável e vinculado a um resultado esperado.
+
+Antes de transferir validação em `T2` ou `T3`, considere se a operação conjunta produz a melhor prova. Se produzir, recomende-a e coordene: o agente prepara cenário seguro e executa o que controla; o usuário faz somente a ação, acesso ou percepção que depende dele; o agente retoma e conclui. Não peça ao usuário o que o agente pode executar nem entregue lista genérica de testes.
 
 ## Modos que o usuário pode pedir
 
