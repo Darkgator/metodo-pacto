@@ -58,6 +58,8 @@ O fechamento da fase também reúne apenas os testes que correspondem aos riscos
 
 Tratar como `T3`. Rodar smoke obrigatório quando houver comportamento executável e as verificações definidas na `SPEC.md`, no pipeline ou na política do projeto. Em publicação exclusivamente documental, conferir integridade do kit, links e diff; não inventar build, teste de aplicação ou inspeção visual sem mudança que os justifique. Pendências humanas precisam ser mostradas antes de publicar.
 
+Após publicar, confronte ambiente e revisão efetivos com o estado vigente nos registros existentes. Se documentação ou versionamento estiverem pendentes, informe “publicação realizada, fechamento pendente”; não declare a entrega encerrada.
+
 ## Navegador, screenshot e validação visual
 
 Navegador não é validação padrão de toda mudança de UI.

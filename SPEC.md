@@ -4,7 +4,7 @@
 
 Consolidar o PACTO sem inflar o núcleo de instruções.
 
-Complementos aprovados em 19/10/2026: POC-01, reconciliação do estado vigente na retomada; regressão de variantes próximas afetadas pela mesma causa; R2-01, smoke pelo caminho principal do pacote entregue; R2-02, comparação inicial com a referência visual aprovada; P4-01, preservar o aceite; P4-02, retestar a revisão corrigida e reconfirmar achados se a base mudar; P5-01, conferir preservação do não afetado em edição parcial. Sem alterações nos aplicativos de referência.
+Complementos aprovados em 19/10/2026: POC-01, reconciliação do estado vigente na retomada; regressão de variantes próximas afetadas pela mesma causa; R2-01, smoke pelo caminho principal do pacote entregue; R2-02, comparação inicial com a referência visual aprovada; P4-01, preservar o aceite; P4-02, retestar a revisão corrigida e reconfirmar achados se a base mudar; P5-01, conferir preservação do não afetado em edição parcial; P6-01, reconciliar ambiente e revisão publicados com os registros vigentes, distinguindo publicação de fechamento concluído. Sem alterações nos aplicativos de referência.
 
 ## Escopo aprovado
 
@@ -24,6 +24,7 @@ O piloto 14 continua opcional, sem automação, ferramenta ou documento obrigat�
 - [x] R2-01 e R2-02 incorporados à política de validação sob demanda, sem ampliar modelos ou instruções permanentes.
 - [x] P4-01 substitui a frase existente sem aumentar a contagem de palavras do núcleo; P4-02 fica na política sob demanda. Prompts de revisão alinhados, sem checklist novo.
 - [x] P5-01 acrescenta somente uma frase na política sob demanda; modelos, kit e guia permanecem inalterados, sem auditoria global obrigatória.
+- [x] P6-01 refina o fechamento na política sob demanda e no prompt 7B do guia, sem ampliar o núcleo ou exigir novo documento/checklist.
 
 ## Verificação
 
