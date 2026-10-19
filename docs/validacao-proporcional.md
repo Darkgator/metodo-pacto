@@ -46,7 +46,7 @@ O agente não deve executar testes de checkpoints futuros nem antecipar validaç
 
 ### Ao fechar uma fase
 
-Se a fase criou ou alterou comportamento executável, o smoke clássico é obrigatório. Ele prova rapidamente que o essencial sobe e responde.
+Se a fase criou ou alterou comportamento executável, o smoke clássico é obrigatório. Ele prova rapidamente que o essencial sobe e responde. Na entrega de aplicativo, o smoke usa o pacote entregue pelo caminho principal do usuário; outro modo de execução não comprova esse caminho.
 
 O fechamento da fase também reúne apenas os testes que correspondem aos riscos efetivamente introduzidos. Não exige E2E completo, browser, carga, crawl ou acessibilidade ampla quando eles não forem aplicáveis.
 
@@ -67,6 +67,8 @@ Usar navegador apenas quando:
 - um checkpoint `T2` alterar fluxo funcional de UI, navegação, formulário, estado de erro ou carregamento;
 - uma fase `T3` encerrar jornada visual relevante;
 - houver falha que não possa ser entendida por teste determinístico, log ou inspeção de código.
+
+Quando houver requisito de fidelidade visual, compare a primeira tela representativa com a referência aprovada antes de replicar o padrão.
 
 ## O que pedir ao usuário
 
