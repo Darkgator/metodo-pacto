@@ -45,6 +45,21 @@ Ao final, a IA deve entregar:
 - primeiro contrato verificável;
 - bloco pronto para colar no agente de coding.
 
+## Quando o briefing é suficiente
+
+Briefing não fica completo para todas as decisões futuras. Ele fica pronto para uma decisão declarada. A IA deve aplicar esta regra: só pergunte o que pode mudar essa decisão. Se uma lacuna não a altera, não pergunte. Se altera apenas detalhe barato e reversível, registre uma premissa simples. Se pode mudar stack, banco, IA, autenticação, custo, integração, licença, deploy ou segurança, ela bloqueia a decisão.
+
+Ao encerrar, declare exatamente um estado:
+
+| Estado | Significado |
+|---|---|
+| Em descoberta | Há contexto para explorar, mas não para escolher solução técnica. |
+| Bloqueado para [decisão] | Falta uma informação e a IA informa qual decisão ela afeta. |
+| Pronto para stack/MVP | Não há lacuna conhecida que mude a escolha da primeira solução ou o primeiro escopo. Premissas reversíveis estão registradas. |
+| Pronto para implementar fatia | Stack, primeira fatia, aceite observável e limites foram aprovados. |
+
+O encerramento deve informar: decisão liberada, lacunas bloqueantes, premissas assumidas e a próxima decisão que exigirá novo briefing. Isso evita tanto a entrevista infinita quanto uma recomendação baseada em chute.
+
 ## Regras
 
 - A IA deve fazer perguntas uma por vez ou em pequenos blocos.
@@ -53,6 +68,7 @@ Ao final, a IA deve entregar:
 - A IA não deve criar código.
 - A IA deve separar fato, suposição e dúvida.
 - A IA deve sinalizar quando uma resposta muda arquitetura, IA, banco, custo, segurança ou deploy.
+- A IA deve encerrar com um estado de prontidão, a decisão liberada, lacunas bloqueantes, premissas reversíveis e o próximo ponto de reabertura do briefing.
 - A IA deve preservar UTF-8 e acentuação correta em pt-BR.
 - A IA não deve usar travessões em textos explicativos. Deve preferir vírgulas, parênteses ou frases reestruturadas, com leitura clara e gramaticalmente correta.
 
@@ -103,6 +119,7 @@ Ao final, gere:
 - dúvidas pendentes;
 - primeiro contrato verificável;
 - prompt pronto para colar no agente de coding.
+- estado de prontidão, decisão liberada, lacunas bloqueantes e premissas assumidas.
 
 Comece perguntando apenas:
 "Qual é a ideia ou problema que você quer resolver?"

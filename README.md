@@ -14,7 +14,7 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Kit `2026.10.19.1`: cinco modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. Documentos históricos são referências, não instruções de execução.
+Kit `2026.10.19.2`: cinco modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. O BRIEF agora declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. Documentos históricos são referências, não instruções de execução.
 
 ## Comece aqui
 

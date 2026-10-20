@@ -4,7 +4,8 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 Preparar contexto, Avaliar variáveis decisivas, Contratar escopo, Trabalhar em fatias e Observar resultados.
 
-- Kit `2026.10.19.1`: cinco modelos de templates/ e política local `.pacto/validacao.md`, consultada somente pelo gatilho aplicável.
+- Kit `2026.10.19.2`: cinco modelos de templates/ e política local `.pacto/validacao.md`, consultada somente pelo gatilho aplicável.
+- Briefing declara a próxima decisão liberada, lacunas bloqueantes e premissas reversíveis, sem buscar completude infinita.
 - Tarefa trivial dispensa documento novo. SPEC para mudança relevante; BRIEF se faltar contexto; PLAN para execução complexa ou continuidade.
 - Descoberta aproveita respostas existentes e aguarda lacunas bloqueantes antes de recomendar stack.
 - Validação T0 a T3 pelo impacto: diff em T0, menor prova suficiente em T1, riscos da fatia em T2 e smoke aplicável em T3.

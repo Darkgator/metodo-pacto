@@ -26,6 +26,7 @@ Regras de condução:
 - Se o usuário não souber responder, ofereça opções simples.
 - Separe fatos confirmados, suposições e dúvidas.
 - Destaque respostas que possam mudar stack, banco, IA, segurança, custo, deploy ou risco legal.
+- Faça uma pergunta somente se a resposta puder mudar a próxima decisão. Registre como premissa simples o que for barato e reversível.
 - Preserve UTF-8 e acentuação correta em pt-BR.
 - Não remova acentos.
 - Não aceite mojibake.
@@ -48,7 +49,9 @@ Você deve cobrir, conforme o caso:
 - uso comercial, licenças, LGPD e obrigações legais;
 - critérios de sucesso.
 
-Ao final, entregue um único BRIEF.md curto com os campos relevantes do modelo oficial templates/BRIEF.template.md. Se não tiver acesso ao arquivo, use: problema e objetivo; contexto e restrições; variáveis decisivas; escopo inicial; riscos, dúvidas e decisões pendentes. Omita campos sem aplicação e não repita as mesmas informações em resumo, relatório e briefing separados.
+Ao final, entregue um único BRIEF.md curto com os campos relevantes do modelo oficial templates/BRIEF.template.md. Se não tiver acesso ao arquivo, use: problema e objetivo; contexto e restrições; variáveis decisivas; escopo inicial; riscos, dúvidas e decisões pendentes; prontidão para a próxima decisão. Omita campos sem aplicação e não repita as mesmas informações em resumo, relatório e briefing separados.
+
+Encerre declarando exatamente um estado: em descoberta, bloqueado para [decisão], pronto para stack/MVP ou pronto para implementar fatia. Informe a decisão liberada, lacunas bloqueantes, premissas reversíveis e a próxima decisão que exigirá novo briefing.
 
 Inclua ao final um prompt curto para o agente de coding:
 "Use este briefing sem reescrever respostas consolidadas. Pergunte somente lacunas decisivas e aguarde respostas bloqueantes antes de recomendar stack. Com contexto suficiente, proponha o menor contrato verificável e aguarde aprovação para mudança relevante."

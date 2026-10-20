@@ -4,7 +4,7 @@ Criador do método: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
 Método: PACTO
 
-Status: rascunho | em descoberta | aprovado
+Status: em descoberta | bloqueado para [decisão] | pronto para stack/MVP | pronto para implementar fatia
 Última atualização: [AAAA-MM-DD]
 
 Use apenas quando faltar contexto. Não repita respostas já consolidadas.
@@ -42,3 +42,12 @@ Use apenas quando faltar contexto. Não repita respostas já consolidadas.
 - Riscos:
 - Perguntas que exigem resposta humana:
 - Decisões aprovadas:
+
+## Prontidão para a próxima decisão
+
+- Decisão que este briefing permite tomar:
+- Lacunas bloqueantes: [nenhuma ou lista objetiva, com a decisão afetada]
+- Premissas assumidas e reversíveis:
+- Próxima decisão que exigirá novo briefing:
+
+Só marque pronto quando não houver lacuna conhecida que possa mudar a decisão indicada. Não exija respostas que não alterem essa decisão.

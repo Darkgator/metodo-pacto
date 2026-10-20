@@ -27,6 +27,8 @@ Saída esperada:
 - dúvidas pendentes;
 - prompt pronto para agente de coding.
 
+O briefing só está pronto para a próxima etapa quando declarar: decisão liberada, lacunas bloqueantes, premissas reversíveis e a próxima decisão que exigirá novo briefing. Consulte `docs/briefing-assistido.md` para os quatro estados de prontidão.
+
 Não use esta etapa se o briefing já estiver claro.
 
 ## Etapa 0: Preparar contexto
@@ -68,6 +70,7 @@ Com o contexto suficiente, faça:
 6. Proponha até 2 modelos de stack, com prós, contras, riscos e quando escolher cada uma.
 7. Recomende uma das stacks e explique por quê.
 8. Proponha o menor primeiro contrato verificável.
+9. Declare se o briefing está pronto para stack/MVP ou bloqueado, informando a decisão afetada, lacunas bloqueantes e premissas reversíveis.
 
 Contexto:
 [cole aqui o briefing]
@@ -83,6 +86,7 @@ Saída esperada:
 - riscos;
 - perguntas críticas;
 - primeira fatia verificável.
+- estado de prontidão e motivo.
 
 ## Etapa 2: Aprovação humana
 

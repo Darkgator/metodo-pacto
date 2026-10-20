@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-Kit `2026.10.19.1` publicado na main do GitHub em `a07d98f`, com remoto confirmado em 19/10/2026. A distribuição ausente foi corrigida e o pacote Git publicado passou na checagem isolada. Adesão futura e economia não estão comprovadas; projetos antigos não foram alterados.
+Kit `2026.10.19.2` preparado para publicação, com saída verificável do Briefing Assistido. A distribuição e a cópia isolada devem ser conferidas novamente antes de publicar. Adesão futura e economia não estão comprovadas; projetos antigos não são alterados.
 
 Fontes oficiais: `templates/` para os cinco modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
 
