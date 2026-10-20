@@ -1,5 +1,7 @@
 # Instruções do Projeto
 
+<!-- Kit PACTO: 2026.10.19.1 -->
+
 Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 ## Contexto e escopo
@@ -24,7 +26,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - Não repita fetch a cada ajuste. Informe commits locais ainda não publicados antes de concluir ou publicar.
 - Três tentativas no mesmo erro são o teto. Pare antes se não houver evidência nova ou houver risco; uma nova hipótese deve ter uma prova e resultado observável.
 - Ao interromper trabalho relevante, registre no PLAN existente decisão e motivo, tentativas descartadas e próximo passo.
-- Não transforme falha passageira em regra permanente. Confirme recorrência e causa; prefira corrigir ou testar, e revise notas antigas quando o assunto reaparecer.
+- Regra permanente exige causa e necessidade demonstradas, por recorrência ou risco grave confirmado. Prefira corrigir ou testar; revise notas antigas quando o assunto reaparecer.
 
 ## Segurança
 
@@ -39,10 +41,11 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 ## Validação e comunicação
 
 - Classifique silenciosamente pelo impacto: T0 cosmético/documental sem mudança de comportamento; T1 local; T2 integração, dados, segurança ou fluxo; T3 marco de entrega.
-- T0: confira apenas o diff, sem testes, navegador, build, lint ou relatório vazio. Texto que altera regra operacional não é T0 só por ser texto.
+- T0: apenas aparência/documentação sem efeito operacional, com diff silencioso, sem testes ou relatório vazio. Prompt de aplicativo, configuração funcional ou texto interpretado por máquina exigem ao menos T1.
 - T1: use a menor prova curta suficiente, sem bateria por reflexo. T2: valide somente os riscos da fatia. T3: smoke clássico para comportamento executável e verificações relevantes da fase.
+- Para T2/T3, bug, texto operacional ou requisito visual, consulte só a seção aplicável de `.pacto/validacao.md`.
 - Navegador e screenshot só por pedido, requisito, fluxo relevante, fechamento visual de fase ou investigação que dependa deles.
-- A prova deve verificar o resultado esperado. Para bug, reproduza antes e confira depois quando viável, incluindo variantes próximas afetadas pela mesma causa. Não enfraqueça testes, suprima alertas ou redefina o aceite.
+- Prove o resultado esperado. Em bug, reproduza antes/depois quando viável; busque caminhos irmãos pela causa e comportamento, não só pelo nome. Preserve o aceite; não enfraqueça testes nem suprima alertas.
 - Ao alterar integração, confira a fronteira real afetada com amostras seguras e representativas; mock sozinho não prova compatibilidade. Não exija serviço pago ou dados de produção por padrão.
 - Informe validações e limitações reais proporcionalmente à tarefa; peça ao usuário somente o que depende dele.
 - Preserve UTF-8 e acentuação pt-BR. Confirme se mojibake está no arquivo antes de corrigir; nunca remova acentos como solução.

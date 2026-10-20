@@ -71,12 +71,13 @@ Ele não deve:
 
 ## Níveis de processo
 
+São exemplos de organização, não outra escala de validação: use T0 a T3 para decidir a prova. Quantidade de arquivos não determina nível, plano ou documento obrigatório. As cinco macroetapas PACTO são desdobradas em passos operacionais abaixo, sem exigir uma nova cerimônia por passo.
+
 ### Nível 1: Tarefa trivial
 
 Use quando:
 
-- mudança em um arquivo;
-- comportamento óbvio;
+- alteração de escopo pequeno e comportamento conhecido;
 - sem banco;
 - sem autenticação;
 - sem dependência nova;
@@ -96,7 +97,7 @@ Artefatos:
 
 Use quando:
 
-- há mais de um arquivo;
+- há mudança funcional de risco moderado;
 - há UI;
 - há API;
 - há regra de negócio;
@@ -156,7 +157,7 @@ Artefatos:
 
 Estas regras valem para qualquer solução, com qualquer stack. Elas orientam decisões, mas não obrigam o projeto a criar todos os artefatos em todos os casos.
 
-As políticas completas estão em `docs/regras-universais.md` e `docs/validacao-proporcional.md`. Não as duplique em cada contrato. Os modelos operacionais oficiais estão em `templates/`, com cópias idênticas no kit.
+As políticas do método estão em `docs/regras-universais.md` e `docs/validacao-proporcional.md`. O kit distribui esta última em `.pacto/validacao.md`, com leitura por gatilho no AGENTS. Não duplique políticas em cada contrato. Os modelos oficiais ficam em `templates/`.
 
 ## O que fica fora do chat
 
@@ -351,12 +352,12 @@ Preferir revisão com contexto limpo:
 
 - revisar diff contra `SPEC.md`;
 - procurar regressões, aceite redefinido, escopo extra e testes ausentes;
-- em correção de bug, conferir variantes próximas afetadas pela mesma causa, sem ampliar para auditoria global;
+- em bug, localizar caminhos irmãos pela causa e comportamento, não apenas por nome, sem auditoria global;
 - não focar estilo se a ferramenta determinística já cuida disso.
 
 ### 9. Externalizar
 
-Somente quando houver causa recorrente confirmada, e não uma falha passageira:
+Somente com causa e necessidade demonstradas, por recorrência ou risco grave confirmado, não por falha passageira:
 
 - atualizar `AGENTS.md` ou `CLAUDE.md`, se for regra permanente;
 - criar template/prompt, se for procedimento;

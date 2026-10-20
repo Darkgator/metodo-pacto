@@ -33,7 +33,7 @@ Decidido: tarefa trivial não exige documentos novos; criar e preencher somente 
 
 ## 5. Papel do usuário humano
 
-Ponto em aberto: definir exatamente quais decisões o agente nunca deve assumir sozinho.
+Decidido nas regras vigentes: o usuário aprova escopo e ações de risco, como produção, exclusão e envio externo. O agente executa o que controla e coordena passos humanos necessários; revisão de diff pelo leigo não é a única prova técnica. A adequação desse fluxo ao público-alvo ainda precisa de teste com pessoas.
 
 ## 6. Pesquisa
 
@@ -53,4 +53,4 @@ Decidido: três tentativas no mesmo erro como teto geral, com parada antecipada 
 
 ## 9. Templates finais
 
-Consolidados em templates/, com cópias idênticas dos cinco modelos principais no kit. Licença e distribuição final continuam pendentes.
+Kit `2026.10.19.1`: cinco modelos e política sob demanda distribuídos, com atualização por adaptação, não sobrescrita automática. Licença final continua pendente.

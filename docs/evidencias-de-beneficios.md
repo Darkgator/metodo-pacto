@@ -59,6 +59,40 @@ Classes: A = 6 observações; B = 5; C = 2; D = 1. Essa distribuição descreve 
 
 Os contadores históricos do agente não devem ser somados como se cada evento cumulativo fosse consumo novo. Tokens em cache já integram a entrada. Não foram calculados faturamento, quota poupada, percentual de produtividade ou retorno financeiro.
 
+## Origem dos refinamentos operacionais
+
+Esta tabela resume a motivação histórica, não comprova que adicionar cada frase causou melhoria. Decisões, mensagens e diffs detalhados permanecem nos registros locais dos projetos, sem publicar conversas ou dados privados. O Git preserva a implementação anterior.
+
+| Refinamento | Caso documentado e alcance |
+|---|---|
+| POC-01: estado vigente | Resumos de retomada contrariavam decisões posteriores em mais de um projeto. Atualizar estado e próximo passo; não reler toda a cronologia. |
+| Variantes pela causa | Uma correção em um gerador deixou um caminho irmão com o mesmo problema. Verificar consumidores afetados; não fazer auditoria global. |
+| R2-01/02: entrega e referência | Executável validado por outro caminho falhou na janela principal; pedidos visuais reiterados divergiram da referência. |
+| P4-01/02: aceite e revisão | Histórico registrou cobranças de preservação do critério e retestes ligados à revisão errada. |
+| P5-01: edição parcial | Edição de uma parte exigiu conferir preservação de dados e saídas não afetados. |
+| P6-01: publicação e registro | Produção foi publicada, mas registros vigentes continuaram descrevendo homologação; falha de cumprimento de fechamento já exigido. |
+| P7-01/P8-01: artefato e cooperação | Validação visual insuficiente e transferência inadequada de passos ao usuário motivaram prova no artefato e operação conjunta. |
+
+A auditoria externa de 19/10/2026 confirmou a falha de distribuição e observou falhas em T0 e variantes. Casos retrospectivos justificam investigar o mecanismo, não alegar taxa de sucesso. Antes de criar regra, ligar problema, causa, necessidade e prova proporcional; recorrência ou risco grave confirmado não dispensam essa análise.
+
+## Como avaliar a próxima versão
+
+Aceite desta correção: as seis cópias correspondem às fontes, versão e caminho local são identificáveis, a política está acessível fora do repositório do método e a checagem rejeita pacote incompleto. Provas T2/T4 verificam os cenários, não adesão de um novo agente.
+
+Verificação local de 19/10/2026: seis cópias idênticas; kit isolado aprovado; controles de política ausente e AGENTS antigo rejeitados. Em cópias temporárias, T2 passou em 4/4 provas e rejeitou prompt com chaves JSON não escapadas; T4 rejeitou a correção parcial e passou em 2/2 após corrigir ambos os relatórios. O executor conhecia os cenários e testes; não houve novo ensaio cego nem sessão independente de agente. Origens da auditoria preservadas.
+
+Tamanho textual por separação em espaços: AGENTS de 721 para 744 palavras (+3,2%); política de 1.255 para 703 (-44,0%). São contagens de palavras, não medições de consumo de tokens.
+
+Para avaliar eficácia em um piloto separado:
+
+- Fixar antes tarefa, aceite, riscos, mesmo escopo aprovado, modelo/versão, esforço, ambiente, instruções globais, política de cache, repetições e orçamento. Comparar PACTO com uma linha de base mínima, registrando também perguntas e respostas; aprovação vaga não deve mudar o escopo comparado.
+- Em T2, observar se o agente verifica montagem do prompt, parâmetros e contrato. Em T4, observar se encontra e verifica caminhos irmãos da mesma causa. Medir defeitos e severidade além da contagem de testes.
+- Considerar ganho somente se preservar aceite e segurança e melhorar qualidade, trabalho humano ou consumo; registrar o custo das outras dimensões, não escondê-lo em uma média.
+- Alegar economia somente com qualidade e escopo equivalentes e menor consumo comparável. Separar entrada, cache já incluído nela, saída, duração e tempo humano ativo. Indisponível não significa zero; volume não é preço financeiro nem quota.
+- Registrar falhas e acertos, variabilidade e limites antes de generalizar. Uma execução não prova taxa de eficácia nem quantidade de bugs evitados.
+
+Nada disso exige ficha por tarefa. Usar PLAN e contadores existentes quando houver piloto autorizado. Teste com público leigo continua pendente; não há nova sessão de agente, pessoa ou experimento pago agendado.
+
 ## Decisão e continuidade
 
 Preservar os mecanismos que funcionaram: contrato proporcional, reaproveitamento de contexto, escolhas determinísticas, revisão humana útil, testes dirigidos e evidência do resultado. O catálogo não justifica aumentar o núcleo de instruções ou criar relatório obrigatório por tarefa.

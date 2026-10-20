@@ -1,31 +1,21 @@
 # PLAN.md
 
-## Objetivo e decisões
+## Estado atual
 
-Estado vigente em 19/10/2026: POC-01 em a6b3ea2; regressão de variantes em 434a374; R2 em 6f41eb2; P4 em acb46b1; P5 em 5b99c88; P6 em 922028c; P7 e P8 em 172d69a, todos publicados. Rodada positiva: 14 observações de 12 episódios, em seis aplicativos e no próprio método, registradas em docs/evidencias-de-beneficios.md. Fontes detalhadas ficam no anexo local da auditoria. Atribuição ao PACTO é separada do resultado; economia causal de tokens, tempo e retestes continua não demonstrada. Projetos de referência consultados somente em leitura.
+Kit `2026.10.19.1` implementado e verificado localmente em 19/10/2026, conforme parecer aprovado. A auditoria encontrou políticas publicadas no método, mas ausentes do kit; a distribuição foi corrigida. Adesão futura e economia não estão comprovadas. Publicação autorizada, ainda a confirmar.
 
-Consolidar o método conforme aprovação do usuário: 01 a 07 e 08 a 13 condicionais.
-templates/ é a fonte oficial; kit-pacto/ é a distribuição. O catálogo de pesquisa autorizado fica sob demanda; não adicionar ferramentas nem instruções permanentes por esta pesquisa.
-O piloto 14 permanece opcional, sem métricas ou economia presumidas.
+Fontes oficiais: `templates/` para os cinco modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
 
-## Checkpoints
+## Menor fatia verificável
 
-- [x] Consolidar modelos e reduzir contexto permanente.
-- [x] Alinhar políticas, descoberta, documentação vigente e guia.
-- [x] Conferir consistência, UTF-8, diff e redução do núcleo.
-- [x] Finalizar instruções de início e verificar kit para envio autorizado ao GitHub. Confirmar sincronização remota após o push.
-- [x] Aplicar POC-01 nos modelos, orientação e guia, sem ampliar instruções permanentemente carregadas.
-- [x] Refinar regressão nos contratos, modelos, políticas e prompts; conferir UTF-8, equivalência dos cinco modelos do kit, integridade dos prompts e preservação dos scripts do guia. Envio ao GitHub autorizado.
-- [x] Incorporar R2-01 e R2-02 somente em docs/validacao-proporcional.md, preservando modelos, kit e guia; conferir diff, UTF-8 e referências para publicação autorizada.
-- [x] Incorporar P4-01 e P4-02 nos contratos e orientação, alinhar revisão no guia e conferir publicação documental, preservando o tamanho do núcleo.
-- [x] Incorporar P5-01 em docs/validacao-proporcional.md, sem ampliar o núcleo; conferir integridade documental e confirmar o envio autorizado ao GitHub.
-- [x] Incorporar P6-01 na política de validação e no prompt 7B dos guias equivalentes; conferir integridade, preservação dos scripts/modelos e publicação documental autorizada.
-- [x] Incorporar P7-01 e P8-01 na política de validação e no prompt 7B dos guias equivalentes; conferir integridade, preservação dos scripts/modelos e publicação documental autorizada.
-- [x] Registrar benefícios com evidência favorável e limites, conferir classificação e contagem textual; manter fontes dos projetos fora do repositório público e preservar modelos, kit e guia.
+- [x] Distribuir a política e identificar versão; esclarecer instalação e atualização.
+- [x] Substituir trechos ambíguos de T0/variantes e alinhar pontos ativos.
+- [x] Conferir kit isolado, controles negativos, cenários T2/T4, UTF-8, links e guia.
+- [ ] Confirmar publicação autorizada e registrar resultado e limites.
 
-## Continuidade
+## Decisões e continuidade
 
-- Decisão e motivo: preservar os mecanismos úteis e registrar benefícios sob demanda com o mesmo rigor das falhas, sem convertê-los em novas regras ou propaganda causal.
-- Tentativas descartadas: importar a pilha de ferramentas do autor ou tornar proteções condicionais em ritos universais.
-- Próximo passo vigente: usar uma próxima entrega autorizada para observar resultado, intervenção humana e retornos no PLAN existente. Só atribuir economia ao método com comparação equivalente e métricas disponíveis; não iniciar experimento pago ou automação por inferência. A publicação do catálogo deve ser confirmada no encerramento desta entrega. A rodada é amostral. Licença e distribuição continuam pendentes, fora desta pesquisa.
-- Git cobre os arquivos desta mudança documental; não há necessidade de backup adicional.
+- Não adotar confirmação duplicada para toda exclusão, busca global para todo bug, duas ocorrências como número mágico ou ferramentas obrigatórias.
+- Não repetir laboratório integral nem tratar contagem de palavras como consumo de tokens.
+- Evidências anteriores de falhas e acertos permanecem observacionais; relatórios privados dos projetos não serão publicados.
+- Próximo passo: confirmar a publicação. Depois, observar uma entrega já autorizada; comparação independente com agentes ou pessoas depende de escopo e orçamento próprios, não está agendada.

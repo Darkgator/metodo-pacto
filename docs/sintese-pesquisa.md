@@ -11,6 +11,8 @@ Fontes recebidas:
 
 Este documento registra pesquisa histórica. Para execução atual, prevalecem os modelos de templates/ e as políticas vigentes. A proposta de duas tentativas em tarefa crítica foi substituída pelo teto geral de três, com parada antecipada por estagnação ou risco.
 
+Rastreabilidade: o relatório original do ChatGPT contém referências internas sem URLs recuperáveis. Ele é insumo histórico, não comprovação verificável; confirme fontes primárias antes de apoiar uma decisão atual. Não reconstruir referências por adivinhação.
+
 ## Conclusão central
 
 Os dois relatórios apontam para um framework mais leve e mais disciplinado do que o rascunho v0.

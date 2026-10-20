@@ -115,6 +115,7 @@ Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; n�
 - BRIEF.md, se for útil manter o briefing no repositório
 - README.md
 - AGENTS.md
+- .pacto/validacao.md, cópia de docs/validacao-proporcional.md do repositório do método
 - CLAUDE.md, se aplicável
 - SPEC.md
 - .env.example, se aplicável
@@ -152,6 +153,7 @@ Antes de seguir, confira:
 
 - `SPEC.md` tem objetivo, não objetivos, critérios de aceite e verificação?
 - `AGENTS.md` está curto?
+- A versão está identificada e a política local `.pacto/validacao.md` está disponível?
 - `CLAUDE.md` usa a ponte curta para `AGENTS.md`, se aplicável?
 - se o projeto usa Git remoto, o agente verificou se a branch local está sincronizada, à frente, atrás ou divergente antes de retomar?
 - `.env.example` não tem segredo real?
@@ -172,6 +174,7 @@ Regras:
 - não implemente checkpoints futuros;
 - mantenha o diff pequeno;
 - classifique o checkpoint silenciosamente como `T0`, `T1`, `T2` ou `T3`;
+- respeite a fronteira T0/T1 do AGENTS e consulte a política local somente pelo gatilho aplicável;
 - em `T0`, não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste;
 - em `T1`, rode apenas uma prova curta; em `T2`, somente o necessário; em `T3`, smoke clássico e verificações relevantes;
 - verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
@@ -197,8 +200,9 @@ Revise o diff atual contra SPEC.md.
 Procure:
 - bug;
 - regressão;
+- em bug, caminhos irmãos pela causa e comportamento, não só pelo nome, sem auditoria global;
 - escopo extra;
-- ausência de teste;
+- validação faltante proporcional ao risco;
 - risco de segurança;
 - risco legal/licenciamento;
 - dados sensíveis;

@@ -14,16 +14,16 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Método consolidado com contratos proporcionais ao risco. templates/ é a fonte oficial; o kit distribui cópias idênticas dos cinco modelos principais. Documentos históricos são referências, não instruções de execução.
+Kit `2026.10.19.1`: cinco modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. Documentos históricos são referências, não instruções de execução.
 
 ## Comece aqui
 
 1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
-2. Use `AGENTS.md` e, para Claude Code, a ponte `CLAUDE.md`. Preencha os comandos do projeto no `AGENTS.md`.
+2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. Preencha os comandos do projeto no `AGENTS.md`.
 3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
 4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
 
-Os [templates](templates/) são a fonte oficial. O kit contém cópias idênticas dos cinco modelos principais, prontas para copiar com os nomes corretos. O método não exige instalação, serviço ou ferramenta adicional.
+Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em `.pacto/validacao.md`, consultada por gatilho, não carregada por padrão em T0. O método não exige instalação, serviço ou ferramenta adicional. Atualizações preservam adaptações locais; publicar aqui não atualiza projetos antigos.
 
 ## Arquivos de referência
 
@@ -59,6 +59,10 @@ Os [templates](templates/) são a fonte oficial. O kit contém cópias idêntica
 - `templates/ARCHIVE-README.template.md`: modelo para documentar backups e obsoletos.
 - `templates/ENV.template`: modelo base para `.env.example`.
 
+## Evidência e custo
+
+Não há economia causal de tokens ou tempo demonstrada. Menos texto permanente não garante menos consumo por tarefa. Em comparação autorizada, registre escopo, qualidade, trabalho humano e contadores disponíveis; cache já integra a entrada e tokens não equivalem diretamente a dinheiro ou quota. [Critérios de avaliação](docs/evidencias-de-beneficios.md#como-avaliar-a-próxima-versão).
+
 ## Próximo passo
 
-Licença e política de distribuição permanecem pendentes. Novas ferramentas e o piloto de custo são opcionais; economia de tokens por tarefa ainda não foi medida.
+Usar o kit em uma próxima entrega autorizada, observando as provas e limitações reais. Novos experimentos e ferramentas continuam opcionais. A licença final permanece pendente.

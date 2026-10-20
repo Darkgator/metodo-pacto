@@ -7,7 +7,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 Documentação Markdown e guia HTML estático de um método de desenvolvimento com agentes.
 - Leia SPEC.md para mudanças conceituais; PLAN.md para continuidade; BRIEF.md somente quando faltar contexto.
 - Consulte docs/regras-universais.md para riscos e docs/validacao-proporcional.md para decisões de validação. Não carregue o histórico por padrão.
-- templates/ é a fonte oficial dos modelos. kit-pacto/PARA-COPIAR-NA-RAIZ/ distribui cópias idênticas de AGENTS, CLAUDE, BRIEF, SPEC e PLAN.
+- templates/ é a fonte dos cinco modelos; docs/validacao-proporcional.md é a fonte da política distribuída em .pacto/validacao.md no kit. Confira as seis cópias com python scripts/verificar_kit.py antes de publicar alterações do kit.
 - Mude apenas o escopo aprovado. Atualize modelos e prompts do guia afetados por mudança conceitual.
 - Use rg; não há build obrigatório. Verifique diff, links e consistência documental. Navegador apenas se mudar comportamento visual ou houver pedido.
 
@@ -26,5 +26,5 @@ Documentação Markdown e guia HTML estático de um método de desenvolvimento c
 
 - T0 somente cosmético ou documental sem efeito operacional: confira diff silenciosamente, sem testes ou relatório vazio.
 - T1 usa a menor prova curta suficiente; T2 verifica riscos da fatia; T3 exige smoke quando houver comportamento executável.
-- Prove o resultado esperado; em correção de bug, confira variantes próximas afetadas pela mesma causa, sem auditoria global. Preserve o aceite; não enfraqueça testes. Integrações alteradas exigem prova da fronteira afetada, sem dados sensíveis.
-- Memória e regras precisam de causa recorrente confirmada. Prefira correção ou teste; registre no PLAN apenas decisões, tentativas e próximos passos que precisem sobreviver à sessão.
+- Prove o resultado esperado; em bug, busque caminhos irmãos pela causa e comportamento, não só pelo nome, sem auditoria global. Preserve o aceite e os testes. Integrações alteradas exigem prova da fronteira afetada, sem dados sensíveis.
+- Regras exigem causa e necessidade demonstradas, por recorrência ou risco grave confirmado. Prefira correção ou teste; registre no PLAN apenas decisões, tentativas e próximos passos que precisem sobreviver à sessão.

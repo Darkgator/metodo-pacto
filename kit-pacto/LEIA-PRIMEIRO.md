@@ -3,25 +3,32 @@
 Criador do método: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
 Método: PACTO
+Versão do kit: `2026.10.19.1`
 
 ## Como usar
 
-1. Use templates/ como fonte oficial. A pasta PARA-COPIAR-NA-RAIZ distribui cópias idênticas dos cinco modelos principais. Copie AGENTS.md e, se usar Claude Code, CLAUDE.md; adicione os demais somente quando necessários.
+1. De `PARA-COPIAR-NA-RAIZ/`, copie `AGENTS.md` e a pasta `.pacto/` para a raiz do projeto, preservando esse caminho. Para Claude Code, copie também `CLAUDE.md`. BRIEF, SPEC e PLAN continuam condicionais. Fontes: `templates/` para os cinco modelos e `docs/validacao-proporcional.md` para a política.
 2. Preencha BRIEF.md apenas quando faltar contexto; aproveite respostas já existentes.
 3. Defina o contrato proporcional: uma frase para tarefa simples, SPEC.md para mudança relevante. Preencha somente campos aplicáveis.
 4. Use `PLAN.md` somente quando a execução for complexa ou precisar sobreviver ao chat. Mais de um arquivo, sozinho, não exige plano persistente.
 5. Abra o projeto no Codex ou Claude Code. Ambos carregam as regras centrais automaticamente.
 
-Não copie esta pasta de instruções para o projeto-alvo. Não é necessário copiar documentos extensos do framework: o kit carrega regras curtas e consulta os contratos da fase apenas quando necessário.
+Não é necessário copiar este leia-me nem todo o framework. A política `.pacto/validacao.md` acompanha o kit, mas o AGENTS encaminha somente à seção acionada por T2/T3, bug, texto operacional ou requisito visual; T0 não exige essa leitura.
 
 Em projeto existente, preserve instruções e comandos que já funcionam. Adapte o conteúdo ao projeto; não sobrescreva contratos existentes automaticamente. Preencha os comandos de instalar, executar e verificar no AGENTS.md e remova campos sem aplicação.
+
+## Atualizar um projeto existente
+
+Compare a versão no comentário do AGENTS com a versão pretendida. Revise o diff das regras e da política; preserve comandos, decisões e adaptações locais. Atualize a política e o identificador juntos, depois de conferir os caminhos. Não copie BRIEF, SPEC ou PLAN por cima dos contratos existentes. Só marque a nova versão após concluir a adaptação.
+
+Publicar o método no GitHub não atualiza projetos antigos automaticamente. Não baixar o repositório a cada tarefa. A checagem `python scripts/verificar_kit.py`, no repositório do método, é opcional para o mantenedor e não vai para os projetos.
 
 ## Primeiro comando para o agente
 
 Cole no Codex ou Claude Code:
 
 ```text
-Inicie pelo Método PACTO para esta tarefa: [resultado e limites]. Inspecione somente a estrutura, o diff e os contratos relevantes. Aproveite decisões existentes e pergunte apenas lacunas bloqueantes. Execute tarefa simples já autorizada diretamente; para mudança relevante, proponha o menor contrato verificável antes de implementar. Não escolha stack sem contexto e aprovação.
+Inicie pelo Método PACTO para esta tarefa: [resultado e limites]. Inspecione somente a estrutura, o diff e os contratos relevantes. Aproveite decisões existentes e pergunte apenas lacunas bloqueantes. Execute tarefa simples já autorizada diretamente; para mudança relevante, proponha o menor contrato verificável antes de implementar: pronto significa [resultado], verificado por [prova]. Não escolha stack sem contexto e aprovação.
 ```
 
 ## Após a aprovação do escopo
