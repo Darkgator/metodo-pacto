@@ -54,3 +54,9 @@ Decidido: três tentativas no mesmo erro como teto geral, com parada antecipada 
 ## 9. Templates finais
 
 Kit `2026.10.19.2`: cinco modelos e política sob demanda distribuídos, com atualização por adaptação, não sobrescrita automática. O BRIEF tem estado de prontidão por decisão. Licença final continua pendente.
+
+## 10. Entrada em projeto já em andamento
+
+Lacuna a resolver antes de criar nova regra: quando o PACTO é chamado em projeto existente, ele não deve reiniciar o Briefing Assistido, rever stack ou recriar contratos por reflexo. Precisamos definir o diagnóstico mínimo de entrada, os gatilhos que justificam reabrir decisões antigas e como registrar somente a lacuna que afeta a tarefa atual.
+
+Pergunta de desenho: em quais situações basta inspecionar o estado vigente e seguir, e em quais situações o método deve pedir contexto adicional, reavaliar uma decisão ou propor uma migração?
