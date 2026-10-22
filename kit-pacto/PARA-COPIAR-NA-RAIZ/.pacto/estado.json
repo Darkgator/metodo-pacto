@@ -1,6 +1,7 @@
 {
-  "formato": 1,
+  "formato": 2,
   "revisao": 0,
   "atualizado_em": null,
-  "trabalhos": []
+  "trabalhos": [],
+  "sessoes": {}
 }

@@ -1,96 +1,64 @@
-"""Checagem opcional do mantenedor, sem dependências e sem alterar arquivos.
+"""Verifica fontes, distribuição e uma instalação PACTO sem modificá-las."""
 
-Confere distribuição; não mede adesão do agente, segurança ou economia.
-"""
+from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from pathlib import Path
 
-
-COPIAS = {
-    **{f"templates/{nome}.template.md": f"{nome}.md"
-       for nome in ("AGENTS", "CLAUDE", "BRIEF", "SPEC", "PLAN", "INVARIANTES")},
-    "docs/validacao-proporcional.md": ".pacto/validacao.md",
-    "scripts/pacto_estado.py": ".pacto/pacto-estado.py",
-    "templates/ESTADO.template.json": ".pacto/estado.json",
-}
-VERSAO = re.compile(r"<!-- Kit PACTO: (\d{4}\.\d{2}\.\d{2}\.\d+) -->")
-SECOES = (
-    "Escolher a prova", "Corrigir bugs", "Invariantes do projeto", "Dados e edição parcial",
-    "Entrega e publicação", "Artefato visual", "Operação conjunta", "Comunicação",
-)
+from distribuir_pacto import COPIAS, RAIZ, conferir
 
 
-def ler(caminho, erros):
-    try:
-        return caminho.read_bytes().decode("utf-8-sig")
-    except (OSError, UnicodeError) as exc:
-        erros.append(f"{caminho}: ausente, ilegível ou não UTF-8 ({type(exc).__name__})")
-        return ""
+def texto(caminho: Path, erros: list[str]) -> str:
+    try: return caminho.read_bytes().decode("utf-8-sig")
+    except (OSError, UnicodeError) as erro:
+        erros.append(f"{caminho}: ausente, ilegível ou não UTF-8 ({type(erro).__name__})"); return ""
 
 
-def verificar_instalacao(pasta):
+def verificar_instalacao(pasta: Path, continuidade: bool) -> list[str]:
     erros = []
-    agentes = ler(pasta / "AGENTS.md", erros)
-    if not VERSAO.search(agentes):
-        erros.append("AGENTS.md sem identidade de versão do kit")
-    if "`.pacto/validacao.md`" not in agentes:
-        erros.append("AGENTS.md não encaminha à política local")
-    politica = ler(pasta / ".pacto/validacao.md", erros)
-    for secao in SECOES:
-        if f"## {secao}\n" not in politica.replace("\r\n", "\n"):
-            erros.append(f"Política sem seção: {secao}")
+    agentes = texto(pasta / "AGENTS.md", erros)
+    if "Kit PACTO:" not in agentes: erros.append("AGENTS.md sem identidade de versão do kit")
+    if "`.pacto/validacao.md`" not in agentes: erros.append("AGENTS.md não encaminha à política local")
+    politica = texto(pasta / ".pacto" / "validacao.md", erros)
+    if "## Escolher a prova" not in politica: erros.append("Política local incompleta")
     claude = pasta / "CLAUDE.md"
-    if claude.exists() and "@AGENTS.md" not in ler(claude, erros):
-        erros.append("CLAUDE.md não encaminha ao AGENTS.md")
-    estado = ler(pasta / ".pacto/estado.json", erros)
-    try:
-        if json.loads(estado).get("formato") != 1:
-            erros.append("Estado PACTO sem formato 1")
-    except json.JSONDecodeError:
-        erros.append("Estado PACTO não é JSON válido")
-    if not (pasta / ".pacto/pacto-estado.py").is_file():
-        erros.append("Comando de estado PACTO ausente")
+    if claude.exists() and "@AGENTS.md" not in texto(claude, erros): erros.append("CLAUDE.md não encaminha ao AGENTS.md")
+    estado = pasta / ".pacto" / "estado.json"; comando = pasta / ".pacto" / "pacto-estado.py"
+    if continuidade:
+        if not estado.is_file(): erros.append("Continuidade solicitada sem estado PACTO")
+        else:
+            try:
+                if json.loads(texto(estado, erros)).get("formato") not in (1, 2): erros.append("Estado PACTO com formato incompatível")
+            except json.JSONDecodeError: erros.append("Estado PACTO não é JSON válido")
+        if not comando.is_file(): erros.append("Continuidade solicitada sem comando de estado")
     return erros
 
 
-def verificar_fontes(raiz):
-    kit = raiz / "kit-pacto/PARA-COPIAR-NA-RAIZ"
-    erros = verificar_instalacao(kit)
-    for origem, destino in COPIAS.items():
-        fonte, copia = raiz / origem, kit / destino
-        ler(fonte, erros)
-        ler(copia, erros)
-        if fonte.is_file() and copia.is_file() and fonte.read_bytes() != copia.read_bytes():
-            erros.append(f"Cópia diferente da fonte: {destino}")
-    fonte_agentes = ler(raiz / "templates/AGENTS.template.md", erros)
-    versao = VERSAO.search(fonte_agentes)
-    if versao:
-        for arquivo in ("README.md", "kit-pacto/LEIA-PRIMEIRO.md"):
-            if f"`{versao.group(1)}`" not in ler(raiz / arquivo, erros):
-                erros.append(f"Versão não identificada em {arquivo}")
-    return erros
-
-
-def main():
+def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--instalacao", type=Path, help="Conferir somente um kit local isolado/adaptado")
+    parser.add_argument("--instalacao", type=Path)
+    parser.add_argument("--continuidade", action="store_true")
     args = parser.parse_args()
-    erros = (verificar_instalacao(args.instalacao.resolve()) if args.instalacao
-             else verificar_fontes(Path(__file__).resolve().parents[1]))
+    if args.instalacao:
+        erros = verificar_instalacao(args.instalacao.resolve(), args.continuidade)
+    else:
+        erros = conferir(False)
+        plugin = RAIZ / "plugin-pacto" / "plugin.json"
+        try:
+            dados = json.loads(plugin.read_text(encoding="utf-8"))
+            if not str(dados.get("version", "")): erros.append("plugin sem versão")
+            if not (RAIZ / "plugin-pacto" / "skills" / "pacto" / "references" / "continuidade.md").is_file(): erros.append("referência da skill ausente")
+        except (OSError, json.JSONDecodeError): erros.append("plugin.json inválido")
     if erros:
-        print("FALHOU:\n- " + "\n- ".join(dict.fromkeys(erros)))
-        return 1
-    print("OK: kit local disponível, versão e UTF-8 conferidos."
-          if args.instalacao else "OK: nove cópias idênticas, versão, caminho local, estado e UTF-8 conferidos.")
-    print("Esta checagem não comprova adesão do agente nem economia.")
+        print("FALHOU:\n- " + "\n- ".join(dict.fromkeys(erros))); return 1
+    quantidade = sum(len(destinos) for destinos in COPIAS.values())
+    print(f"OK: {quantidade} cópias distribuídas e UTF-8 conferidos." if not args.instalacao else "OK: instalação PACTO coerente.")
+    print("Esta checagem não comprova adesão do agente, confiança de hook ou economia.")
     return 0
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == "__main__": raise SystemExit(main())

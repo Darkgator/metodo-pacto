@@ -2,7 +2,7 @@
 
 ## Objetivo e escopo aprovado
 
-Entregar o PACTO `2026.10.22.2` com continuidade explícita entre chats e assuntos: estado local opcional de trabalhos, skill reutilizável, hook somente de leitura para Codex Desktop e verificações automatizadas do núcleo e da distribuição.
+Entregar o PACTO `2026.10.22.3` com continuidade explícita entre chats e assuntos: estado local opcional e concorrente de trabalhos, skill reutilizável, hook somente de leitura para Codex Desktop, instalação preservadora e verificações automatizadas do núcleo e da distribuição.
 
 Preservar o kit existente, contratos proporcionais e adaptações locais. MCP permanece fora desta versão; não haverá serviço, banco central, sincronização entre máquinas ou leitura automática de históricos.
 
@@ -15,16 +15,18 @@ Preservar o kit existente, contratos proporcionais e adaptações locais. MCP pe
 - [x] Atualização não sobrescreve adaptações nem presume que projetos antigos receberam a versão nova.
 - [x] Verificação estática e cenários locais T2/T4 têm resultado e limite registrados; nenhuma nova comparação econômica é alegada.
 - [x] Modelos, instruções de adoção e prompts ativos estão alinhados, em UTF-8.
-- [x] Estado detecta escrita concorrente por revisão, grava de forma atômica e não armazena transcrição do chat.
+- [x] Estado exige revisão em toda mutação, detecta leitura antiga dentro de trava do SO, grava de forma atômica e não armazena transcrição do chat.
 - [x] Skill PACTO encaminha início, retomada, alternância e fechamento sem criar burocracia em tarefa trivial.
-- [x] Hook do plugin só injeta resumo curto de trabalhos abertos nos eventos suportados, sem escrever no projeto.
+- [x] Hook do plugin só injeta resumo curto do trabalho associado ou opções explícitas nos eventos suportados, sem escrever no projeto.
+- [x] Instalador oferece prévia, conflito por adaptação local, atualização e remoção que preserva estado/evidências.
+- [x] Evidências vencem quando arquivos declarados mudam; ambiente/revisão de publicação observados são comparados aos esperados.
 
 ## Verificação
 
-Checagens do mantenedor: `python scripts/verificar_kit.py` e `python -m unittest discover -s tests -v`. Conferir cópias, caminho local, versão, estado, links, diff, comandos de continuidade e JSON do plugin. Executar controles negativos em pasta temporária isolada, sem novas sessões de IA.
+Checagens do mantenedor: `python scripts/distribuir_pacto.py --conferir`, `python scripts/verificar_kit.py` e `python -m unittest discover -s tests -v`. Conferir cópias, caminho local, versão, estado, links, diff, comandos de continuidade e JSON do plugin. Executar controles negativos em pasta temporária isolada, sem novas sessões de IA.
 
 Aceite funcional do kit não comprova que o agente cumprirá toda regra. Eficácia, tempo humano e economia exigem comparação equivalente; critérios estão em [Benefícios e avaliação](docs/evidencias-de-beneficios.md).
 
 ## Limites
 
-Publicação no GitHub já autorizada pelo usuário. Sem ativação automática do plugin ou de hooks no computador, implantação em outros projetos, experimento pago ou alteração dos resultados anteriores. Licença final continua pendente.
+Publicação no GitHub já autorizada pelo usuário. Sem ativação automática do plugin ou de hooks no computador, implantação em outros projetos, experimento pago ou alteração dos resultados anteriores. O hook Codex e a integração Claude ainda exigem validação real no host; licença final continua pendente.

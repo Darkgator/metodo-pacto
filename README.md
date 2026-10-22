@@ -14,12 +14,12 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Kit `2026.10.22.2`: seis modelos, uma política local sob demanda e um estado opcional de trabalhos. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos ativos, decisões recentes e próximos passos sem guardar o chat inteiro.
+Kit `2026.10.22.3`: seis modelos, política local sob demanda e continuidade opcional com estado concorrente. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos, sessões, decisões e provas curtas sem guardar o chat inteiro.
 
 ## Comece aqui
 
 1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
-2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. `estado.json` começa vazio e é opcional em tarefas triviais. Copie `INVARIANTES.md` somente se houver comportamento, identidade ou contrato crítico para proteger. Preencha os comandos do projeto no `AGENTS.md`.
+2. Em projeto novo, copie ou instale o kit. Em projeto existente, use `python scripts/instalar_pacto.py --destino CAMINHO --perfil continuidade planejar` e só aplique após conferir a prévia: o instalador preserva arquivos não geridos e adaptações locais. `estado.json` é opcional em tarefas triviais. Para Claude Code, acrescente a ponte `CLAUDE.md`.
 3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
 4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
 
@@ -33,7 +33,7 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `SPEC.md`: contrato da fase atual.
 - `PLAN.md`: plano de continuidade.
 - `INVARIANTES.md`: regras de negócio, identidade e contratos/dados que precisam de prova de preservação quando afetados.
-- `.pacto/estado.json`: estado curto de trabalhos em aberto, atualizado só em mudanças relevantes; `.pacto/pacto-estado.py` faz leitura e atualização com revisão para detectar conflito.
+- `.pacto/estado.json`: estado curto de trabalhos, sessões, decisões, tentativas e evidências; `.pacto/pacto-estado.py` exige revisão em toda alteração e recusa conflito em vez de sobrescrever leitura antiga.
 - `plugin-pacto/`: plugin experimental para Codex Desktop, com a skill `pacto` e hook somente de leitura na abertura, retomada e compactação.
 - `docs/briefing-assistido.md`: etapa opcional para transformar uma ideia solta em briefing antes do agente de coding.
 - `docs/gestao-obsoletos-backups.md`: regra para arquivar obsoletos e criar backups em turning points relevantes.
@@ -68,6 +68,6 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 
 Não há economia causal de tokens ou tempo demonstrada. Menos texto permanente não garante menos consumo por tarefa. Em comparação autorizada, registre escopo, qualidade, trabalho humano e contadores disponíveis; cache já integra a entrada e tokens não equivalem diretamente a dinheiro ou quota. [Critérios de avaliação](docs/evidencias-de-beneficios.md#como-avaliar-a-próxima-versão).
 
-## Próximo passo
+## Limites conhecidos
 
-Usar o kit em uma próxima entrega autorizada, observando as provas e limitações reais. Novos experimentos e ferramentas continuam opcionais. A licença final permanece pendente.
+O núcleo, instalação e distribuição foram testados localmente. A confiança de hooks e o recebimento de eventos precisam ser comprovados no Codex instalado; o Claude Code tem continuidade manual documentada, mas não um hook validado. A bancada de avaliação está pronta e não chama IA por padrão, porque custo, executor e limite precisam ser escolhidos antes. MCP continua fora do escopo.

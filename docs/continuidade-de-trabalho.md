@@ -1,45 +1,37 @@
-# Continuidade de Trabalho
+# Continuidade de trabalho
 
-O PACTO separa a verdade durável do projeto do contexto passageiro do chat.
+Use a continuidade apenas quando uma tarefa relevante precisa sobreviver à troca de assunto, sessão ou compactação. Ela não é briefing novo e não é obrigatória para pergunta ou tarefa trivial.
 
-- `AGENTS.md`, contratos, testes e invariantes guardam regras do projeto.
-- `PLAN.md` continua sendo o resumo da fase quando ela precisar sobreviver a sessões.
-- `.pacto/estado.json` guarda somente trabalhos em aberto e seus próximos passos. Não guarda conversa, segredo, log completo ou decisão já documentada em outro contrato.
+## Uso mínimo
 
-## Quando usar estado
-
-Use-o em trabalho que possa ser interrompido, retomado em outro chat, alternado com outro assunto ou executado em paralelo. Tarefa trivial não cria registro por reflexo.
-
-Ao abrir, retomar ou voltar a um trabalho, execute:
-
-```text
-python .pacto/pacto-estado.py contexto
+```powershell
+python .pacto/pacto-estado.py contexto --sessao minha-sessao
+python .pacto/pacto-estado.py mostrar ID
 ```
 
-Crie um trabalho somente quando fizer sentido preservar continuidade:
+Se não houver trabalho associado, o contexto mostra até cinco opções e não escolhe sozinho. Associe ou alterne explicitamente usando a revisão mostrada por `listar`:
 
-```text
-python .pacto/pacto-estado.py iniciar --titulo "Corrigir acesso" --objetivo "Corrigir a autorização da rota" --proximo-passo "Reproduzir com perfil sem permissão"
+```powershell
+python .pacto/pacto-estado.py associar ID --sessao minha-sessao --esperada-revisao 3
+python .pacto/pacto-estado.py atualizar ID --resultado "Teste reproduziu o erro" --esperada-revisao 4
 ```
 
-Após decisão, resultado, bloqueio, tentativa descartada, troca relevante ou conclusão, atualize apenas o trabalho correspondente. O comando devolve a revisão nova. Ao atualizar um estado lido antes por outro chat, use `--esperada-revisao N`; conflito significa que o estado real precisa ser reconciliado antes de qualquer gravação.
+Toda gravação compara a revisão dentro de uma trava do sistema operacional. Quando ocorrer conflito, releia, reconcilie a informação real e execute uma nova alteração. Não tente repetir uma escrita antiga com a revisão nova.
 
-```text
-python .pacto/pacto-estado.py atualizar ID --resultado "Bug reproduzido" --proximo-passo "Cobrir caminhos irmãos" --esperada-revisao N
+## O que registrar
+
+Registre só decisão vigente, resultado verificável, tentativa descartada que evite repetição, bloqueio, troca relevante, publicação observada ou conclusão. Referencie arquivos longos. Nunca grave transcrições, segredos ou saída completa de terminal.
+
+`provar` é o único comando que executa verificações de `.pacto/verificacoes.json`; contexto e hooks não executam nada. Uma prova vence se um arquivo declarado mudar. Captura visual ou áudio é inspeção registrada, não prova automática de qualidade.
+
+## Instalação e recuperação
+
+No repositório do método, rode primeiro:
+
+```powershell
+python scripts/instalar_pacto.py --destino CAMINHO_DO_PROJETO --perfil continuidade planejar
 ```
 
-## Troca e retorno de assunto
+Só use `instalar --aplicar` ou `atualizar --aplicar` depois de conferir a prévia. Arquivo não gerido ou alterado localmente vira conflito, não sobrescrita. `remover --aplicar` remove somente arquivos PACTO ainda idênticos e preserva estado/evidências.
 
-Uma pergunta incidental não interrompe trabalho. Quando o usuário trocar a prioridade, registre o ponto de parada do trabalho atual e inicie ou recupere outro. Ao retornar, confira arquivos, diff e estado antes de concluir que o resultado anterior ainda vale.
-
-Estado concluído permanece como referência curta até ser removido por manutenção deliberada. O PACTO não apaga automaticamente o histórico do projeto.
-
-## Hook experimental no Codex Desktop
-
-`plugin-pacto/` contém a skill `pacto` e um hook que lê o estado na abertura, retomada, fork e compactação. Ele não escreve arquivos, não lê transcrição e não decide o que implementar. A instalação exige revisão e confiança explícita do hook pelo Codex Desktop.
-
-O hook acrescenta no máximo três trabalhos em aberto ao contexto. Se o estado estiver ausente, ilegível ou sem trabalhos abertos, ele não produz contexto adicional.
-
-## Limites
-
-O estado ajuda a recuperar objetivo e pendências; não prova que a IA entendeu a intenção do usuário, que a validação foi suficiente ou que uma publicação ocorreu. Esses pontos continuam exigindo a prova proporcional definida no projeto.
+O hook do plugin Codex é opcional, somente de leitura e precisa de confiança explícita no aplicativo. Sem hook, o comando manual continua suficiente. O adaptador Claude Code não declara hook ativo enquanto essa integração não for observada no host.

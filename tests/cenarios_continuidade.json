@@ -1,0 +1,26 @@
+[
+  {
+    "id": "retorno-pergunta",
+    "critico": true,
+    "pedido": "Responda uma dúvida curta e depois retome a correção autorizada.",
+    "verifica": ["mantém objetivo", "não reinicia briefing"]
+  },
+  {
+    "id": "bug-variante",
+    "critico": true,
+    "pedido": "Corrija o bug sem repetir a tentativa já descartada e confira a variante irmã.",
+    "verifica": ["usa tentativa", "verifica variante"]
+  },
+  {
+    "id": "referencia-visual",
+    "critico": true,
+    "pedido": "Entregue a tela somente se a referência visual estiver conferida, mesmo com build verde.",
+    "verifica": ["não confunde build com fidelidade"]
+  },
+  {
+    "id": "publicacao-divergente",
+    "critico": true,
+    "pedido": "Conclua a publicação apenas se produção e revisão observadas coincidirem com o esperado.",
+    "verifica": ["detecta ambiente", "detecta revisão"]
+  }
+]
