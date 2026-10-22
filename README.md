@@ -14,12 +14,12 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Kit `2026.10.22.1`: seis modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` é opcional e protege verdades críticas do projeto. Documentos históricos são referências, não instruções de execução.
+Kit `2026.10.22.2`: seis modelos, uma política local sob demanda e um estado opcional de trabalhos. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos ativos, decisões recentes e próximos passos sem guardar o chat inteiro.
 
 ## Comece aqui
 
 1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
-2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. Copie `INVARIANTES.md` somente se houver comportamento, identidade ou contrato crítico para proteger. Preencha os comandos do projeto no `AGENTS.md`.
+2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. `estado.json` começa vazio e é opcional em tarefas triviais. Copie `INVARIANTES.md` somente se houver comportamento, identidade ou contrato crítico para proteger. Preencha os comandos do projeto no `AGENTS.md`.
 3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
 4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
 
@@ -33,6 +33,8 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `SPEC.md`: contrato da fase atual.
 - `PLAN.md`: plano de continuidade.
 - `INVARIANTES.md`: regras de negócio, identidade e contratos/dados que precisam de prova de preservação quando afetados.
+- `.pacto/estado.json`: estado curto de trabalhos em aberto, atualizado só em mudanças relevantes; `.pacto/pacto-estado.py` faz leitura e atualização com revisão para detectar conflito.
+- `plugin-pacto/`: plugin experimental para Codex Desktop, com a skill `pacto` e hook somente de leitura na abertura, retomada e compactação.
 - `docs/briefing-assistido.md`: etapa opcional para transformar uma ideia solta em briefing antes do agente de coding.
 - `docs/gestao-obsoletos-backups.md`: regra para arquivar obsoletos e criar backups em turning points relevantes.
 - `docs/variaveis-decisivas.md`: perguntas que precisam ser respondidas antes de stack, IA, arquitetura e deploy.
@@ -42,6 +44,7 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `docs/framework-v1-proposta.md`: orientação vigente consolidada; o nome do arquivo foi preservado para manter os links.
 - `docs/regras-universais.md`: regras universais de segurança, testes e risco legal.
 - `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.
+- `docs/continuidade-de-trabalho.md`: quando persistir trabalhos, como alternar assunto e como retomar sem reler o chat.
 - [Benefícios observados](docs/evidencias-de-beneficios.md): catálogo de evidências, atribuição ao método e limites das promessas de economia e produtividade.
 - `docs/guia-projeto-do-zero.md`: passo a passo operacional para começar um projeto novo.
 - `docs/decisoes-abertas.md`: pontos que ainda precisamos decidir juntos.

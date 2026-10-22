@@ -2,20 +2,19 @@
 
 ## Estado atual
 
-Kit `2026.10.22.1` publicado na main do GitHub com saída verificável do Briefing Assistido e invariantes opcionais. A distribuição passou na checagem local. Adesão futura e economia não estão comprovadas; projetos antigos não são alterados.
+Kit `2026.10.22.2` pronto para publicação: estado local opcional por trabalho, skill PACTO e hook somente de leitura para Codex Desktop. O núcleo automatizado passou nos cenários de ciclo, conflito, trava, contexto de hook e kit corrompido. A ativação real do hook continua dependente de revisão e confiança manual no Codex Desktop.
 
 Fontes oficiais: `templates/` para os seis modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
 
 ## Menor fatia verificável
 
-- [x] Distribuir a política e identificar versão; esclarecer instalação e atualização.
-- [x] Substituir trechos ambíguos de T0/variantes e alinhar pontos ativos.
-- [x] Conferir kit isolado, controles negativos, cenários T2/T4, UTF-8, links e guia.
-- [x] Confirmar publicação autorizada e registrar resultado e limites.
+- [x] Implementar estado com gravação atômica, revisão e contexto curto.
+- [x] Criar skill e hook sem escrita automática.
+- [x] Executar controles negativos do kit e conferir todas as referências ativas.
+- [ ] Publicar a versão e registrar o commit e a sincronização remota.
 
 ## Decisões e continuidade
 
-- Não adotar confirmação duplicada para toda exclusão, busca global para todo bug, duas ocorrências como número mágico ou ferramentas obrigatórias.
-- Não repetir laboratório integral nem tratar contagem de palavras como consumo de tokens.
-- Evidências anteriores de falhas e acertos permanecem observacionais; relatórios privados dos projetos não serão publicados.
-- Rodada encerrada. Próxima oportunidade: observar uma entrega já autorizada; comparação independente com agentes ou pessoas depende de escopo e orçamento próprios, não está agendada.
+- Não criar MCP, servidor, sincronização entre máquinas, registro de chat ou hook que escreva estado automaticamente nesta versão.
+- A instalação e confiança de hooks continuam ação humana explícita no Codex Desktop.
+- Adesão, economia e acerto de interpretação não estão comprovados pelos testes locais; piloto em trabalho real continua necessário.

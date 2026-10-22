@@ -4,7 +4,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 Preparar contexto, Avaliar variáveis decisivas, Contratar escopo, Trabalhar em fatias e Observar resultados.
 
-- Kit `2026.10.22.1`: seis modelos de templates/ e política local `.pacto/validacao.md`, consultada somente pelo gatilho aplicável.
+- Kit `2026.10.22.2`: seis modelos de templates/, política local `.pacto/validacao.md` e estado opcional `.pacto/estado.json`, consultados somente quando aplicáveis.
 - Briefing declara a próxima decisão liberada, lacunas bloqueantes e premissas reversíveis, sem buscar completude infinita.
 - INVARIANTES.md é opcional: concentra somente regras de negócio, identidade visual/textual/sonora e contratos/dados que precisam de prova de preservação.
 - Tarefa trivial dispensa documento novo. SPEC para mudança relevante; BRIEF se faltar contexto; PLAN para execução complexa ou continuidade.

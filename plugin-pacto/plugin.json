@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "metodo-pacto",
+  "version": "0.1.0",
+  "description": "Continuidade proporcional de trabalho para projetos que usam o Método PACTO.",
+  "author": {
+    "name": "Alexandre Barroso de Miranda"
+  },
+  "repository": "https://github.com/Darkgator/metodo-pacto",
+  "extensions": {
+    "com.openai": {
+      "hooks": "./hooks/hooks.json"
+    }
+  }
+}

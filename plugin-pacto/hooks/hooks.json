@@ -1,0 +1,20 @@
+{
+  "description": "Recupera contexto PACTO local na abertura, retomada e compactação de uma sessão.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${PLUGIN_ROOT}/scripts/pacto_hook.py\"",
+            "commandWindows": "python \"${PLUGIN_ROOT}\\scripts\\pacto_hook.py\"",
+            "timeout": 3,
+            "additionalContextLimit": 1800,
+            "statusMessage": "Recuperando estado PACTO"
+          }
+        ]
+      }
+    ]
+  }
+}

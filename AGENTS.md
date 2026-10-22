@@ -7,7 +7,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 Documentação Markdown e guia HTML estático de um método de desenvolvimento com agentes.
 - Leia SPEC.md para mudanças conceituais; PLAN.md para continuidade; BRIEF.md somente quando faltar contexto.
 - Consulte docs/regras-universais.md para riscos e docs/validacao-proporcional.md para decisões de validação. Não carregue o histórico por padrão.
-- templates/ é a fonte dos seis modelos; docs/validacao-proporcional.md é a fonte da política distribuída em .pacto/validacao.md no kit. Confira as sete cópias com python scripts/verificar_kit.py antes de publicar alterações do kit.
+- templates/ é a fonte dos seis modelos e do estado inicial; docs/validacao-proporcional.md é a fonte da política distribuída. Confira as nove cópias com python scripts/verificar_kit.py antes de publicar alterações do kit.
 - Mude apenas o escopo aprovado. Atualize modelos e prompts do guia afetados por mudança conceitual.
 - Use rg; não há build obrigatório. Verifique diff, links e consistência documental. Navegador apenas se mudar comportamento visual ou houver pedido.
 

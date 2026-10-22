@@ -1,6 +1,6 @@
 # Instruções do Projeto
 
-<!-- Kit PACTO: 2026.10.22.1 -->
+<!-- Kit PACTO: 2026.10.22.2 -->
 
 Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
@@ -9,6 +9,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - Inspecione a estrutura e o diff relevante; busque antes de ler arquivos inteiros.
 - Leia SPEC.md para mudança relevante de produto; PLAN.md para execução complexa ou retomada; BRIEF.md apenas se faltar contexto decisivo.
 - Se existir INVARIANTES.md, leia somente os itens que a tarefa pode afetar. Não o crie retroativamente sem comportamento, identidade ou contrato relevante para proteger.
+- Se existir `.pacto/estado.json`, consulte `python .pacto/pacto-estado.py contexto` ao iniciar, retomar ou alternar trabalho relevante. Atualize-o somente após decisão, resultado verificável, tentativa descartada, bloqueio, troca relevante ou conclusão. Em conflito de revisão, não sobrescreva: reconcilie o estado real primeiro.
 - Tarefa trivial dispensa documentos novos. Crie contratos e preencha campos apenas quando ajudarem a decidir, executar ou verificar.
 - Respeite o escopo aprovado e os padrões existentes. Não refatore áreas alheias à tarefa.
 - Antes de escolher stack, IA ou integração, pergunte somente o que falta e aguarde respostas bloqueantes. Considere a alternativa mais simples que atende ao objetivo.
@@ -27,6 +28,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - Não repita fetch a cada ajuste. Informe commits locais ainda não publicados antes de concluir ou publicar.
 - Três tentativas no mesmo erro são o teto. Pare antes se não houver evidência nova ou houver risco; uma nova hipótese deve ter uma prova e resultado observável.
 - Ao interromper trabalho relevante, registre no PLAN existente decisão e motivo, tentativas descartadas e próximo passo.
+- Uma pergunta durante a execução não cancela o trabalho ativo. Quando a prioridade mudar, registre o ponto de parada e mantenha um trabalho separado; ao retornar, confira o estado real antes de continuar.
 - Regra permanente exige causa e necessidade demonstradas, por recorrência ou risco grave confirmado. Prefira corrigir ou testar; revise notas antigas quando o assunto reaparecer.
 
 ## Segurança

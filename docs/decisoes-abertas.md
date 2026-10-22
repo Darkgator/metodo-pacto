@@ -53,10 +53,10 @@ Decidido: três tentativas no mesmo erro como teto geral, com parada antecipada 
 
 ## 9. Templates finais
 
-Kit `2026.10.22.1`: seis modelos e política sob demanda distribuídos, com atualização por adaptação, não sobrescrita automática. O BRIEF tem estado de prontidão por decisão e INVARIANTES.md é opcional. Licença final continua pendente.
+Kit `2026.10.22.2`: seis modelos, política sob demanda e estado opcional de trabalhos distribuídos, com atualização por adaptação, não sobrescrita automática. O BRIEF tem estado de prontidão por decisão e INVARIANTES.md é opcional. Licença final continua pendente.
 
 ## 10. Entrada em projeto já em andamento
 
-Lacuna a resolver antes de criar nova regra: quando o PACTO é chamado em projeto existente, ele não deve reiniciar o Briefing Assistido, rever stack ou recriar contratos por reflexo. Precisamos definir o diagnóstico mínimo de entrada, os gatilhos que justificam reabrir decisões antigas e como registrar somente a lacuna que afeta a tarefa atual.
+Decidido no kit `2026.10.22.2`: inspecionar estrutura, diff, contratos vigentes e estado local antes de agir. Não reiniciar Briefing Assistido, stack ou arquitetura por reflexo. Reabrir decisão somente quando houver lacuna bloqueante, evidência de que ela ficou inválida ou mudança de escopo que a afete.
 
-Pergunta de desenho: em quais situações basta inspecionar o estado vigente e seguir, e em quais situações o método deve pedir contexto adicional, reavaliar uma decisão ou propor uma migração?
+O estado local é opcional e registra somente trabalhos relevantes, com revisão para detectar atualização concorrente. O método não cria serviço de sincronização, lê histórico inteiro ou decide intenção humana automaticamente.

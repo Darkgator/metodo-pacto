@@ -4,6 +4,7 @@ Confere distribuição; não mede adesão do agente, segurança ou economia.
 """
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -13,6 +14,8 @@ COPIAS = {
     **{f"templates/{nome}.template.md": f"{nome}.md"
        for nome in ("AGENTS", "CLAUDE", "BRIEF", "SPEC", "PLAN", "INVARIANTES")},
     "docs/validacao-proporcional.md": ".pacto/validacao.md",
+    "scripts/pacto_estado.py": ".pacto/pacto-estado.py",
+    "templates/ESTADO.template.json": ".pacto/estado.json",
 }
 VERSAO = re.compile(r"<!-- Kit PACTO: (\d{4}\.\d{2}\.\d{2}\.\d+) -->")
 SECOES = (
@@ -43,6 +46,14 @@ def verificar_instalacao(pasta):
     claude = pasta / "CLAUDE.md"
     if claude.exists() and "@AGENTS.md" not in ler(claude, erros):
         erros.append("CLAUDE.md não encaminha ao AGENTS.md")
+    estado = ler(pasta / ".pacto/estado.json", erros)
+    try:
+        if json.loads(estado).get("formato") != 1:
+            erros.append("Estado PACTO sem formato 1")
+    except json.JSONDecodeError:
+        erros.append("Estado PACTO não é JSON válido")
+    if not (pasta / ".pacto/pacto-estado.py").is_file():
+        erros.append("Comando de estado PACTO ausente")
     return erros
 
 
@@ -76,7 +87,7 @@ def main():
         print("FALHOU:\n- " + "\n- ".join(dict.fromkeys(erros)))
         return 1
     print("OK: kit local disponível, versão e UTF-8 conferidos."
-          if args.instalacao else "OK: sete cópias idênticas, versão, caminho local e UTF-8 conferidos.")
+          if args.instalacao else "OK: nove cópias idênticas, versão, caminho local, estado e UTF-8 conferidos.")
     print("Esta checagem não comprova adesão do agente nem economia.")
     return 0
 
