@@ -11,12 +11,12 @@ from pathlib import Path
 
 COPIAS = {
     **{f"templates/{nome}.template.md": f"{nome}.md"
-       for nome in ("AGENTS", "CLAUDE", "BRIEF", "SPEC", "PLAN")},
+       for nome in ("AGENTS", "CLAUDE", "BRIEF", "SPEC", "PLAN", "INVARIANTES")},
     "docs/validacao-proporcional.md": ".pacto/validacao.md",
 }
 VERSAO = re.compile(r"<!-- Kit PACTO: (\d{4}\.\d{2}\.\d{2}\.\d+) -->")
 SECOES = (
-    "Escolher a prova", "Corrigir bugs", "Dados e edição parcial",
+    "Escolher a prova", "Corrigir bugs", "Invariantes do projeto", "Dados e edição parcial",
     "Entrega e publicação", "Artefato visual", "Operação conjunta", "Comunicação",
 )
 
@@ -76,7 +76,7 @@ def main():
         print("FALHOU:\n- " + "\n- ".join(dict.fromkeys(erros)))
         return 1
     print("OK: kit local disponível, versão e UTF-8 conferidos."
-          if args.instalacao else "OK: seis cópias idênticas, versão, caminho local e UTF-8 conferidos.")
+          if args.instalacao else "OK: sete cópias idênticas, versão, caminho local e UTF-8 conferidos.")
     print("Esta checagem não comprova adesão do agente nem economia.")
     return 0
 

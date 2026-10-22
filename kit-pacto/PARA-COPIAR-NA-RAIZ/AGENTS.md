@@ -1,6 +1,6 @@
 # Instruções do Projeto
 
-<!-- Kit PACTO: 2026.10.19.2 -->
+<!-- Kit PACTO: 2026.10.22.1 -->
 
 Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
@@ -8,6 +8,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 - Inspecione a estrutura e o diff relevante; busque antes de ler arquivos inteiros.
 - Leia SPEC.md para mudança relevante de produto; PLAN.md para execução complexa ou retomada; BRIEF.md apenas se faltar contexto decisivo.
+- Se existir INVARIANTES.md, leia somente os itens que a tarefa pode afetar. Não o crie retroativamente sem comportamento, identidade ou contrato relevante para proteger.
 - Tarefa trivial dispensa documentos novos. Crie contratos e preencha campos apenas quando ajudarem a decidir, executar ou verificar.
 - Respeite o escopo aprovado e os padrões existentes. Não refatore áreas alheias à tarefa.
 - Antes de escolher stack, IA ou integração, pergunte somente o que falta e aguarde respostas bloqueantes. Considere a alternativa mais simples que atende ao objetivo.
@@ -46,6 +47,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - Para T2/T3, bug, texto operacional ou requisito visual, consulte só a seção aplicável de `.pacto/validacao.md`.
 - Navegador e screenshot só por pedido, requisito, fluxo relevante, fechamento visual de fase ou investigação que dependa deles.
 - Prove o resultado esperado. Em bug, reproduza antes/depois quando viável; busque caminhos irmãos pela causa e comportamento, não só pelo nome. Preserve o aceite; não enfraqueça testes nem suprima alertas.
+- Invariante afetada exige prova direta de preservação ou mudança aprovada. Regra de negócio, identidade visual, textual e sonora, contrato técnico e dado preservado são dimensões independentes.
 - Ao alterar integração, confira a fronteira real afetada com amostras seguras e representativas; mock sozinho não prova compatibilidade. Não exija serviço pago ou dados de produção por padrão.
 - Informe validações e limitações reais proporcionalmente à tarefa; peça ao usuário somente o que depende dele.
 - Preserve UTF-8 e acentuação pt-BR. Confirme se mojibake está no arquivo antes de corrigir; nunca remova acentos como solução.

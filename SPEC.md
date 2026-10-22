@@ -2,7 +2,7 @@
 
 ## Objetivo e escopo aprovado
 
-Entregar o kit PACTO `2026.10.19.2` com política local consultada por gatilho, identidade de versão, saída verificável do Briefing Assistido e orientações executáveis para texto operacional e correções de bugs.
+Entregar o kit PACTO `2026.10.22.1` com política local consultada por gatilho, identidade de versão, saída verificável do Briefing Assistido, invariantes opcionais e orientações executáveis para texto operacional e correções de bugs.
 
 Corrigir também a documentação vigente: papel humano em produção, evidências, limites de custo e atualização preservando adaptações. Enxugar os contratos do método, sem alterar aplicativos de referência ou a auditoria congelada.
 

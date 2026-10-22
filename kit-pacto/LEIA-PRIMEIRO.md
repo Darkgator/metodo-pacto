@@ -3,11 +3,11 @@
 Criador do método: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
 Método: PACTO
-Versão do kit: `2026.10.19.2`
+Versão do kit: `2026.10.22.1`
 
 ## Como usar
 
-1. De `PARA-COPIAR-NA-RAIZ/`, copie `AGENTS.md` e a pasta `.pacto/` para a raiz do projeto, preservando esse caminho. Para Claude Code, copie também `CLAUDE.md`. BRIEF, SPEC e PLAN continuam condicionais. Fontes: `templates/` para os cinco modelos e `docs/validacao-proporcional.md` para a política.
+1. De `PARA-COPIAR-NA-RAIZ/`, copie `AGENTS.md` e a pasta `.pacto/` para a raiz do projeto, preservando esse caminho. Para Claude Code, copie também `CLAUDE.md`. BRIEF, SPEC, PLAN e INVARIANTES continuam condicionais. Fontes: `templates/` para os seis modelos e `docs/validacao-proporcional.md` para a política.
 2. Preencha BRIEF.md apenas quando faltar contexto; aproveite respostas já existentes.
 3. Defina o contrato proporcional: uma frase para tarefa simples, SPEC.md para mudança relevante. Preencha somente campos aplicáveis.
 4. Use `PLAN.md` somente quando a execução for complexa ou precisar sobreviver ao chat. Mais de um arquivo, sozinho, não exige plano persistente.
@@ -15,11 +15,11 @@ Versão do kit: `2026.10.19.2`
 
 Não é necessário copiar este leia-me nem todo o framework. A política `.pacto/validacao.md` acompanha o kit, mas o AGENTS encaminha somente à seção acionada por T2/T3, bug, texto operacional ou requisito visual; T0 não exige essa leitura.
 
-Em projeto existente, preserve instruções e comandos que já funcionam. Adapte o conteúdo ao projeto; não sobrescreva contratos existentes automaticamente. Preencha os comandos de instalar, executar e verificar no AGENTS.md e remova campos sem aplicação.
+Em projeto existente, preserve instruções e comandos que já funcionam. Adapte o conteúdo ao projeto; não sobrescreva contratos existentes automaticamente. Crie INVARIANTES.md apenas para comportamento, identidade ou contrato que seja importante proteger. Preencha os comandos de instalar, executar e verificar no AGENTS.md e remova campos sem aplicação.
 
 ## Atualizar um projeto existente
 
-Compare a versão no comentário do AGENTS com a versão pretendida. Revise o diff das regras e da política; preserve comandos, decisões e adaptações locais. Atualize a política e o identificador juntos, depois de conferir os caminhos. Não copie BRIEF, SPEC ou PLAN por cima dos contratos existentes. Só marque a nova versão após concluir a adaptação.
+Compare a versão no comentário do AGENTS com a versão pretendida. Revise o diff das regras e da política; preserve comandos, decisões e adaptações locais. Atualize a política e o identificador juntos, depois de conferir os caminhos. Não copie BRIEF, SPEC, PLAN ou INVARIANTES por cima dos contratos existentes. Só marque a nova versão após concluir a adaptação.
 
 Publicar o método no GitHub não atualiza projetos antigos automaticamente. Não baixar o repositório a cada tarefa. A checagem `python scripts/verificar_kit.py`, no repositório do método, é opcional para o mantenedor e não vai para os projetos.
 

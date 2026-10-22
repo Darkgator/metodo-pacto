@@ -48,6 +48,7 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A fonte 
 - `Smoke test`: checagem rápida de que o essencial sobe e responde. É obrigatório ao fechar uma fase com comportamento executável e antes de PR relevante, release ou deploy.
 - `Unit test`: para regra, função, componente ou módulo isolado. `Integration test`: para fronteiras entre partes. `E2E test`: para jornadas críticas. Não executar todos por reflexo.
 - `Regression test`: criar ou atualizar quando um bug for corrigido, se for viável e proporcional ao risco, buscando caminhos irmãos pela causa e comportamento, não só pelo nome, sem auditoria global.
+- Se o projeto tiver `INVARIANTES.md`, trate cada item afetado como critério de aceite: prove a preservação ou registre mudança aprovada. Não crie ou leia um inventário inteiro em tarefa que não o afete.
 - `Accessibility test`, `performance/load test`, `fuzz/property test` e `spider/crawl` só entram quando o risco ou a fase justificar. Spider/crawl é descoberta, não substitui teste funcional.
 - Teste manual é aceitável quando a automação não existe ou não compensa. Em `T2` e `T3`, deve ter passos e resultado esperado. Em `T0` e `T1`, não criar lista para o usuário por padrão.
 
@@ -69,7 +70,15 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A fonte 
 - Evitar construções artificiais ou excessivamente padronizadas que deixem o texto com aparência genérica de saída de IA.
 - Hífens continuam permitidos quando forem necessários em palavras compostas, identificadores, comandos, URLs, listas Markdown, sintaxe ou termos técnicos.
 
-## 6. Sincronização entre Ambientes e Repositório Remoto
+## 6. Invariantes e Identidade do Projeto
+
+- `INVARIANTES.md` é opcional e serve para verdades do projeto que sejam caras, arriscadas ou difíceis de perceber depois de quebradas. Não é cópia da SPEC, backlog ou catálogo de preferências.
+- Regra de negócio, identidade visual, textual e sonora, contrato técnico e dado preservado são independentes. Uma mudança pode preservar uma dimensão e quebrar outra.
+- Cada item deve indicar verdade observável, escopo, fonte aprovada e prova direta. Sem fonte ou prova, ele é uma hipótese a confirmar, não uma invariante.
+- Identidade visual pode apontar referências, tokens, componentes, estados e viewport. Identidade textual pode fixar termos, tom, formato e palavras que exigem decisão. Identidade sonora pode fixar gatilho, prioridade, contexto, controle de volume, silenciamento e acessibilidade.
+- Mudar uma invariante é permitido, mas exige decisão explícita, nova prova e compatibilidade, migração ou comunicação quando aplicável.
+
+## 7. Sincronização entre Ambientes e Repositório Remoto
 
 - Ao iniciar ou retomar um projeto Git que tenha remoto configurado, atualizar as referências remotas com `git fetch --prune` antes de analisar ou editar o código. Esse comando atualiza a informação sobre o remoto sem alterar os arquivos de trabalho.
 - Comparar a branch atual com seu upstream e registrar mentalmente uma destas situações: sincronizada, local à frente, local atrás ou histórico divergente. Conferir também se há alterações locais pendentes.
@@ -80,7 +89,7 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A fonte 
 - Executar essa checagem uma vez ao abrir ou retomar uma sessão em outro ambiente, e novamente apenas se houver sinal de mudança remota ou antes de ação compartilhada relevante. Não fazer `fetch` repetido a cada alteração pequena.
 - Se não houver Git, remoto ou upstream configurado, registrar essa limitação e seguir o fluxo local aplicável.
 
-## 7. Obsoletos, Backups e Turning Points
+## 8. Obsoletos, Backups e Turning Points
 
 - Git ou outro versionamento deve ser a fonte primária de histórico.
 - Pastas de obsoletos e backups são exceções úteis, não substitutos de versionamento.
@@ -95,6 +104,6 @@ Sempre classificar o risco da alteração, mas não testar tudo sempre. A fonte 
 
 - Git cobre arquivos versionados, não todo banco, upload ou arquivo ignorado. Uma cópia no mesmo disco não cobre perda do disco; quando a recuperação for necessária, conferir a integridade restaurada.
 
-## 8. Critério Prático
+## 9. Critério Prático
 
 Em tarefa trivial, confira apenas o diff. Em tarefa relevante, defina resultado observável, menor prova suficiente e riscos aplicáveis. Consulte políticas específicas apenas quando houver gatilho; não preencha uma ficha universal a cada alteração.

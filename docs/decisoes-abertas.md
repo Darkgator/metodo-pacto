@@ -53,7 +53,7 @@ Decidido: três tentativas no mesmo erro como teto geral, com parada antecipada 
 
 ## 9. Templates finais
 
-Kit `2026.10.19.2`: cinco modelos e política sob demanda distribuídos, com atualização por adaptação, não sobrescrita automática. O BRIEF tem estado de prontidão por decisão. Licença final continua pendente.
+Kit `2026.10.22.1`: seis modelos e política sob demanda distribuídos, com atualização por adaptação, não sobrescrita automática. O BRIEF tem estado de prontidão por decisão e INVARIANTES.md é opcional. Licença final continua pendente.
 
 ## 10. Entrada em projeto já em andamento
 

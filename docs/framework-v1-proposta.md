@@ -151,6 +151,7 @@ Artefatos:
 - `SPEC.md`
 - `.env.example`
 - `PLAN.md`, quando necessário
+- `INVARIANTES.md`, quando houver regra de negócio, identidade ou contrato/dado crítico a preservar
 - `docs/PRODUCT.md`, `docs/UI.md`, `docs/DATA_MODEL.md` ou `docs/DECISIONS.md`, conforme o caso
 
 ## Regras universais
@@ -398,6 +399,7 @@ Somente com causa e necessidade demonstradas, por recorrência ou risco grave co
    - `.env.example`, se aplicável
    - `PLAN.md`, se a tarefa exigir plano persistente
    - `BRIEF.md`, se for útil manter o briefing no repositório
+   - `INVARIANTES.md`, se houver regra de negócio, identidade ou contrato/dado crítico a preservar
    - estrutura técnica mínima
    - comandos mínimos de build/test/lint quando aplicáveis
 7. Validar que a base instala, roda e tem pelo menos uma verificação confiável. Esta validação inicial é um marco `T3` da base, não uma obrigação repetida em cada ajuste trivial posterior.
@@ -408,7 +410,7 @@ Somente com causa e necessidade demonstradas, por recorrência ou risco grave co
 
 1. Pedir exploração read-only.
 2. Identificar padrões reais do código.
-3. Criar ou ajustar instruções curtas.
+3. Criar ou ajustar instruções curtas. Se houver verdade crítica já conhecida, registrar somente ela em `INVARIANTES.md`; não reiniciar briefing, revisar stack ou inventar um inventário por reflexo.
 4. Planejar a mudança.
 5. Implementar com validação localizada.
 6. Rodar revisão contra diff.

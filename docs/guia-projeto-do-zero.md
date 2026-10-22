@@ -50,6 +50,8 @@ Se você estiver retomando um projeto em outro computador, peça ao agente para 
 
 Use `templates/BRIEF.template.md` quando quiser uma estrutura pronta para levantar as variáveis decisivas.
 
+Se houver regra de negócio, identidade visual, textual ou sonora, contrato técnico ou dado que seja caro de quebrar, registre somente esses pontos em `templates/INVARIANTES.template.md`. Não crie o arquivo por reflexo.
+
 ## Etapa 1: Descoberta sem código
 
 Use este prompt:
@@ -117,6 +119,7 @@ Use os templates oficiais do framework em:
 Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; não preencha campos irrelevantes:
 
 - BRIEF.md, se for útil manter o briefing no repositório
+- INVARIANTES.md, se houver verdade crítica de negócio, identidade ou contrato/dado a preservar
 - README.md
 - AGENTS.md
 - .pacto/validacao.md, cópia de docs/validacao-proporcional.md do repositório do método
@@ -156,6 +159,7 @@ Saída esperada:
 Antes de seguir, confira:
 
 - `SPEC.md` tem objetivo, não objetivos, critérios de aceite e verificação?
+- se houver `INVARIANTES.md`, a SPEC identifica os itens afetados e a prova de preservação ou mudança aprovada?
 - `AGENTS.md` está curto?
 - A versão está identificada e a política local `.pacto/validacao.md` está disponível?
 - `CLAUDE.md` usa a ponte curta para `AGENTS.md`, se aplicável?

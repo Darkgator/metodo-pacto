@@ -14,12 +14,12 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Kit `2026.10.19.2`: cinco modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. O BRIEF agora declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. Documentos históricos são referências, não instruções de execução.
+Kit `2026.10.22.1`: seis modelos e uma política local sob demanda, com fontes oficiais em `templates/` e `docs/validacao-proporcional.md`. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` é opcional e protege verdades críticas do projeto. Documentos históricos são referências, não instruções de execução.
 
 ## Comece aqui
 
 1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
-2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. Preencha os comandos do projeto no `AGENTS.md`.
+2. Copie `AGENTS.md` e a pasta `.pacto/` do kit para a raiz. Para Claude Code, acrescente a ponte `CLAUDE.md`. Copie `INVARIANTES.md` somente se houver comportamento, identidade ou contrato crítico para proteger. Preencha os comandos do projeto no `AGENTS.md`.
 3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
 4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
 
@@ -32,6 +32,7 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `CLAUDE.md`: instruções específicas para Claude Code.
 - `SPEC.md`: contrato da fase atual.
 - `PLAN.md`: plano de continuidade.
+- `INVARIANTES.md`: regras de negócio, identidade e contratos/dados que precisam de prova de preservação quando afetados.
 - `docs/briefing-assistido.md`: etapa opcional para transformar uma ideia solta em briefing antes do agente de coding.
 - `docs/gestao-obsoletos-backups.md`: regra para arquivar obsoletos e criar backups em turning points relevantes.
 - `docs/variaveis-decisivas.md`: perguntas que precisam ser respondidas antes de stack, IA, arquitetura e deploy.
@@ -55,6 +56,7 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `templates/SPEC.template.md`: modelo inicial de `SPEC.md`.
 - `templates/README.template.md`: modelo inicial de `README.md`.
 - `templates/PLAN.template.md`: modelo opcional para plano persistente.
+- `templates/INVARIANTES.template.md`: modelo opcional para invariantes de negócio, identidade e contratos/dados.
 - `templates/BRIEF.template.md`: briefing inicial com variáveis decisivas.
 - `templates/ARCHIVE-README.template.md`: modelo para documentar backups e obsoletos.
 - `templates/ENV.template`: modelo base para `.env.example`.

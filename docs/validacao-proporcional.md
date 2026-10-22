@@ -21,6 +21,18 @@ Reproduza antes e confira depois quando viável, incluindo somente as variantes 
 
 Reteste a revisão corrigida; se a base mudar durante a análise, reconfirme os achados.
 
+## Invariantes do projeto
+
+Se existir `INVARIANTES.md`, identifique somente os IDs que a tarefa pode afetar. Para cada um, use a prova direta indicada no próprio item ou declare a limitação. Não basta afirmar que “nada mudou”.
+
+- Regra de negócio: confirme cenário, limite ou resultado observável correspondente.
+- Identidade visual: compare a referência, viewport ou estado indicado quando aparência fizer parte da invariante.
+- Identidade textual: confira os termos, tom, formato ou texto fixado.
+- Identidade sonora: confirme gatilho, ausência indevida de som, controle de silenciamento e acessibilidade quando o som fizer parte da experiência.
+- Contrato técnico ou dado: confira os consumidores, schema, permissão, entrada ou saída indicada.
+
+Uma mudança deliberada exige atualização do item, decisão explícita e nova prova. Não crie navegador, áudio, suíte completa ou checklist quando a invariante não exigir isso.
+
 ## Dados e edição parcial
 
 Confira que dados e saídas não afetados foram preservados. Antes de excluir ou migrar, confira alvos, premissas e recuperação necessária; consulta falha ou inesperadamente vazia interrompe a ação. Git protege o versionado, não todo banco, upload ou arquivo ignorado.

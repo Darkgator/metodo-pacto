@@ -26,6 +26,8 @@ Preencha somente campos relevantes. Tarefa trivial dispensa este arquivo.
 - Arquitetura ou integração afetada:
 - Segurança, privacidade, licença e risco legal:
 - Credenciais fornecidas no chat, se houver, e mecanismo seguro de uso:
+- Invariantes afetadas em INVARIANTES.md: [nenhuma ou IDs]
+- Preservação ou mudança aprovada dessas invariantes:
 
 ## Critérios de aceite
 
