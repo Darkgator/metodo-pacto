@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-Kit `2026.10.22.1` preparado para publicação, com saída verificável do Briefing Assistido e invariantes opcionais. A distribuição e a cópia isolada devem ser conferidas novamente antes de publicar. Adesão futura e economia não estão comprovadas; projetos antigos não são alterados.
+Kit `2026.10.22.1` publicado na main do GitHub com saída verificável do Briefing Assistido e invariantes opcionais. A distribuição passou na checagem local. Adesão futura e economia não estão comprovadas; projetos antigos não são alterados.
 
 Fontes oficiais: `templates/` para os seis modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
 
