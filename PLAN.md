@@ -17,7 +17,7 @@ Fontes oficiais: `templates/` para os seis modelos e `docs/validacao-proporciona
 - [x] E08 local: plugin Codex conferido contra documentação oficial e adaptador Claude delimitado sem manifesto especulativo.
 - [x] E11 local: bancada de quatro cenários e oito execuções máximas preparada sem chamar IA.
 - [ ] E12: confiança e eventos reais do Codex, reconhecimento no Claude e piloto comparativo dependem do host, de intervenção humana e de orçamento/executor.
-- [ ] E14: revisar, versionar e publicar esta entrega após a validação final desta rodada.
+- [x] E14: entrega publicada na main em `8d12e01`; a verificação remota confirmou o push.
 
 ## Decisões e continuidade
 

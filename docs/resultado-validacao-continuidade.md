@@ -1,6 +1,6 @@
 # Resultado de validação da continuidade
 
-Data: 22/10/2026. Revisão local: em desenvolvimento, posterior a `01d0d03`.
+Data: 22/10/2026. Revisão publicada: `8d12e01` na `main`.
 
 ## Verificado localmente
 
