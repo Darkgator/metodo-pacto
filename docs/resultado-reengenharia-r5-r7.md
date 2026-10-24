@@ -13,7 +13,7 @@ Data: 24/10/2026. Candidato `2026.10.24.2`; plugin `0.2.2`. Base de comparação
 | R7: esperado | Regra, contrato, fixture conferida ou referência aprovada definem o resultado esperado. | Orientação explícita na política. Gabarito não é a própria função/saída testada. Adesão semântica de outra IA ainda não medida. |
 | R7: fallback | Falha não autoriza mudar restrição, ambiente, alvo ou aceite; mudança do combinado exige decisão. | Entrada e fonte operacional alinhadas. O bloco global antigo que exigia plano por quantidade de arquivos foi substituído pelo critério de decisão material. |
 | R6: pacote | Verificador sem rede confere distribuição, prompts, UTF-8, Python/JSON, referências locais, IDs/âncoras HTML e destinos dos botões de cópia. | Sete testes novos exercitam erros e recuperação pertinentes; total local de 40 testes passou. Links externos e todos os formatos possíveis de Markdown não são auditados. |
-| R6: CI | Dois jobs: Ubuntu/Python 3.10 e Windows/Python 3.14, leitura apenas, cinco minutos cada, cancelamento de execução superada. | Workflow versionado; resultado remoto será registrado após execução. CI não chama modelos nem instala dependências Python do produto. |
+| R6: CI | Dois jobs: Ubuntu/Python 3.10 e Windows/Python 3.14, leitura apenas, cinco minutos cada, cancelamento de execução superada. | Ambos passaram; logs confirmam 40 testes em cada ambiente. CI não chama modelos nem instala dependências Python do produto. |
 
 ## Tamanho e custo
 
@@ -41,6 +41,6 @@ A primeira tentativa de consolidação concentrou detalhes na política e elevar
 
 ## Situação e próximo passo
 
-R5/R7 implementados e verificados documentalmente; R6 verificado localmente, aguardando execução remota da nova CI. Relatório sem leitura obrigatória no projeto.
+R5/R7 implementados e verificados documentalmente; R6 passou localmente e na [CI 40111620530](https://github.com/Darkgator/metodo-pacto/actions/runs/40111620530), commit `16c38e4f35f00f410874342b9c3f77bc32291024`. Jobs Windows/Python 3.14 e Ubuntu/Python 3.10 concluíram com sucesso; logs conferidos registram 40 testes em cada um. Relatório sem leitura obrigatória no projeto.
 
 Integração/confiança real nos hosts e eficácia em sessões de IA continuam separadas dessas provas. R8 não foi iniciado: primeiro usar o pacote em uma tarefa real e observar retomada, aplicação e custo. Não há necessidade demonstrada de acrescentar memória, MCP ou outra ferramenta agora. Main e instalações existentes continuam preservadas enquanto a branch é validada.

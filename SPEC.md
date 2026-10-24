@@ -29,7 +29,7 @@ Executar `python -m unittest discover -s tests -v`, `python scripts/distribuir_p
 - [x] Regra de bug retém regressão proporcional que rejeita o defeito; resultado esperado vem de referência independente da implementação testada.
 - [x] Fallback preserva restrições explícitas; mudança de alvo, ambiente ou critério exige decisão quando ultrapassar o combinado.
 - [x] Verificador detecta problemas de UTF-8, referências locais, estrutura dos guias e distribuição sem rede ou chamadas de IA.
-- [ ] CI executa verificador e testes em Windows e Linux, com permissões de leitura e limite de duração.
-- [ ] Testes e controles negativos comprovam as falhas determinísticas cobertas; resultado remoto e limites de adesão são registrados.
+- [x] CI executa verificador e testes em Windows e Linux, com permissões de leitura e limite de duração.
+- [x] Testes e controles negativos comprovam as falhas determinísticas cobertas; resultado remoto e limites de adesão são registrados.
 
 R8 continua condicionado a uma necessidade e piloto próprios. Publicação não é ativação nos hosts. Não criar executor pago, novo serviço ou avaliação de IA neste lote.
