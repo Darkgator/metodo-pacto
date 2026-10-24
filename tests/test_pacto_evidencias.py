@@ -41,5 +41,34 @@ class EvidenciasPactoTest(unittest.TestCase):
             resultado = json.loads(self.executar(pasta, "verificar", trabalho).stdout)
             self.assertTrue(resultado["publicacao_divergente"])
 
+    def test_cli_mostra_falha_da_prova_e_preserva_o_registro(self):
+        with tempfile.TemporaryDirectory() as diretorio:
+            pasta = Path(diretorio); trabalho = self.criar(pasta)
+            (pasta / ".pacto/verificacoes.json").write_text(json.dumps({"verificacoes": [{"id": "falha", "argv": [sys.executable, "-c", "raise SystemExit(7)"], "criterio": "Comando deve passar"}]}), encoding="utf-8")
+            r = self.executar(pasta, "provar", trabalho, "--verificacao", "falha", "--esperada-revisao", "1")
+            self.assertEqual(r.returncode, 1, r.stderr)
+            saida = json.loads(r.stdout)
+            self.assertEqual(saida["revisao"], 2)
+            self.assertEqual(saida["evidencias"][0]["resultado"], "falhou")
+            self.assertEqual(saida["evidencias"][0]["codigo_saida"], 7)
+            armazenado = json.loads(self.executar(pasta, "mostrar", trabalho).stdout)
+            self.assertEqual(armazenado["evidencias"][0]["resultado"], "falhou")
+
+    def test_d09_cli_nao_confirma_publicacao_incompleta_ou_manual(self):
+        with tempfile.TemporaryDirectory() as diretorio:
+            pasta = Path(diretorio); trabalho = self.criar(pasta)
+            base = ["registrar-publicacao", trabalho, "--esperado-ambiente", "producao", "--observado-ambiente", "producao", "--esperada-revisao-publicada", "abc123", "--fonte", "informação manual"]
+            r = self.executar(pasta, *base, "--esperada-revisao", "1")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            pendente = json.loads(self.executar(pasta, "verificar", trabalho).stdout)
+            self.assertEqual(pendente["publicacao_situacao"], "pendente")
+            self.assertFalse(pendente["publicacao_confirmada_automaticamente"])
+            self.assertEqual(pendente["situacao"], "ativo")
+            r = self.executar(pasta, *base, "--observada-revisao-publicada", "abc123", "--esperada-revisao", "2")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            informada = json.loads(self.executar(pasta, "verificar", trabalho).stdout)
+            self.assertEqual(informada["publicacao_situacao"], "informada")
+            self.assertFalse(informada["publicacao_confirmada_automaticamente"])
+
 
 if __name__ == "__main__": unittest.main()

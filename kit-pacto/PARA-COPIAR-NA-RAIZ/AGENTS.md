@@ -1,6 +1,6 @@
 # Instruções do Projeto
 
-<!-- Kit PACTO: 2026.10.22.3 -->
+<!-- Kit PACTO: 2026.10.24.1 -->
 
 Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
@@ -13,7 +13,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 - Tarefa trivial dispensa documentos novos. Crie contratos e preencha campos apenas quando ajudarem a decidir, executar ou verificar.
 - Respeite o escopo aprovado e os padrões existentes. Não refatore áreas alheias à tarefa.
 - Antes de escolher stack, IA ou integração, pergunte somente o que falta e aguarde respostas bloqueantes. Considere a alternativa mais simples que atende ao objetivo.
-- Trabalhe em fatias verificáveis. Plano persistente só quando precisar sobreviver ao chat.
+- Trabalhe em fatias verificáveis e continue entre checkpoints já autorizados, sem nova aprovação. Pare por bloqueio ou extrapolação real de escopo. Plano persistente só quando precisar sobreviver ao chat.
 
 ## Comandos do projeto
 

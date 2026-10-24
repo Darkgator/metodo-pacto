@@ -176,10 +176,10 @@ Antes de seguir, confira:
 Use este prompt:
 
 ```text
-Implemente apenas o checkpoint 1 da SPEC.md.
+Implemente o escopo aprovado da SPEC.md, em checkpoints verificáveis.
 
 Regras:
-- não implemente checkpoints futuros;
+- avance entre checkpoints já autorizados; peça decisão somente por bloqueio ou ação fora do escopo aprovado;
 - mantenha o diff pequeno;
 - classifique o checkpoint silenciosamente como `T0`, `T1`, `T2` ou `T3`;
 - respeite a fronteira T0/T1 do AGENTS e consulte a política local somente pelo gatilho aplicável;
@@ -188,7 +188,7 @@ Regras:
 - verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
 - se for turning point, avalie backup mínimo e obsoletos antes de alterar;
 - não abra navegador ou capture screenshot por reflexo;
-- pare ao concluir o checkpoint 1 e resuma.
+- verifique cada checkpoint e continue até concluir o escopo autorizado; se a autorização cobrir só uma fatia, encerre nela.
 ```
 
 Saída esperada:

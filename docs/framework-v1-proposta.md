@@ -326,11 +326,11 @@ Boa fatia:
 
 ### 6. Implementar
 
-O agente executa apenas a fatia aprovada.
+O agente executa o escopo aprovado em fatias verificáveis. A autorização pode cobrir uma fatia ou o plano inteiro; verificações intermediárias não exigem nova aprovação já concedida.
 
 Regras:
 
-- não adiantar checkpoints futuros;
+- avançar entre checkpoints já autorizados; parar por bloqueio ou ação fora do escopo aprovado;
 - não refatorar fora do escopo;
 - não adicionar dependência sem aprovação;
 - não fazer operações destrutivas sem aprovação.

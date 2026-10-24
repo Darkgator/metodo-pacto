@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from distribuir_pacto import COPIAS, RAIZ, conferir
+from pacto_estado import ErroPacto, ler
 
 
 def texto(caminho: Path, erros: list[str]) -> str:
@@ -30,8 +31,8 @@ def verificar_instalacao(pasta: Path, continuidade: bool) -> list[str]:
         if not estado.is_file(): erros.append("Continuidade solicitada sem estado PACTO")
         else:
             try:
-                if json.loads(texto(estado, erros)).get("formato") not in (1, 2): erros.append("Estado PACTO com formato incompatível")
-            except json.JSONDecodeError: erros.append("Estado PACTO não é JSON válido")
+                ler(pasta)
+            except ErroPacto as erro: erros.append(f"Estado PACTO inválido: {erro}")
         if not comando.is_file(): erros.append("Continuidade solicitada sem comando de estado")
     return erros
 

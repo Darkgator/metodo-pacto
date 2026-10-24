@@ -1,26 +1,23 @@
-# PLAN.md
+# Continuidade da reengenharia
 
-## Estado atual
+## Estado
 
-Protótipo `2026.10.22.2` publicado na main do GitHub no commit `4384cf6`, com fechamento documental em `01d0d03`. A implementação local `2026.10.22.3` corrige a perda silenciosa por leitura antiga e a ausência de contexto em subpasta, adiciona esquema 2, instalação segura, evidências dirigidas, publicação comparada e uma bancada sem consumo implícito.
+Primeiro lote R1 a R4 autorizado em 24/10/2026. Branch local `reengenharia/arquitetura-2026-10-24`. Preservar o núcleo e reaproveitar por necessidade; não reiniciar método ou projetos do zero.
 
-Planejamento e contratos: [PLANO-IMPLEMENTACAO-CONTINUIDADE.md](docs/PLANO-IMPLEMENTACAO-CONTINUIDADE.md). Resultado honesto de validação: [resultado-validacao-continuidade.md](docs/resultado-validacao-continuidade.md). A implementação e os testes locais foram concluídos nesta rodada; integração real de host e avaliação com IA continuam pendentes por exigirem confiança, executor e orçamento explícitos.
+Base `ed19ebdd62d60b2b79ae2561d121b81af19aa904` preservada em `../metodo-pacto-arquivo/2026-10-24-pre-reengenharia/`: ZIP de 66 arquivos, manifesto SHA-256 e tag local `arquivo/pre-reengenharia-2026-10-24`. Inclui as duas análises que ainda não estavam versionadas; caches e `.git` ficaram fora do ZIP. Histórico Git preservado no repositório.
 
-Fontes oficiais: `templates/` para os seis modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
+## Execução
 
-## Menor fatia verificável
+- [x] Arquivar e conferir a base; separar instruções atuais das históricas.
+- [x] R1: propriedade e manutenção dos arquivos.
+- [x] R2/R4: evidências, publicação, schema e resumo priorizado.
+- [x] R3: autorização persistente nos prompts ativos.
+- [x] Regressões: 33 testes e seis controles negativos; distribuição conferida.
 
-- [x] Publicar o protótipo de estado, skill e hook com cinco testes básicos e conferir a distribuição inicial.
-- [x] Revisar a entrega contra o plano completo e identificar defeitos e etapas omitidas.
-- [x] Preparar roteiro executável de conclusão, com contratos e critérios de aceite.
-- [x] E00 a E07, E09, E10 e E13: núcleo, distribuição, instalação, documentação e bateria local.
-- [x] E08 local: plugin Codex conferido contra documentação oficial e adaptador Claude delimitado sem manifesto especulativo.
-- [x] E11 local: bancada de quatro cenários e oito execuções máximas preparada sem chamar IA.
-- [ ] E12: confiança e eventos reais do Codex, reconhecimento no Claude e piloto comparativo dependem do host, de intervenção humana e de orçamento/executor.
-- [x] E14: entrega publicada na main em `8d12e01`; a verificação remota confirmou o push.
+Resultado e limites: [primeiro lote](docs/resultado-reengenharia-2026-10-24.md). Próximo: R5 a R7, com consolidação enxuta das fontes e CI do pacote. A reengenharia completa não está encerrada. Confirmação de publicação por consulta remota não foi implementada; o registro manual fica explicitamente informado ou pendente.
 
-## Decisões e continuidade
+Não carregar os relatórios inteiros por rotina. Escopo e aceite atuais estão em SPEC.md. O diagnóstico detalhado é `docs/revisao-arquitetural-pacto.md`, apenas para localizar um caso que esteja sendo corrigido. A análise dos episódios e a documentação anterior são referência, não novas instruções obrigatórias.
 
-- MCP, servidor, sincronização entre máquinas e registro de chat continuam fora do escopo. A conclusão planejada terá automações locais proporcionais e estado atualizado pelo agente em mudanças relevantes.
-- A instalação e confiança de hooks continuam ação humana explícita no Codex Desktop; esta implementação não contorna a confiança do aplicativo.
-- Adesão, economia e acerto de interpretação não estão comprovados pelos testes locais; piloto em trabalho real continua necessário e não deve consumir IA sem orçamento explícito.
+## Limites
+
+Arquivo local e tag não são backup remoto. Nenhuma instalação antiga foi alterada. Integração em host real, ganho econômico, R5 a R7 e piloto de memória não estão concluídos por esta separação.
