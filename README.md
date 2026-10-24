@@ -14,7 +14,7 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Reengenharia incremental `2026.10.24.2`, em branch própria: modelos opcionais, políticas locais sob demanda e continuidade com estado concorrente. A base anterior está preservada fora da área ativa; detalhes de recuperação e próximos passos em `PLAN.md`. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos, sessões, decisões e provas curtas sem guardar o chat inteiro.
+Versão `2026.10.24.2`: modelos opcionais, políticas locais sob demanda e continuidade com estado concorrente. A base anterior está preservada em ZIP local e na tag `arquivo/pre-reengenharia-2026-10-24`; detalhes de recuperação e próximos passos em `PLAN.md`. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos, sessões, decisões e provas curtas sem guardar o chat inteiro.
 
 ## Comece aqui
 
@@ -41,7 +41,7 @@ Fontes operacionais: [templates](templates/) para modelos, [validação](docs/va
 - `docs/resumo-atual.md`: resumo curto do que existe hoje.
 - `docs/framework-v0-rascunho.md`: rascunho inicial completo, mantido como material de referência.
 - `docs/sintese-pesquisa.md`: síntese dos relatórios de pesquisa aprofundada.
-- `docs/framework-v1-proposta.md`: orientação vigente consolidada; o nome do arquivo foi preservado para manter os links.
+- `docs/framework-v1-proposta.md`: referência conceitual do ciclo; as fontes operacionais são AGENTS, políticas e prompts compartilhados. O nome foi preservado para manter links.
 - `docs/regras-universais.md`: índice das fontes operacionais por assunto.
 - `docs/operacao.md`: execução, segurança/licença, Git, continuidade e idioma sob demanda.
 - `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.

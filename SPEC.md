@@ -33,3 +33,11 @@ Executar `python -m unittest discover -s tests -v`, `python scripts/distribuir_p
 - [x] Testes e controles negativos comprovam as falhas determinísticas cobertas; resultado remoto e limites de adesão são registrados.
 
 R8 continua condicionado a uma necessidade e piloto próprios. Publicação não é ativação nos hosts. Não criar executor pago, novo serviço ou avaliação de IA neste lote.
+
+## Fechamento autorizado
+
+O pedido de concluir o que ainda for executável cobre o teste da linha completa de comando declarada, smoke do kit instalado e integração da entrega validada na main. A versão anterior continua recuperável pela tag e ZIP, sem ativação em outros projetos/hosts.
+
+- [x] Smoke isolado de instalação, verificação, execução distribuída, retomada, atualização e remoção preservadora.
+- [ ] Linha completa declarada do hook validada em Windows e Linux na CI, incluindo espaço/acento, associação da sessão e ausência de escrita.
+- [ ] Integração por PR com checks aprovados, sem bypass, e confirmação da revisão efetiva na main.

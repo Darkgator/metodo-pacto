@@ -44,3 +44,11 @@ A primeira tentativa de consolidação concentrou detalhes na política e elevar
 R5/R7 implementados e verificados documentalmente; R6 passou localmente e na [CI 40111620530](https://github.com/Darkgator/metodo-pacto/actions/runs/40111620530), commit `16c38e4f35f00f410874342b9c3f77bc32291024`. Jobs Windows/Python 3.14 e Ubuntu/Python 3.10 concluíram com sucesso; logs conferidos registram 40 testes em cada um. Relatório sem leitura obrigatória no projeto.
 
 Integração/confiança real nos hosts e eficácia em sessões de IA continuam separadas dessas provas. R8 não foi iniciado: primeiro usar o pacote em uma tarefa real e observar retomada, aplicação e custo. Não há necessidade demonstrada de acrescentar memória, MCP ou outra ferramenta agora. Main e instalações existentes continuam preservadas enquanto a branch é validada.
+
+## Fechamento para uso
+
+Após autorização para concluir a entrega, o smoke completo em pasta temporária passou: instalar, verificar o destino, usar o comando distribuído a partir de subpasta, recuperar sessão, atualizar sem mudar o estado e remover preservando dados/instruções.
+
+Foi acrescentada uma regressão que executa a linha de comando declarada no manifesto, com plugin e projeto em caminhos contendo espaço/acento, contexto associado e arquivos do projeto idênticos antes/depois. Windows usa `commandWindows`; POSIX usa `command`. É uma prova do comando no shell, sem afirmar disparo ou confiança dentro do Codex. A contagem da suíte passa a 41; a execução remota do fechamento é registrada no PLAN.
+
+A promoção à main conserva a versão anterior pela tag e ZIP, sem atualizar instalações existentes. O adaptador manual do Claude agora lista as duas políticas referenciadas, sem declarar hook ativo.
