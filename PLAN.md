@@ -2,7 +2,7 @@
 
 ## Estado
 
-Primeiro lote R1 a R4 autorizado em 24/10/2026. Branch local `reengenharia/arquitetura-2026-10-24`. Preservar o núcleo e reaproveitar por necessidade; não reiniciar método ou projetos do zero.
+Primeiro lote R1 a R4 autorizado em 24/10/2026. Branch de trabalho `reengenharia/arquitetura-2026-10-24`, publicada no GitHub. Preservar o núcleo e reaproveitar por necessidade; não reiniciar método ou projetos do zero.
 
 Base `ed19ebdd62d60b2b79ae2561d121b81af19aa904` preservada em `../metodo-pacto-arquivo/2026-10-24-pre-reengenharia/`: ZIP de 66 arquivos, manifesto SHA-256 e tag local `arquivo/pre-reengenharia-2026-10-24`. Inclui as duas análises que ainda não estavam versionadas; caches e `.git` ficaram fora do ZIP. Histórico Git preservado no repositório.
 
@@ -20,4 +20,4 @@ Não carregar os relatórios inteiros por rotina. Escopo e aceite atuais estão 
 
 ## Limites
 
-Arquivo local e tag não são backup remoto. Nenhuma instalação antiga foi alterada. Integração em host real, ganho econômico, R5 a R7 e piloto de memória não estão concluídos por esta separação.
+Implementação publicada no commit `27d66bd25320e0e204867d4f62abb9b36018a966`. Consulta remota confirmou a branch nesse commit, main na base `ed19ebd` e tag de arquivo apontando para essa mesma base. A tag também está no GitHub; o ZIP completo continua somente local. Nenhuma instalação antiga foi alterada. Integração em host real, ganho econômico, R5 a R7 e piloto de memória não estão concluídos por esta separação.

@@ -44,3 +44,5 @@ R1 a R4 estão implementados e testados localmente. A reengenharia completa cont
 Sem promessa de economia: não foi adicionada leitura obrigatória deste relatório, do arquivo ou das transcrições. O texto permanente recebeu uma orientação de autorização persistente; tamanho e efeito da consolidação ainda precisam ser avaliados. Quantidade de testes e linhas de código não são medidas de produtividade.
 
 Publicação da branch não atualiza instalações nem promove o candidato à versão consolidada do método. A main anterior permanece preservada enquanto a reengenharia evolui separadamente.
+
+Publicação conferida por `git ls-remote`: implementação `27d66bd25320e0e204867d4f62abb9b36018a966` na branch de reengenharia; main e tag de arquivo na base `ed19ebdd62d60b2b79ae2561d121b81af19aa904`. O ZIP com os relatórios anteriores continua local; não foi enviado como release ou pacote de instalação.
