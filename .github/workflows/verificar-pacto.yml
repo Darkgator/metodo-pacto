@@ -1,0 +1,43 @@
+name: Verificar PACTO
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pacto-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.10'
+          - os: windows-latest
+            python: '3.14'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7, MIT
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7, MIT
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Conferir pacote sem modificar
+        run: python scripts/verificar_kit.py
+      - name: Executar regressões e controles negativos
+        run: python -m unittest discover -s tests -v
+      - name: Conferir diff
+        run: git diff --exit-code

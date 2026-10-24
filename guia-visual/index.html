@@ -785,7 +785,7 @@
 
         <p class="note">Regra fixa para pt-BR: todo arquivo textual deve ser salvo em UTF-8, com acentuação correta. Não aceite mojibake como <code>Ã§</code>, <code>Ã£</code>, <code>Ã©</code>, <code>â€“</code> ou <code>Â</code>, e não remova acentos para contornar codificação.</p>
         <p class="note">Regra de escrita: não use travessões em textos explicativos, documentação, UI, prompts ou respostas. Prefira vírgulas, parênteses, dois-pontos, ponto e vírgula ou frases reestruturadas, para manter a leitura natural e correta.</p>
-        <p class="note">Fontes: templates/ para modelos e docs/validacao-proporcional.md para a política. Copie AGENTS.md e .pacto/validacao.md do kit; demais contratos são condicionais. A política é lida por gatilho, não por padrão em T0. Preserve adaptações ao atualizar. Decisões e próximo passo ficam no PLAN existente, com estado vigente reconciliado.</p>
+        <p class="note">Fontes: templates/ para modelos, docs/validacao-proporcional.md e docs/operacao.md para políticas e prompts/operacionais.md para prompts. Copie AGENTS.md e as duas políticas locais do kit; demais contratos são condicionais. A política é lida por gatilho, não por padrão em T0. Preserve adaptações ao atualizar. Decisões e próximo passo ficam no PLAN existente, com estado vigente reconciliado.</p>
         <p class="note">Regra de validação: classifique a mudança como T0, T1, T2 ou T3. Ajuste trivial não abre navegador nem gera teste, plano ou checklist. Smoke clássico é obrigatório apenas ao fechar fase executável, PR relevante, release ou deploy.</p>
         <p class="note">Regra de retomada: ao abrir o projeto em outro computador, atualize referências com <code>git fetch --prune</code> e compare a branch local com o upstream antes de editar. Use <code>git pull --ff-only</code> apenas com árvore limpa e remoto à frente. Preserve alterações locais compatíveis. Peça decisão diante de divergência ou sobreposição que não possa preservar.</p>
         <p class="note">Regra de turning point: Git é a fonte primária de histórico. Antes de migração, troca de stack, refatoração grande, reestruturação de UI ou remoção de muitos arquivos, avalie se precisa de backup mínimo ou mover obsoletos para <code>_archive/</code>.</p>
@@ -972,6 +972,7 @@ Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; n�
 - README.md
 - AGENTS.md
 - .pacto/validacao.md, cópia de docs/validacao-proporcional.md do repositório do método
+- .pacto/operacao.md, cópia de docs/operacao.md do repositório do método
 - CLAUDE.md, se aplicável
 - SPEC.md
 - .env.example, se aplicável
@@ -1020,7 +1021,7 @@ Ao final, informe:
 
 Verifique:
 - README.md explica como rodar?
-- AGENTS.md está curto, com versão e caminho para .pacto/validacao.md disponível?
+- AGENTS.md está curto, com versão e políticas locais de validação e operação disponíveis?
 - CLAUDE.md usa a ponte curta para AGENTS.md, se aplicável?
 - SPEC.md tem objetivo, não objetivos, critérios de aceite, riscos e verificação?
 - .env.example usa apenas valores fictícios?
@@ -1057,25 +1058,7 @@ Não implemente feature ainda. Apenas revise e corrija problemas de base se nece
                 <span>Prompt 5: primeira fatia</span>
                 <button class="copy-btn" type="button" data-copy="prompt-5">Copiar</button>
               </div>
-              <pre id="prompt-5">Implemente o escopo aprovado da SPEC.md, em checkpoints verificáveis.
-
-Regras:
-- avance entre checkpoints já autorizados; peça decisão somente por bloqueio ou ação fora do escopo aprovado;
-- mantenha o diff pequeno;
-- classifique o checkpoint silenciosamente como T0, T1, T2 ou T3;
-- respeite a fronteira T0/T1 do AGENTS e consulte a política local somente pelo gatilho aplicável;
-- em T0, confira o diff, sem teste, navegador, build, lint, typecheck, checklist ou plano de teste;
-- em T1, rode a menor prova curta suficiente; em T2, apenas as validações necessárias; em T3, smoke clássico e testes relevantes da fase;
-- verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
-- se for turning point, avalie backup mínimo e obsoletos antes de alterar;
-- não abra navegador ou capture screenshot por reflexo;
-- verifique cada checkpoint e continue até concluir o escopo autorizado; se a autorização cobrir só uma fatia, encerre nela.
-
-Ao final, informe:
-- o que mudou;
-- quais arquivos foram alterados;
-- validação executada, somente se o nível não for T0;
-- quais checkpoints ainda faltam.</pre>
+              <pre id="prompt-5">Execute o escopo aprovado no pedido ou na SPEC vigente, em fatias verificáveis. Aproveite as decisões do projeto e siga o AGENTS, consultando só a seção pertinente da política local. Avance entre checkpoints já autorizados; pare por bloqueio ou ação fora desse alcance. Ao concluir, informe resultado, prova, limitações e próximo passo pertinentes.</pre>
             </div>
           </div>
         </article>
@@ -1095,26 +1078,7 @@ Ao final, informe:
                 <span>Prompt 6: revisar diff</span>
                 <button class="copy-btn" type="button" data-copy="prompt-6">Copiar</button>
               </div>
-              <pre id="prompt-6">Revise o diff atual contra SPEC.md.
-
-Procure:
-- bug;
-- regressão;
-- em bug, caminhos irmãos pela causa e comportamento, não só pelo nome, sem auditoria global;
-- escopo extra ou aceite redefinido;
-- validação incompatível com o nível T0, T1, T2 ou T3;
-- risco de segurança;
-- risco legal/licenciamento;
-- dados sensíveis;
-- problemas de UX, se houver UI.
-
-Não implemente nada ainda. Apenas revise.
-
-Formato:
-- Achados bloqueantes
-- Achados opcionais
-- Validações faltantes, quando aplicáveis
-- Pontos aprovados</pre>
+              <pre id="prompt-6">Revise o diff contra o contrato vigente e a política local pertinente. Priorize defeitos, regressões, aceite, invariantes, escopo e riscos afetados, com evidência e localização. Em bug, confira caminhos irmãos pela causa e comportamento. Esta tarefa é revisão: apresente achados reais sem implementar nem criar exigências genéricas.</pre>
             </div>
           </div>
         </article>
@@ -1139,14 +1103,7 @@ Formato:
                 <span>Prompt 7A: próxima fatia</span>
                 <button class="copy-btn" type="button" data-copy="prompt-7a">Copiar</button>
               </div>
-              <pre id="prompt-7a">Avance nos checkpoints autorizados da SPEC.md, verificando cada fatia.
-
-Regras:
-- não misture checkpoints;
-- mantenha o diff pequeno;
-- preserve o comportamento já validado;
-- rode a validação mínima confiável;
-- continue entre checkpoints já aprovados; ao concluir ou encontrar bloqueio real, informe resultado e próximo passo.</pre>
+              <pre id="prompt-7a">Execute o escopo aprovado no pedido ou na SPEC vigente, em fatias verificáveis. Aproveite as decisões do projeto e siga o AGENTS, consultando só a seção pertinente da política local. Avance entre checkpoints já autorizados; pare por bloqueio ou ação fora desse alcance. Ao concluir, informe resultado, prova, limitações e próximo passo pertinentes.</pre>
             </div>
             <br>
             <div class="prompt-card">
@@ -1154,26 +1111,7 @@ Regras:
                 <span>Prompt 7B: fechamento da fase</span>
                 <button class="copy-btn" type="button" data-copy="prompt-7b">Copiar</button>
               </div>
-              <pre id="prompt-7b">Faça o fechamento da fase atual.
-
-Atualize apenas documentação e registros necessários:
-- SPEC.md
-- README.md
-- CHANGELOG.md, se aplicável
-- docs de decisão, se houver decisão arquitetural relevante
-
-Consulte a seção Entrega e publicação de .pacto/validacao.md; aprovação de negócio não substitui prova técnica.
-Se houve publicação, confira ambiente, revisão e registros vigentes; explicite documentação ou versionamento pendentes.
-Se houver requisito visual ou passo humano, informe a prova no artefato final e considere operação conjunta, dividindo as ações pelo melhor resultado.
-
-Informe:
-- critérios de aceite atendidos;
-- validações executadas;
-- riscos restantes;
-- dívidas técnicas;
-- próxima fatia recomendada.
-
-Não implemente novas features neste passo.</pre>
+              <pre id="prompt-7b">Feche o escopo autorizado, usando o caminho real de entrega e as provas pertinentes. Confira invariantes afetadas, registros e pendências humanas. Em publicação, confronte ambiente e revisão efetivos; sem confirmação, declare a pendência. Informe resultado, evidências, limitações e próximo passo, ou que o trabalho terminou.</pre>
             </div>
           </div>
         </article>
@@ -1198,25 +1136,7 @@ Não implemente novas features neste passo.</pre>
                 <span>Bloco global sugerido</span>
                 <button class="copy-btn" type="button" data-copy="prompt-global">Copiar</button>
               </div>
-              <pre id="prompt-global"># Regras globais para agentes
-
-- Trabalhe por contrato: objetivo, não objetivos, critérios de aceite e verificação.
-- Não implemente código quando o pedido estiver ambíguo, multiarquivo ou crítico sem antes propor plano.
-- Para tarefas triviais, mantenha o fluxo leve.
-- Nunca inclua segredos reais em código, testes, logs, documentação ou commits.
-- Se o usuário fornecer uma chave no chat, avise brevemente sobre o risco, mas não bloqueie a tarefa somente por isso. Não repita, revele, grave ou exponha a chave.
-- Use a chave fornecida no chat apenas pelo mecanismo seguro disponível no ambiente, sem colocá-la em comandos visíveis, arquivos, logs ou commits. Recomende rotação se houver exposição a pessoas não autorizadas.
-- Antes de adicionar dependências, assets, modelos, datasets, APIs ou serviços externos, verifique licença/termos e compatibilidade com o uso pretendido.
-- Tarefas envolvendo segurança, dados, banco, autenticação, autorização, pagamento, produção ou clientes reais exigem aprovação humana antes de ações de risco.
-- Classifique a mudança silenciosamente como T0, T1, T2 ou T3.
-- Em T0, faça ajuste trivial e encerre sem teste, navegador, build, lint, typecheck, checklist ou plano de teste.
-- Em T1, execute a menor prova curta suficiente. Em T2, somente validações necessárias. Em T3, smoke clássico e testes relevantes da fase.
-- Não abra navegador ou capture screenshot por reflexo. Use validação visual apenas por pedido explícito, requisito da SPEC, fluxo funcional relevante, fechamento visual de fase ou investigação de falha.
-- Salve arquivos textuais em UTF-8 e preserve acentuação correta em pt-BR; não aceite mojibake.
-- Não use travessões em textos explicativos; prefira vírgulas, parênteses ou frases reestruturadas.
-- Ao iniciar ou retomar trabalho em repositório Git com remoto, execute git fetch --prune e compare a branch local com o upstream antes de editar. Use git pull --ff-only somente com árvore limpa e remoto à frente. Em divergência, integração remota com pendências ou sobreposição não preservável, peça decisão e nunca faça reset, descarte, stash, rebase, merge ou force push sem aprovação explícita.
-- Antes de turning points, avalie se Git basta ou se precisa de backup mínimo/obsoletos em `_archive/`.
-- Pare após erro repetido e peça orientação em vez de entrar em loop.</pre>
+              <pre id="prompt-global">Em trabalho de projeto, aplique o PACTO proporcionalmente. Inspecione instruções locais e aproveite contrato, stack e decisões existentes. Execute tarefa simples já autorizada; proponha contrato somente quando faltar decisão material. Use AGENTS e a seção pertinente da política local, quando disponíveis. Preserve autorização, dados e mudanças locais; não exponha segredos. Quantidade de arquivos não exige plano. Escreva em pt-BR com acentuação correta e UTF-8.</pre>
             </div>
           </div>
         </article>

@@ -14,7 +14,12 @@ Base `ed19ebdd62d60b2b79ae2561d121b81af19aa904` preservada em `../metodo-pacto-a
 - [x] R3: autorização persistente nos prompts ativos.
 - [x] Regressões: 33 testes e seis controles negativos; distribuição conferida.
 
-Resultado e limites: [primeiro lote](docs/resultado-reengenharia-2026-10-24.md). Próximo: R5 a R7, com consolidação enxuta das fontes e CI do pacote. A reengenharia completa não está encerrada. Confirmação de publicação por consulta remota não foi implementada; o registro manual fica explicitamente informado ou pendente.
+Resultado e limites: [primeiro lote](docs/resultado-reengenharia-2026-10-24.md). R5 a R7 em execução, autorizados pelo usuário: consolidação enxuta das fontes, regressão/fallback e CI do pacote. Confirmação de publicação por consulta remota não foi implementada; o registro manual fica explicitamente informado ou pendente.
+
+- [x] Consolidar entrada, políticas por assunto e prompts compartilhados.
+- [x] Refinar regressão, referência e fallback nas fontes existentes.
+- [x] Conferir estrutura e distribuição; 40 testes locais e workflow com dois ambientes.
+- [ ] Publicar na branch separada e conferir a execução remota.
 
 Não carregar os relatórios inteiros por rotina. Escopo e aceite atuais estão em SPEC.md. O diagnóstico detalhado é `docs/revisao-arquitetural-pacto.md`, apenas para localizar um caso que esteja sendo corrigido. A análise dos episódios e a documentação anterior são referência, não novas instruções obrigatórias.
 

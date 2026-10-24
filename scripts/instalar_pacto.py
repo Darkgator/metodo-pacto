@@ -11,18 +11,19 @@ import tempfile
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-VERSAO = "2026.10.24.1"
+VERSAO = "2026.10.24.2"
 DOCUMENTOS = {
     "AGENTS.md": "templates/AGENTS.template.md",
     "CLAUDE.md": "templates/CLAUDE.template.md",
     ".pacto/validacao.md": "docs/validacao-proporcional.md",
+    ".pacto/operacao.md": "docs/operacao.md",
 }
 CONTRATOS = {f"{n}.md": f"templates/{n}.template.md" for n in ("BRIEF", "SPEC", "PLAN", "INVARIANTES")}
 CONTINUIDADE = {
     ".pacto/pacto-estado.py": "scripts/pacto_estado.py",
     ".pacto/estado.json": "templates/ESTADO.template.json",
 }
-PACOTE = {".pacto/validacao.md", ".pacto/pacto-estado.py"}
+PACOTE = {".pacto/validacao.md", ".pacto/operacao.md", ".pacto/pacto-estado.py"}
 PROJETO = {"AGENTS.md", "CLAUDE.md", ".pacto/estado.json", *CONTRATOS}
 
 

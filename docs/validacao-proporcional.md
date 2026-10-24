@@ -1,6 +1,7 @@
-# Validação proporcional
+# Validação e entrega sob demanda
 
 Política sob demanda do PACTO. Leia somente a seção acionada; não carregue este arquivo em tarefa trivial por padrão. T0 a T3 medem impacto e marco de entrega, não quantidade de arquivos.
+
 
 ## Escolher a prova
 
@@ -17,13 +18,17 @@ Classifique silenciosamente. Explique a escolha somente quando a fronteira for r
 
 Formule a hipótese de causa e localize os caminhos irmãos que possam compartilhá-la, pelos consumidores e comportamento, não apenas por nome ou expressão idêntica. Exemplo: geradores diferentes que aplicam a mesma regra de negócio.
 
-Reproduza antes e confira depois quando viável, incluindo somente as variantes afetadas. Preserve o aceite, testes e alertas; não resolva a revisão enfraquecendo-os. Uma hipótese sem outro caminho afetado não exige auditoria global. Informe limitação relevante.
+Reproduza antes e confira depois quando viável, incluindo somente as variantes afetadas. Para bug comportamental automatizável, mantenha uma regressão mínima no projeto e confirme que rejeita o defeito quando a reintrodução isolada for segura. Aproveite a stack existente e fixtures sintéticas; entre diretamente no estado necessário quando isso evitar repetir um fluxo longo, preservando a prova de integração pertinente.
+
+O resultado esperado vem da regra, contrato, fixture conferida ou referência aprovada, não da própria função ou saída que está sendo testada. Preserve aceite, testes e alertas. Se automação não compensar ou não puder rejeitar o defeito com segurança, declare limite e prova alternativa. Não exija auditoria global nem infraestrutura nova por reflexo.
 
 Reteste a revisão corrigida; se a base mudar durante a análise, reconfirme os achados.
 
 ## Invariantes do projeto
 
 Se existir `INVARIANTES.md`, identifique somente os IDs que a tarefa pode afetar. Para cada um, use a prova direta indicada no próprio item ou declare a limitação. Não basta afirmar que “nada mudou”.
+
+Crie esse registro somente para verdades críticas, caras ou difíceis de perceber depois de quebradas, com escopo, fonte aprovada e prova observável. Sem fonte ou prova, registre uma hipótese; não transforme backlog ou preferência casual em invariante.
 
 - Regra de negócio: confirme cenário, limite ou resultado observável correspondente.
 - Identidade visual: compare a referência, viewport ou estado indicado quando aparência fizer parte da invariante.
@@ -39,11 +44,16 @@ Confira que dados e saídas não afetados foram preservados. Antes de excluir ou
 
 Pedido explícito que define ação e alvos já autoriza essa operação; confirme novamente se houver ambiguidade ou se escopo e risco ultrapassarem o autorizado. Não crie backup ou segunda aprovação por reflexo.
 
+
+
+
 ## Entrega e publicação
 
 O smoke de aplicativo usa o pacote entregue pelo caminho principal do usuário. Outro modo de execução não comprova esse caminho.
 
 Antes de produção com dados de terceiros, reúna as provas dos riscos aplicáveis, como acesso autorizado, separação de dados e recuperação. Aprovação de negócio não substitui prova técnica. Se persistir risco relevante sem prova que o usuário consiga avaliar, obtenha revisão técnica independente antes de publicar. Não exija revisão externa em toda entrega nem dados reais para testar.
+
+Se um experimento passar a atender terceiros, coletar dados privados ou exigir continuidade, reavalie os riscos do novo uso. Remova coleta desnecessária antes de acrescentar mecanismos para protegê-la.
 
 Mostre pendências humanas antes da publicação. Depois, confronte ambiente e revisão efetivos com o estado vigente nos registros existentes. Se documentação ou versionamento estiverem pendentes, informe “publicação realizada, fechamento pendente”; não declare a entrega encerrada.
 

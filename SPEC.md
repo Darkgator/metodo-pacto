@@ -2,9 +2,9 @@
 
 ## Objetivo e autorização
 
-Preservar a base anterior e corrigir o primeiro lote aprovado da revisão arquitetural de 24/10/2026: R1 a R4, com regressões. Preservar o ciclo PACTO, a proporcionalidade e as decisões dos projetos existentes. A autorização cobre as fatias deste lote, sem nova aprovação a cada checkpoint.
+Executar R5 a R7 da revisão arquitetural, autorizado após o primeiro lote: consolidar fontes operacionais, reduzir repetição, refinar regressão, resultado esperado e fallback e automatizar a verificação do pacote. Preservar o ciclo PACTO, a proporcionalidade e as decisões dos projetos existentes. A autorização cobre as fatias deste lote, sem nova aprovação a cada checkpoint.
 
-## Aceite deste lote
+## Primeiro lote preservado
 
 - [x] Base anterior separada em ZIP fora da área ativa, com conteúdo e SHA-256 conferidos e tag local de recuperação.
 - [x] Instalador distingue suporte do pacote, instruções e contratos do projeto e estado mutável; instalar não cria todos os contratos opcionais.
@@ -22,4 +22,14 @@ Sem reescrita do zero, MCP, memória obrigatória, serviço, banco central, nova
 
 Executar `python -m unittest discover -s tests -v`, `python scripts/distribuir_pacto.py --conferir` e `python scripts/verificar_kit.py`; testar somente em pastas temporárias próprias. Conferir referências locais, diff e UTF-8. Provas de comportamento não estabelecem adesão universal nem economia de tokens.
 
-As etapas R5 a R7 e eventual piloto R8 continuam identificadas no relatório de revisão; não são condição para declarar concluído este primeiro lote. Publicação não é ativação nos hosts.
+## Aceite do segundo lote
+
+- [x] Entrada permanente menor, com regras críticas preservadas e detalhes condicionais encaminhados a fontes locais canônicas por assunto.
+- [x] Prompts operacionais compartilhados têm fonte única; distribuição detecta divergência no Markdown e HTML, sem gerar o guia inteiro.
+- [x] Regra de bug retém regressão proporcional que rejeita o defeito; resultado esperado vem de referência independente da implementação testada.
+- [x] Fallback preserva restrições explícitas; mudança de alvo, ambiente ou critério exige decisão quando ultrapassar o combinado.
+- [x] Verificador detecta problemas de UTF-8, referências locais, estrutura dos guias e distribuição sem rede ou chamadas de IA.
+- [ ] CI executa verificador e testes em Windows e Linux, com permissões de leitura e limite de duração.
+- [ ] Testes e controles negativos comprovam as falhas determinísticas cobertas; resultado remoto e limites de adesão são registrados.
+
+R8 continua condicionado a uma necessidade e piloto próprios. Publicação não é ativação nos hosts. Não criar executor pago, novo serviço ou avaliação de IA neste lote.

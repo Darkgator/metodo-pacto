@@ -7,8 +7,8 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 Método de desenvolvimento com agentes, em reengenharia incremental aprovada. O contrato atual está em SPEC.md; PLAN.md guarda apenas a continuidade desta reengenharia.
 - A versão anterior foi preservada fora desta pasta em `../metodo-pacto-arquivo/2026-10-24-pre-reengenharia/`, com ZIP, manifesto e tag Git `arquivo/pre-reengenharia-2026-10-24`. Consulte somente o trecho necessário; não carregue o arquivo nem relatórios históricos por padrão.
 - Leia SPEC.md para mudanças conceituais; PLAN.md para continuidade; BRIEF.md somente quando faltar contexto.
-- Consulte docs/regras-universais.md para riscos e docs/validacao-proporcional.md para decisões de validação. Não carregue o histórico por padrão.
-- templates/ é a fonte dos seis modelos e do estado inicial; docs/validacao-proporcional.md é a fonte da política distribuída. Confira as cópias declaradas com `python scripts/distribuir_pacto.py --conferir` e `python scripts/verificar_kit.py` antes de publicar alterações do kit.
+- Consulte somente a seção pertinente de docs/validacao-proporcional.md ou docs/operacao.md; docs/regras-universais.md é índice. Não carregue as duas políticas nem o histórico por padrão.
+- Fontes: templates/ para modelos/estado; docs/validacao-proporcional.md e docs/operacao.md para políticas por assunto; prompts/operacionais.md para prompts compartilhados. O distribuidor confere cópias e trechos. Use `python scripts/verificar_kit.py` e os testes pertinentes antes de publicar; CI confere o pacote em Windows e Linux.
 - Mude apenas o escopo aprovado. Atualize modelos e prompts do guia afetados por mudança conceitual.
 - Execute e verifique as fatias dentro da autorização vigente; não peça nova autorização por checkpoint já aprovado. Interrompa por bloqueio ou extrapolação real de escopo.
 - Use rg; não há build obrigatório. Verifique diff, links e consistência documental. Navegador apenas se mudar comportamento visual ou houver pedido.
