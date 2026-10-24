@@ -2,7 +2,7 @@
 
 ## Estado
 
-PACTO `2026.10.24.2`, R1 a R7 implementados. Fechamento e promoção à main em andamento após autorização do usuário. Fontes operacionais: templates, políticas por assunto e prompts compartilhados; não carregar relatórios ou arquivo por padrão.
+PACTO `2026.10.24.2`, R1 a R7 implementados e integrados na main pelo [PR #1](https://github.com/Darkgator/metodo-pacto/pull/1), merge `b6b0384fa6637f4faee0958e27a524a3df7c83f8`, confirmado no remoto e na pasta local. Fontes operacionais: templates, políticas por assunto e prompts compartilhados; não carregar relatórios ou arquivo por padrão.
 
 Resultados detalhados, somente quando necessário: [primeiro lote](docs/resultado-reengenharia-2026-10-24.md) e [R5 a R7](docs/resultado-reengenharia-r5-r7.md).
 
@@ -13,8 +13,8 @@ Resultados detalhados, somente quando necessário: [primeiro lote](docs/resultad
 - [x] CI de R5 a R7: [40111620530](https://github.com/Darkgator/metodo-pacto/actions/runs/40111620530), commit `16c38e4`, 40 testes por sistema.
 - [x] Smoke isolado do kit instalado: iniciar e retomar da subpasta, atualizar e remover preservando dados/instruções.
 - [x] Comando completo do hook passou no Windows local, sem escrever no projeto.
-- [ ] Confirmar nova regressão na CI dos dois sistemas, total de 41 testes.
-- [ ] Integrar por PR sem bypass e conferir revisão remota na main.
+- [x] Nova regressão e 41 testes passaram em ambos os sistemas, [CI do PR](https://github.com/Darkgator/metodo-pacto/actions/runs/40112560920), logs conferidos.
+- [x] Integrar por PR sem bypass e conferir revisão remota na main; pacote local conferido após fast-forward.
 
 ## Recuperação
 
@@ -22,4 +22,4 @@ Base `ed19ebdd62d60b2b79ae2561d121b81af19aa904` na tag remota `arquivo/pre-reeng
 
 ## Próximo passo e limites
 
-Depois da promoção, usar numa tarefa real para observar adesão, retomada e custo. Não há necessidade demonstrada de R8, novo MCP ou memória adicional. Não ativar hooks nem atualizar projetos/hosts automaticamente. Confiança e eventos reais no aplicativo, eficácia conversacional e economia continuam não comprovados; a prova de shell não substitui essas fronteiras.
+Entrega técnica concluída. Próximo passo é usar numa tarefa real para observar adesão, retomada e custo, sem revisão global ou ferramenta adicional por reflexo. Não há necessidade demonstrada de R8, novo MCP ou memória adicional. Não ativar hooks nem atualizar projetos/hosts automaticamente. Confiança e eventos reais no aplicativo, eficácia conversacional e economia continuam não comprovados; a prova de shell não substitui essas fronteiras.

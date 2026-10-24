@@ -39,5 +39,5 @@ R8 continua condicionado a uma necessidade e piloto próprios. Publicação não
 O pedido de concluir o que ainda for executável cobre o teste da linha completa de comando declarada, smoke do kit instalado e integração da entrega validada na main. A versão anterior continua recuperável pela tag e ZIP, sem ativação em outros projetos/hosts.
 
 - [x] Smoke isolado de instalação, verificação, execução distribuída, retomada, atualização e remoção preservadora.
-- [ ] Linha completa declarada do hook validada em Windows e Linux na CI, incluindo espaço/acento, associação da sessão e ausência de escrita.
-- [ ] Integração por PR com checks aprovados, sem bypass, e confirmação da revisão efetiva na main.
+- [x] Linha completa declarada do hook validada em Windows e Linux na CI, incluindo espaço/acento, associação da sessão e ausência de escrita.
+- [x] Integração por PR com checks aprovados, sem bypass, e confirmação da revisão efetiva na main.

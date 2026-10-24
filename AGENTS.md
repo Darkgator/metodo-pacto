@@ -4,7 +4,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 ## Projeto e contexto
 
-Método de desenvolvimento com agentes, em reengenharia incremental aprovada. O contrato atual está em SPEC.md; PLAN.md guarda apenas a continuidade desta reengenharia.
+Método de desenvolvimento com agentes. A reengenharia incremental foi entregue na main; SPEC.md registra o aceite e PLAN.md guarda estado, recuperação e próximo passo.
 - A versão anterior foi preservada fora desta pasta em `../metodo-pacto-arquivo/2026-10-24-pre-reengenharia/`, com ZIP, manifesto e tag Git `arquivo/pre-reengenharia-2026-10-24`. Consulte somente o trecho necessário; não carregue o arquivo nem relatórios históricos por padrão.
 - Leia SPEC.md para mudanças conceituais; PLAN.md para continuidade; BRIEF.md somente quando faltar contexto.
 - Consulte somente a seção pertinente de docs/validacao-proporcional.md ou docs/operacao.md; docs/regras-universais.md é índice. Não carregue as duas políticas nem o histórico por padrão.
