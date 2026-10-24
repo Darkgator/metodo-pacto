@@ -1,26 +1,25 @@
-# PLAN.md
+# Continuidade da entrega
 
-## Estado atual
+## Estado
 
-Protótipo `2026.10.22.2` publicado na main do GitHub no commit `4384cf6`, com fechamento documental em `01d0d03`. A implementação local `2026.10.22.3` corrige a perda silenciosa por leitura antiga e a ausência de contexto em subpasta, adiciona esquema 2, instalação segura, evidências dirigidas, publicação comparada e uma bancada sem consumo implícito.
+PACTO `2026.10.24.2`, R1 a R7 implementados. Fechamento e promoção à main em andamento após autorização do usuário. Fontes operacionais: templates, políticas por assunto e prompts compartilhados; não carregar relatórios ou arquivo por padrão.
 
-Planejamento e contratos: [PLANO-IMPLEMENTACAO-CONTINUIDADE.md](docs/PLANO-IMPLEMENTACAO-CONTINUIDADE.md). Resultado honesto de validação: [resultado-validacao-continuidade.md](docs/resultado-validacao-continuidade.md). A implementação e os testes locais foram concluídos nesta rodada; integração real de host e avaliação com IA continuam pendentes por exigirem confiança, executor e orçamento explícitos.
+Resultados detalhados, somente quando necessário: [primeiro lote](docs/resultado-reengenharia-2026-10-24.md) e [R5 a R7](docs/resultado-reengenharia-r5-r7.md).
 
-Fontes oficiais: `templates/` para os seis modelos e `docs/validacao-proporcional.md` para a política distribuída. Histórico de alterações fica no Git. Benefícios e limites estão em [evidências](docs/evidencias-de-beneficios.md).
+## Provas e fechamento
 
-## Menor fatia verificável
+- [x] R1 a R4: propriedade de arquivos, estado, evidência, publicação informada/pendente, resumo e autorização persistente.
+- [x] R5 a R7: entrada menor, fontes únicas, regressão/referência/fallback e CI do pacote.
+- [x] CI de R5 a R7: [40111620530](https://github.com/Darkgator/metodo-pacto/actions/runs/40111620530), commit `16c38e4`, 40 testes por sistema.
+- [x] Smoke isolado do kit instalado: iniciar e retomar da subpasta, atualizar e remover preservando dados/instruções.
+- [x] Comando completo do hook passou no Windows local, sem escrever no projeto.
+- [ ] Confirmar nova regressão na CI dos dois sistemas, total de 41 testes.
+- [ ] Integrar por PR sem bypass e conferir revisão remota na main.
 
-- [x] Publicar o protótipo de estado, skill e hook com cinco testes básicos e conferir a distribuição inicial.
-- [x] Revisar a entrega contra o plano completo e identificar defeitos e etapas omitidas.
-- [x] Preparar roteiro executável de conclusão, com contratos e critérios de aceite.
-- [x] E00 a E07, E09, E10 e E13: núcleo, distribuição, instalação, documentação e bateria local.
-- [x] E08 local: plugin Codex conferido contra documentação oficial e adaptador Claude delimitado sem manifesto especulativo.
-- [x] E11 local: bancada de quatro cenários e oito execuções máximas preparada sem chamar IA.
-- [ ] E12: confiança e eventos reais do Codex, reconhecimento no Claude e piloto comparativo dependem do host, de intervenção humana e de orçamento/executor.
-- [x] E14: entrega publicada na main em `8d12e01`; a verificação remota confirmou o push.
+## Recuperação
 
-## Decisões e continuidade
+Base `ed19ebdd62d60b2b79ae2561d121b81af19aa904` na tag remota `arquivo/pre-reengenharia-2026-10-24`. ZIP local de 66 arquivos e manifesto SHA-256 em `../metodo-pacto-arquivo/2026-10-24-pre-reengenharia/`, conferidos. Inclui as duas análises ainda não versionadas naquele momento; caches e .git ficaram fora. O histórico Git permanece preservado.
 
-- MCP, servidor, sincronização entre máquinas e registro de chat continuam fora do escopo. A conclusão planejada terá automações locais proporcionais e estado atualizado pelo agente em mudanças relevantes.
-- A instalação e confiança de hooks continuam ação humana explícita no Codex Desktop; esta implementação não contorna a confiança do aplicativo.
-- Adesão, economia e acerto de interpretação não estão comprovados pelos testes locais; piloto em trabalho real continua necessário e não deve consumir IA sem orçamento explícito.
+## Próximo passo e limites
+
+Depois da promoção, usar numa tarefa real para observar adesão, retomada e custo. Não há necessidade demonstrada de R8, novo MCP ou memória adicional. Não ativar hooks nem atualizar projetos/hosts automaticamente. Confiança e eventos reais no aplicativo, eficácia conversacional e economia continuam não comprovados; a prova de shell não substitui essas fronteiras.

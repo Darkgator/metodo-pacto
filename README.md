@@ -14,16 +14,16 @@ O método se chama **PACTO**: Preparar, Avaliar, Contratar, Trabalhar e Observar
 
 ## Estado atual
 
-Kit `2026.10.22.3`: seis modelos, política local sob demanda e continuidade opcional com estado concorrente. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos, sessões, decisões e provas curtas sem guardar o chat inteiro.
+Versão `2026.10.24.2`: modelos opcionais, políticas locais sob demanda e continuidade com estado concorrente. A base anterior está preservada em ZIP local e na tag `arquivo/pre-reengenharia-2026-10-24`; detalhes de recuperação e próximos passos em `PLAN.md`. O BRIEF declara a decisão liberada, lacunas bloqueantes e premissas reversíveis. `INVARIANTES.md` protege verdades críticas; `.pacto/estado.json` separa trabalhos, sessões, decisões e provas curtas sem guardar o chat inteiro.
 
 ## Comece aqui
 
 1. Abra o [kit e seus prompts](kit-pacto/LEIA-PRIMEIRO.md). Em projeto existente, preserve e adapte instruções que já existam, sem sobrescrevê-las por reflexo.
-2. Em projeto novo, copie ou instale o kit. Em projeto existente, use `python scripts/instalar_pacto.py --destino CAMINHO --perfil continuidade planejar` e só aplique após conferir a prévia: o instalador preserva arquivos não geridos e adaptações locais. `estado.json` é opcional em tarefas triviais. Para Claude Code, acrescente a ponte `CLAUDE.md`.
+2. Em projeto novo, use o instalador ou copie somente os modelos necessários do kit. Em projeto existente, use `python scripts/instalar_pacto.py --destino CAMINHO --perfil continuidade planejar` e só aplique após conferir a prévia: o instalador preserva arquivos não geridos e adaptações locais. `estado.json` é opcional em tarefas triviais. Para Claude Code, acrescente a ponte `CLAUDE.md`.
 3. Para tarefa simples, descreva resultado e limites no pedido. Para mudança relevante, preencha somente os campos necessários da `SPEC.md`. Use `BRIEF.md` se faltar contexto e `PLAN.md` se precisar de continuidade.
-4. Execute a menor fatia verificável. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
+4. Execute o escopo aprovado em fatias verificáveis, continuando entre checkpoints já autorizados. Consulte o [guia do zero](docs/guia-projeto-do-zero.md) somente para projeto novo; o [guia visual](guia-visual/index.html) pode ser aberto localmente.
 
-Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em `.pacto/validacao.md`, consultada por gatilho, não carregada por padrão em T0. O método não exige instalação, serviço ou ferramenta adicional. Atualizações preservam adaptações locais; publicar aqui não atualiza projetos antigos.
+Fontes operacionais: [templates](templates/) para modelos, [validação](docs/validacao-proporcional.md) e [operação](docs/operacao.md) para regras sob demanda e [prompts](prompts/operacionais.md) para execução/revisão/fechamento. O distribuidor confere cópias e trechos nos guias; a CI verifica o pacote em Windows e Linux, sem chamadas de IA. O kit inclui `.pacto/validacao.md` e `.pacto/operacao.md`; consulte apenas o assunto pertinente, sem carregar ambas por padrão. T0 dispensa essa leitura. O método não exige instalação, serviço ou ferramenta adicional. Atualizações preservam adaptações locais; publicar aqui não atualiza projetos antigos.
 
 ## Arquivos de referência
 
@@ -41,8 +41,9 @@ Os [templates](templates/) são a fonte dos modelos. O kit inclui a política em
 - `docs/resumo-atual.md`: resumo curto do que existe hoje.
 - `docs/framework-v0-rascunho.md`: rascunho inicial completo, mantido como material de referência.
 - `docs/sintese-pesquisa.md`: síntese dos relatórios de pesquisa aprofundada.
-- `docs/framework-v1-proposta.md`: orientação vigente consolidada; o nome do arquivo foi preservado para manter os links.
-- `docs/regras-universais.md`: regras universais de segurança, testes e risco legal.
+- `docs/framework-v1-proposta.md`: referência conceitual do ciclo; as fontes operacionais são AGENTS, políticas e prompts compartilhados. O nome foi preservado para manter links.
+- `docs/regras-universais.md`: índice das fontes operacionais por assunto.
+- `docs/operacao.md`: execução, segurança/licença, Git, continuidade e idioma sob demanda.
 - `docs/validacao-proporcional.md`: níveis T0 a T3 para decidir o que validar em uma alteração, checkpoint, fase ou release.
 - `docs/continuidade-de-trabalho.md`: quando persistir trabalhos, como alternar assunto e como retomar sem reler o chat.
 - [Benefícios observados](docs/evidencias-de-beneficios.md): catálogo de evidências, atribuição ao método e limites das promessas de economia e produtividade.
@@ -70,4 +71,4 @@ Não há economia causal de tokens ou tempo demonstrada. Menos texto permanente 
 
 ## Limites conhecidos
 
-O núcleo, instalação e distribuição foram testados localmente. A confiança de hooks e o recebimento de eventos precisam ser comprovados no Codex instalado; o Claude Code tem continuidade manual documentada, mas não um hook validado. A bancada de avaliação está pronta e não chama IA por padrão, porque custo, executor e limite precisam ser escolhidos antes. MCP continua fora do escopo.
+O núcleo, instalação e distribuição foram testados localmente. A confiança de hooks e o recebimento de eventos precisam ser comprovados no Codex instalado; o Claude Code tem continuidade manual documentada, mas não um hook validado. A bancada de avaliação apenas prepara cenários; ainda não tem executor de comparação com IA. MCP continua fora do escopo.

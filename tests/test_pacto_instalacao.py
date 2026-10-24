@@ -31,13 +31,23 @@ class InstalacaoPactoTest(unittest.TestCase):
             self.assertEqual(self.rodar(destino, "--perfil", "continuidade", "instalar", "--aplicar").returncode, 0)
             agentes = destino / "AGENTS.md"; agentes.write_text("adaptação local", encoding="utf-8")
             conflito = self.rodar(destino, "--perfil", "continuidade", "atualizar", "--aplicar")
-            self.assertEqual(conflito.returncode, 2); self.assertEqual(agentes.read_text(encoding="utf-8"), "adaptação local")
+            self.assertEqual(conflito.returncode, 0, conflito.stderr)
+            self.assertIn("AGENTS.md", json.loads(conflito.stdout)["integracao_pendente"])
+            self.assertEqual(agentes.read_text(encoding="utf-8"), "adaptação local")
             # Reinstalação limpa em outro destino para exercer remoção segura.
             outro = destino / "outro"; outro.mkdir()
             self.assertEqual(self.rodar(outro, "--perfil", "continuidade", "instalar", "--aplicar").returncode, 0)
             remover = self.rodar(outro, "remover", "--aplicar")
             self.assertEqual(remover.returncode, 0, remover.stderr)
             self.assertTrue((outro / ".pacto" / "estado.json").exists())
+
+    def test_contrato_solicitado_explicitamente_pela_cli(self):
+        with tempfile.TemporaryDirectory() as diretorio:
+            destino = Path(diretorio)
+            r = self.rodar(destino, "--contrato", "SPEC", "instalar", "--aplicar")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertTrue((destino / "SPEC.md").is_file())
+            self.assertFalse((destino / "BRIEF.md").exists())
 
 
 if __name__ == "__main__": unittest.main()

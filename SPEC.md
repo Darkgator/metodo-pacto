@@ -1,32 +1,43 @@
-# SPEC.md
+# Contrato da reengenharia incremental
 
-## Objetivo e escopo aprovado
+## Objetivo e autorização
 
-Entregar o PACTO `2026.10.22.3` com continuidade explícita entre chats e assuntos: estado local opcional e concorrente de trabalhos, skill reutilizável, hook somente de leitura para Codex Desktop, instalação preservadora e verificações automatizadas do núcleo e da distribuição.
+Executar R5 a R7 da revisão arquitetural, autorizado após o primeiro lote: consolidar fontes operacionais, reduzir repetição, refinar regressão, resultado esperado e fallback e automatizar a verificação do pacote. Preservar o ciclo PACTO, a proporcionalidade e as decisões dos projetos existentes. A autorização cobre as fatias deste lote, sem nova aprovação a cada checkpoint.
 
-Preservar o kit existente, contratos proporcionais e adaptações locais. MCP permanece fora desta versão; não haverá serviço, banco central, sincronização entre máquinas ou leitura automática de históricos.
+## Primeiro lote preservado
 
-## Critérios de aceite
+- [x] Base anterior separada em ZIP fora da área ativa, com conteúdo e SHA-256 conferidos e tag local de recuperação.
+- [x] Instalador distingue suporte do pacote, instruções e contratos do projeto e estado mutável; instalar não cria todos os contratos opcionais.
+- [x] Adoção preserva AGENTS existente; atualização mantém trabalho registrado; remoção preserva contratos, estado e evidências.
+- [x] Runtime e verificador compartilham a validação do estado.
+- [x] Resumo respeita seu teto incluindo aviso e mantém próximo passo e bloqueio.
+- [x] Evidência distingue execução de suficiência, trata entrada ausente e alterada durante a execução, distingue saídas e não copia stdout/stderr arbitrários para o estado.
+- [x] Publicação incompleta aparece pendente; informação manual não equivale a confirmação automática.
+- [x] Prompts ativos respeitam aprovação de plano inteiro, preservando a opção de autorizar só uma fatia.
+- [x] Testes de regressão cobrem os casos pertinentes D01 a D09 e preservam proteções anteriores; distribuição e verificador passam.
 
-- [x] Seis modelos, política e estado inicial distribuídos correspondem às fontes oficiais; o caminho local está disponível fora do repositório do método.
-- [x] AGENTS identifica a versão e encaminha por gatilho à política local; T0 não exige essa leitura.
-- [x] Prompt operacional pede prova curta; orientação de variantes usa causa, comportamento e caminhos irmãos.
-- [x] Política preserva entrega real, artefato visual, revisão corrigida, dados não afetados, registro de publicação e operação conjunta.
-- [x] Atualização não sobrescreve adaptações nem presume que projetos antigos receberam a versão nova.
-- [x] Verificação estática e cenários locais T2/T4 têm resultado e limite registrados; nenhuma nova comparação econômica é alegada.
-- [x] Modelos, instruções de adoção e prompts ativos estão alinhados, em UTF-8.
-- [x] Estado exige revisão em toda mutação, detecta leitura antiga dentro de trava do SO, grava de forma atômica e não armazena transcrição do chat.
-- [x] Skill PACTO encaminha início, retomada, alternância e fechamento sem criar burocracia em tarefa trivial.
-- [x] Hook do plugin só injeta resumo curto do trabalho associado ou opções explícitas nos eventos suportados, sem escrever no projeto.
-- [x] Instalador oferece prévia, conflito por adaptação local, atualização e remoção que preserva estado/evidências.
-- [x] Evidências vencem quando arquivos declarados mudam; ambiente/revisão de publicação observados são comparados aos esperados.
+## Limites e verificação
 
-## Verificação
+Sem reescrita do zero, MCP, memória obrigatória, serviço, banco central, novas sessões pagas de IA ou ativação em outros projetos/hosts. A cópia arquivada não muda instalações já existentes. Integração real no host e benefício econômico permanecem separados das provas locais.
 
-Checagens do mantenedor: `python scripts/distribuir_pacto.py --conferir`, `python scripts/verificar_kit.py` e `python -m unittest discover -s tests -v`. Conferir cópias, caminho local, versão, estado, links, diff, comandos de continuidade e JSON do plugin. Executar controles negativos em pasta temporária isolada, sem novas sessões de IA.
+Executar `python -m unittest discover -s tests -v`, `python scripts/distribuir_pacto.py --conferir` e `python scripts/verificar_kit.py`; testar somente em pastas temporárias próprias. Conferir referências locais, diff e UTF-8. Provas de comportamento não estabelecem adesão universal nem economia de tokens.
 
-Aceite funcional do kit não comprova que o agente cumprirá toda regra. Eficácia, tempo humano e economia exigem comparação equivalente; critérios estão em [Benefícios e avaliação](docs/evidencias-de-beneficios.md).
+## Aceite do segundo lote
 
-## Limites
+- [x] Entrada permanente menor, com regras críticas preservadas e detalhes condicionais encaminhados a fontes locais canônicas por assunto.
+- [x] Prompts operacionais compartilhados têm fonte única; distribuição detecta divergência no Markdown e HTML, sem gerar o guia inteiro.
+- [x] Regra de bug retém regressão proporcional que rejeita o defeito; resultado esperado vem de referência independente da implementação testada.
+- [x] Fallback preserva restrições explícitas; mudança de alvo, ambiente ou critério exige decisão quando ultrapassar o combinado.
+- [x] Verificador detecta problemas de UTF-8, referências locais, estrutura dos guias e distribuição sem rede ou chamadas de IA.
+- [x] CI executa verificador e testes em Windows e Linux, com permissões de leitura e limite de duração.
+- [x] Testes e controles negativos comprovam as falhas determinísticas cobertas; resultado remoto e limites de adesão são registrados.
 
-Publicação no GitHub já autorizada pelo usuário. Sem ativação automática do plugin ou de hooks no computador, implantação em outros projetos, experimento pago ou alteração dos resultados anteriores. O hook Codex e a integração Claude ainda exigem validação real no host; licença final continua pendente.
+R8 continua condicionado a uma necessidade e piloto próprios. Publicação não é ativação nos hosts. Não criar executor pago, novo serviço ou avaliação de IA neste lote.
+
+## Fechamento autorizado
+
+O pedido de concluir o que ainda for executável cobre o teste da linha completa de comando declarada, smoke do kit instalado e integração da entrega validada na main. A versão anterior continua recuperável pela tag e ZIP, sem ativação em outros projetos/hosts.
+
+- [x] Smoke isolado de instalação, verificação, execução distribuída, retomada, atualização e remoção preservadora.
+- [ ] Linha completa declarada do hook validada em Windows e Linux na CI, incluindo espaço/acento, associação da sessão e ausência de escrita.
+- [ ] Integração por PR com checks aprovados, sem bypass, e confirmação da revisão efetiva na main.

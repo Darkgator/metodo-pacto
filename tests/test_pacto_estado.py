@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -71,6 +72,30 @@ class EstadoPactoTest(unittest.TestCase):
             (pasta / "sub pasta").mkdir()
             hook = subprocess.run([sys.executable, str(HOOK)], input=json.dumps({"cwd": str(pasta / "sub pasta")}), text=True, encoding="utf-8", capture_output=True, check=False, env={**os.environ, "PYTHONUTF8": "1"})
             self.assertEqual(hook.returncode, 0, hook.stderr); self.assertIn("Acentuação", hook.stdout)
+
+    def test_hook_linha_completa_declarada_preserva_projeto(self):
+        with tempfile.TemporaryDirectory(prefix="pacto espaço ç ") as diretorio:
+            pasta = Path(diretorio)
+            projeto = pasta / "projeto em andamento"; projeto.mkdir()
+            identificador = self.iniciar(projeto, "Acentuação e retomada")
+            associado = self.executar(projeto, "associar", identificador, "--sessao", "sessao_teste", "--esperada-revisao", "1")
+            self.assertEqual(associado.returncode, 0, associado.stderr)
+            plugin = pasta / "plugin com espaço ç"
+            shutil.copytree(RAIZ / "plugin-pacto", plugin, ignore=shutil.ignore_patterns("__pycache__"))
+            descritor = json.loads((plugin / "hooks/hooks.json").read_text(encoding="utf-8"))["hooks"]["SessionStart"][0]["hooks"][0]
+            chave = "commandWindows" if os.name == "nt" else "command"
+            comando = descritor[chave].replace("${PLUGIN_ROOT}", str(plugin))
+            subpasta = projeto / "src com espaço"; subpasta.mkdir()
+            antes = {p.relative_to(projeto): p.read_bytes() for p in projeto.rglob("*") if p.is_file()}
+            evento = json.dumps({"cwd": str(subpasta), "session_id": "sessao_teste"})
+            r = subprocess.run(comando, shell=True, input=evento, text=True, encoding="utf-8", capture_output=True, timeout=descritor["timeout"], check=False, env={**os.environ, "PYTHONUTF8": "1", "PYTHONDONTWRITEBYTECODE": "1"})
+            self.assertEqual(r.returncode, 0, r.stderr)
+            saida = json.loads(r.stdout)["hookSpecificOutput"]
+            self.assertEqual(saida["hookEventName"], "SessionStart")
+            self.assertIn(identificador, saida["additionalContext"])
+            self.assertIn("Acentuação e retomada", saida["additionalContext"])
+            self.assertLessEqual(len(saida["additionalContext"]), descritor["additionalContextLimit"])
+            self.assertEqual(antes, {p.relative_to(projeto): p.read_bytes() for p in projeto.rglob("*") if p.is_file()})
 
     def test_migracao_preserva_dados_e_formato_futuro_nao_grava(self):
         with tempfile.TemporaryDirectory() as diretorio:

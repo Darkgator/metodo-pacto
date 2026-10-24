@@ -128,7 +128,7 @@ def _validar_trabalho(t: dict, indice: int):
     _id(t.get("id"), f"{p}.id")
     _tipo_texto(t.get("titulo"), f"{p}.titulo", True, 160, False)
     _tipo_texto(t.get("objetivo"), f"{p}.objetivo", True, 1000, False)
-    if t.get("situacao") not in SITUACOES:
+    if not isinstance(t.get("situacao"), str) or t["situacao"] not in SITUACOES:
         raise ErroPacto(f"{p}.situacao: situação inválida")
     _tipo_texto(t.get("proximo_passo"), f"{p}.proximo_passo", True, 1000, False)
     for campo in ("bloqueio", "ultimo_resultado"):
@@ -167,8 +167,31 @@ def _validar_trabalho(t: dict, indice: int):
         _instante(tentativa.get("registrado_em"), f"{q}.registrado_em")
     for j, ref in enumerate(t["referencias"]):
         _tipo_texto(ref, f"{p}.referencias[{j}]", True, 1000, False)
-    if t.get("publicacao") is not None and not isinstance(t["publicacao"], dict):
-        raise ErroPacto(f"{p}.publicacao: esperado objeto ou null")
+    for j, evidencia in enumerate(t["evidencias"]):
+        q = f"{p}.evidencias[{j}]"
+        if not isinstance(evidencia, dict):
+            raise ErroPacto(f"{q}: esperado objeto")
+        _id(evidencia.get("id"), f"{q}.id")
+        _instante(evidencia.get("registrado_em"), f"{q}.registrado_em")
+        if not isinstance(evidencia.get("resultado"), str) or evidencia["resultado"] not in {"aprovada", "executada", "passou", "falhou", "inconclusiva", "nao_executada"}:
+            raise ErroPacto(f"{q}.resultado: inválido")
+        for campo in ("arquivos", "saidas"):
+            hashes = evidencia.get(campo, {})
+            if not isinstance(hashes, dict) or any(not isinstance(k, str) or (v is not None and (not isinstance(v, str) or not re.fullmatch(r"[0-9a-f]{64}", v))) for k, v in hashes.items()):
+                raise ErroPacto(f"{q}.{campo}: hashes inválidos")
+        ausentes = evidencia.get("ausentes", [])
+        if not isinstance(ausentes, list) or not all(isinstance(x, str) for x in ausentes):
+            raise ErroPacto(f"{q}.ausentes: esperado lista de caminhos")
+    pub = t.get("publicacao")
+    if pub is not None:
+        if not isinstance(pub, dict):
+            raise ErroPacto(f"{p}.publicacao: esperado objeto ou null")
+        for campo in ("esperado", "observado"):
+            parte = pub.get(campo, {})
+            if not isinstance(parte, dict):
+                raise ErroPacto(f"{p}.publicacao.{campo}: esperado objeto")
+            for chave in ("ambiente", "revisao", "fonte"):
+                _tipo_texto(parte.get(chave), f"{p}.publicacao.{campo}.{chave}")
 
 
 def validar(dados: dict, aceitar_v1: bool = False):
@@ -197,6 +220,7 @@ def validar(dados: dict, aceitar_v1: bool = False):
         ids.add(t["id"])
     for sessao, trabalho in dados["sessoes"].items():
         _id(sessao, f"sessoes.{sessao}")
+        _id(trabalho, f"sessoes.{sessao}.trabalho")
         if trabalho not in ids:
             raise ErroPacto(f"sessoes.{sessao}: trabalho inexistente")
     bruto = json.dumps(dados, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
@@ -350,17 +374,19 @@ def decisoes_vigentes(trabalho: dict) -> list[dict]:
 
 
 def resumo(trabalho: dict) -> str:
-    linhas = [f"PACTO [{trabalho['id']}] {trabalho['situacao']}: {trabalho['titulo']}", f"Objetivo: {trabalho['objetivo']}"]
+    # Campos necessários à retomada vêm antes de histórico e detalhes.
+    linhas = [f"PACTO [{trabalho['id']}] {trabalho['situacao']}: {trabalho['titulo']}", f"Próximo passo: {trabalho['proximo_passo']}"]
+    if trabalho.get("bloqueio"): linhas.append(f"Bloqueio: {trabalho['bloqueio']}")
+    linhas.append(f"Objetivo: {trabalho['objetivo']}")
     if trabalho.get("ultimo_resultado"): linhas.append(f"Último resultado: {trabalho['ultimo_resultado']}")
     vigentes = decisoes_vigentes(trabalho)
     if vigentes: linhas.append("Decisões vigentes: " + "; ".join(d["texto"] for d in vigentes))
     if trabalho["tentativas_descartadas"]:
         t = trabalho["tentativas_descartadas"][-1]; linhas.append(f"Tentativa descartada: {t['hipotese']} ({t['resultado']})")
-    if trabalho.get("bloqueio"): linhas.append(f"Bloqueio: {trabalho['bloqueio']}")
-    linhas.append(f"Próximo passo: {trabalho['proximo_passo']}")
     if trabalho["referencias"]: linhas.append("Referências: " + ", ".join(trabalho["referencias"]))
     texto = "\n".join(linhas)
-    return texto if len(texto) <= LIMITE_CONTEXTO else texto[:LIMITE_CONTEXTO - 48].rstrip() + "\n[Resumo cortado; use mostrar " + trabalho["id"] + ".]"
+    aviso = "\n[Resumo cortado; use mostrar " + trabalho["id"] + ".]"
+    return texto if len(texto) <= LIMITE_CONTEXTO else texto[:LIMITE_CONTEXTO - len(aviso)].rstrip() + aviso
 
 
 def contexto(dados: dict, sessao: str | None = None) -> str:
@@ -384,28 +410,91 @@ def _sha256(caminho: Path) -> str | None:
 def carregar_verificacoes(arquivo: Path) -> dict:
     try: bruto = json.loads(arquivo.read_text(encoding="utf-8"))
     except FileNotFoundError as erro: raise ErroPacto("configuração de verificações ausente") from erro
-    except (OSError, json.JSONDecodeError) as erro: raise ErroPacto(f"configuração de verificações inválida: {erro}") from erro
+    except (OSError, UnicodeError, json.JSONDecodeError) as erro: raise ErroPacto(f"configuração de verificações inválida: {erro}") from erro
     itens = bruto.get("verificacoes") if isinstance(bruto, dict) else bruto
     if not isinstance(itens, list): raise ErroPacto("verificacoes: esperado lista")
     resultado = {}
     for item in itens:
-        if not isinstance(item, dict) or not isinstance(item.get("id"), str) or not isinstance(item.get("argv"), list) or not item["argv"] or not all(isinstance(x, str) for x in item["argv"]): raise ErroPacto("verificação: id e argv de texto são obrigatórios")
-        if not isinstance(item.get("arquivos", []), list) or not all(isinstance(x, str) for x in item.get("arquivos", [])): raise ErroPacto(f"verificação {item['id']}: arquivos inválidos")
+        validar_verificacao(item)
+        if item["id"] in resultado: raise ErroPacto(f"verificação duplicada: {item['id']}")
         resultado[item["id"]] = item
     return resultado
 
 
+def validar_verificacao(item: dict):
+    if not isinstance(item, dict) or not isinstance(item.get("argv"), list) or not item["argv"] or not all(isinstance(x, str) and x for x in item["argv"]):
+        raise ErroPacto("verificação: id e argv de texto são obrigatórios")
+    _id(item.get("id"), "verificação.id")
+    timeout = item.get("timeout", 30)
+    if isinstance(timeout, bool) or not isinstance(timeout, int) or timeout <= 0:
+        raise ErroPacto("verificação.timeout: esperado inteiro positivo")
+    _tipo_texto(item.get("criterio"), "verificação.criterio", True)
+    caminhos = []
+    for campo in ("arquivos", "saidas", "ausentes"):
+        valores = item.get(campo, [])
+        if not isinstance(valores, list) or not all(isinstance(x, str) and x.strip() for x in valores):
+            raise ErroPacto(f"verificação.{campo}: esperado lista de caminhos")
+        caminhos.extend(valores)
+    normalizados = [os.path.normcase(os.path.normpath(p)) for p in caminhos]
+    if len(normalizados) != len(set(normalizados)):
+        raise ErroPacto("verificação: caminho duplicado ou com papéis incompatíveis")
+
+
+def caminho_prova(raiz: Path, relativo: str) -> Path:
+    caminho = raiz / relativo
+    if Path(relativo).is_absolute() or not _dentro(raiz, caminho):
+        raise ErroPacto("verificação: caminho deve permanecer dentro do projeto")
+    return caminho
+
+
 def registrar_prova(raiz: Path, trabalho: dict, item: dict):
-    try:
-        retorno = subprocess.run(item["argv"], cwd=raiz, shell=False, text=True, capture_output=True, timeout=int(item.get("timeout", 30)), check=False)
-        estado = "aprovada" if retorno.returncode == 0 else "falhou"; saida = (retorno.stdout + "\n" + retorno.stderr).strip().replace("\x00", " ")[:500]; resumo_saida = saida or f"retorno {retorno.returncode}"
-    except FileNotFoundError: estado, resumo_saida = "nao_executada", "comando não encontrado"
-    except subprocess.TimeoutExpired: estado, resumo_saida = "falhou", "tempo limite excedido"
-    trabalho["evidencias"].append({"id": item["id"], "tipo": "automatizada", "registrado_em": agora(), "resultado": estado, "resumo": resumo_saida, "arquivos": {p: _sha256(raiz / p) for p in item.get("arquivos", [])}})
+    validar_verificacao(item)
+    entradas = {p: _sha256(caminho_prova(raiz, p)) for p in item.get("arquivos", [])}
+    ausentes = item.get("ausentes", [])
+    for p in [*item.get("saidas", []), *ausentes]: caminho_prova(raiz, p)
+    codigo = None
+    if any(h is None for h in entradas.values()):
+        estado, mensagem = "inconclusiva", "entrada obrigatória ausente; comando não executado"
+    elif any(caminho_prova(raiz, p).exists() for p in ausentes):
+        estado, mensagem = "falhou", "ausência esperada não observada; comando não executado"
+    else:
+        try:
+            # Saída arbitrária não vira memória nem precisa caber em RAM.
+            retorno = subprocess.run(item["argv"], cwd=raiz, shell=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=item.get("timeout", 30), check=False)
+            codigo = retorno.returncode
+            estado = "falhou" if codigo else ("passou" if item.get("criterio") else "executada")
+            mensagem = f"retorno {codigo}; " + ("verificação configurada" if item.get("criterio") else "suficiência não declarada")
+            if any(_sha256(caminho_prova(raiz, p)) != h for p, h in entradas.items()):
+                estado, mensagem = "inconclusiva", "entrada mudou durante a execução"
+            elif not codigo and any(not caminho_prova(raiz, p).is_file() for p in item.get("saidas", [])):
+                estado, mensagem = "falhou", "saída obrigatória ausente"
+            elif not codigo and any(caminho_prova(raiz, p).exists() for p in ausentes):
+                estado, mensagem = "falhou", "ausência esperada não preservada"
+        except FileNotFoundError: estado, mensagem = "nao_executada", "comando não encontrado"
+        except subprocess.TimeoutExpired: estado, mensagem = "falhou", "tempo limite excedido"
+        except OSError: estado, mensagem = "nao_executada", "comando indisponível"
+    trabalho["evidencias"].append({"formato": 2, "id": item["id"], "tipo": "automatizada", "registrado_em": agora(), "resultado": estado, "codigo_saida": codigo, "criterio": item.get("criterio"), "resumo": mensagem, "arquivos": entradas, "saidas": {p: _sha256(caminho_prova(raiz, p)) for p in item.get("saidas", [])}, "ausentes": ausentes})
 
 
 def evidencia_vencida(raiz: Path, evidencia: dict) -> bool:
-    return any(_sha256(raiz / rel) != hash_antigo for rel, hash_antigo in evidencia.get("arquivos", {}).items())
+    # Registros antigos são preservados, mas não ganham proveniência retroativa.
+    if evidencia.get("formato") != 2: return True
+    hashes = {**evidencia.get("arquivos", {}), **evidencia.get("saidas", {})}
+    return any(h is None or _sha256(caminho_prova(raiz, p)) != h for p, h in hashes.items()) or any(caminho_prova(raiz, p).exists() for p in evidencia.get("ausentes", []))
+
+
+def situacao_publicacao(publicacao: dict | None) -> str:
+    if not publicacao: return "nao_registrada"
+    esperado, observado = publicacao.get("esperado", {}), publicacao.get("observado", {})
+    for campo in ("ambiente", "revisao"):
+        if esperado.get(campo) and observado.get(campo) and esperado[campo] != observado[campo]:
+            return "divergente"
+    if not esperado.get("ambiente") or not observado.get("ambiente") or not observado.get("fonte"):
+        return "pendente"
+    if esperado.get("revisao") and not observado.get("revisao"):
+        return "pendente"
+    # Este comando recebe observações manuais, não consulta o ambiente remoto.
+    return "informada"
 
 
 def _emitir(valor, json_saida: bool = False):
@@ -449,7 +538,7 @@ def main() -> int:
         if args.comando == "diagnosticar": _emitir({"raiz": str(raiz), "estado": str(caminho_estado(raiz)), "presente": caminho_estado(raiz).exists(), "formato": dados.get("formato"), "runtime": sys.version.split()[0]}, True); return 0
         if dados.get("formato") != FORMATO: raise ErroPacto("formato 1 requer migrar explicitamente antes de alterar")
         if args.comando == "verificar":
-            t = localizar(dados, args.id); _emitir({"id": t["id"], "evidencias": [{**e, "vencida": evidencia_vencida(raiz, e)} for e in t["evidencias"]], "publicacao_divergente": bool(t.get("publicacao") and t["publicacao"].get("divergente")), "situacao": t["situacao"]}, True); return 0
+            t = localizar(dados, args.id); publicacao = situacao_publicacao(t.get("publicacao")); _emitir({"id": t["id"], "evidencias": [{**e, "vencida": evidencia_vencida(raiz, e)} for e in t["evidencias"]], "publicacao_situacao": publicacao, "publicacao_divergente": publicacao == "divergente", "publicacao_confirmada_automaticamente": False, "situacao": t["situacao"]}, True); return 0
         if args.comando == "iniciar":
             def op(d): t = _novo_trabalho(args); d["trabalhos"].append(t); return t["id"]
             novo, identificador = mutar(raiz, args.esperada_revisao, op); _emitir({"id": identificador, "revisao": novo["revisao"]}, args.json_saida); return 0
@@ -484,11 +573,14 @@ def main() -> int:
                     if identificador not in configuracao: raise ErroPacto(f"verificação inexistente: {identificador}")
                     registrar_prova(raiz, t, configuracao[identificador])
                 return t["id"]
-            novo, identificador = mutar(raiz, args.esperada_revisao, op); _emitir({"id": identificador, "revisao": novo["revisao"]}, args.json_saida); return 0
+            novo, identificador = mutar(raiz, args.esperada_revisao, op)
+            provas = localizar(novo, identificador)["evidencias"][-len(args.verificacao):]
+            _emitir({"id": identificador, "revisao": novo["revisao"], "evidencias": provas}, True)
+            return 0 if all(e["resultado"] in {"passou", "executada"} for e in provas) else 1
         if args.comando == "registrar-publicacao":
             def op(d):
-                t = localizar(d, args.id); divergente = args.esperado_ambiente != args.observado_ambiente or bool(args.esperada_revisao_publicada and args.observada_revisao_publicada and args.esperada_revisao_publicada != args.observada_revisao_publicada)
-                t["publicacao"] = {"esperado": {"ambiente": args.esperado_ambiente, "revisao": args.esperada_revisao_publicada}, "observado": {"ambiente": args.observado_ambiente, "revisao": args.observada_revisao_publicada, "fonte": args.fonte, "registrado_em": agora()}, "divergente": divergente}; return t["id"]
+                t = localizar(d, args.id)
+                t["publicacao"] = {"modo": "informacao_manual", "esperado": {"ambiente": args.esperado_ambiente, "revisao": args.esperada_revisao_publicada}, "observado": {"ambiente": args.observado_ambiente, "revisao": args.observada_revisao_publicada, "fonte": args.fonte, "registrado_em": agora()}}; return t["id"]
             novo, identificador = mutar(raiz, args.esperada_revisao, op); _emitir({"id": identificador, "revisao": novo["revisao"]}, args.json_saida); return 0
         raise ErroPacto("comando desconhecido")
     except ErroPacto as erro:

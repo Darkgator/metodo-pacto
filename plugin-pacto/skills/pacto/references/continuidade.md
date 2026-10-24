@@ -7,7 +7,7 @@ Use somente quando o projeto já tiver `.pacto/pacto-estado.py` e a tarefa preci
 - Toda mutação exige `--esperada-revisao N`. Em conflito, releia e reconcilie; não repita a alteração cega com a revisão nova.
 - `associar` vincula uma sessão. `alternar` pausa a anterior quando ela não estiver ativa em outra sessão. Trabalho concluído exige reabertura explícita.
 - `provar` é o único comando que executa verificações configuradas. Hooks, contexto e verificar nunca executam comandos.
-- Evidência verde só vale enquanto os arquivos declarados não mudarem. Uma captura visual ou áudio registra inspeção, mas não prova fidelidade por si só.
-- Publicação precisa separar ambiente e revisão esperados dos observados. Informação sem fonte verificável permanece como informada.
+- `executada` não comprova suficiência; `passou` refere-se à verificação configurada. Entrada ausente ou alterada impede confirmação; uma prova vence quando entradas, saídas ou ausências declaradas mudam. Registros antigos precisam ser refeitos para essa proveniência. Captura visual/áudio não prova fidelidade por si só.
+- Publicação separa ambiente e revisão esperados dos observados. Registro manual é informado, incompleto é pendente; este comando não confirma automaticamente o ambiente remoto.
 
 Não grave conversas, segredos ou saídas completas de terminal no estado. Guarde arquivos longos no projeto e referencie-os.

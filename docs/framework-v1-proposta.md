@@ -1,5 +1,7 @@
 # Framework v1 Proposto: Método PACTO
 
+Referência conceitual do ciclo PACTO. Para execução, use AGENTS, a seção pertinente da política local e os prompts compartilhados; eles são as fontes operacionais. Não carregue este framework por padrão em cada tarefa.
+
 Status: orientação vigente consolidada; modelos oficiais em templates/
 Criador: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
@@ -326,11 +328,11 @@ Boa fatia:
 
 ### 6. Implementar
 
-O agente executa apenas a fatia aprovada.
+O agente executa o escopo aprovado em fatias verificáveis. A autorização pode cobrir uma fatia ou o plano inteiro; verificações intermediárias não exigem nova aprovação já concedida.
 
 Regras:
 
-- não adiantar checkpoints futuros;
+- avançar entre checkpoints já autorizados; parar por bloqueio ou ação fora do escopo aprovado;
 - não refatorar fora do escopo;
 - não adicionar dependência sem aprovação;
 - não fazer operações destrutivas sem aprovação.
@@ -338,14 +340,7 @@ Regras:
 
 ### 7. Verificar
 
-Aplicar o nível de validação do checkpoint:
-
-- `T0`: encerrar após conferir o diff, sem teste ou relatório de validação vazio;
-- `T1`: rodar a menor prova curta suficiente;
-- `T2`: rodar somente as provas necessárias e pedir ao usuário apenas o que ele precisa observar;
-- `T3`: rodar smoke clássico e verificações relevantes ao fechar fase ou preparar entrega.
-
-Não abrir navegador ou capturar screenshot por reflexo.
+Aplique a seção pertinente de [política operacional](validacao-proporcional.md), fonte de T0 a T3, regressão, invariantes, operação conjunta e entrega. O AGENTS encaminha por gatilho; não replique aqui suas regras.
 
 ### 8. Revisar
 
@@ -368,8 +363,8 @@ Somente com causa e necessidade demonstradas, por recorrência ou risco grave co
 ## Regras de parada
 
 - Três tentativas no mesmo erro são o teto geral. Pare antes se não houver evidência nova ou houver risco. Cada hipótese nova precisa de prova e resultado observável.
-- Nunca entrar em ciclo de "corrige uma coisa, quebra outra" sem resumir o estado e pedir decisão.
-- Se o contexto estiver poluído, gerar resumo curto e iniciar nova sessão/thread.
+- Se uma correção gerar nova regressão, investigue a causa e retenha a proteção proporcional. Peça decisão quando houver bloqueio real ou mudança do combinado, preservando a autorização vigente.
+- Se o contexto não bastar, preserve decisão e próximo passo para retomada; não crie novo chat por conta própria.
 
 ## Decisões que exigem aprovação humana
 

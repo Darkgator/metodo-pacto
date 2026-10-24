@@ -4,7 +4,7 @@ Criador: Alexandre Barroso de Miranda
 Atuação: Consultor de Processos
 Método: PACTO
 
-Este guia mostra como iniciar um desenvolvimento do zero usando o Método PACTO.
+Roteiro para projeto novo. Em projeto em andamento, use o kit e as decisões existentes; não reinicie estas etapas por adoção do método. Os prompts de execução e revisão vêm de prompts/operacionais.md e são conferidos pelo distribuidor.
 
 ## Etapa -1: Briefing Assistido
 
@@ -123,6 +123,7 @@ Crie ou atualize somente arquivos aplicáveis. Preserve contratos existentes; n�
 - README.md
 - AGENTS.md
 - .pacto/validacao.md, cópia de docs/validacao-proporcional.md do repositório do método
+- .pacto/operacao.md, cópia de docs/operacao.md do repositório do método
 - CLAUDE.md, se aplicável
 - SPEC.md
 - .env.example, se aplicável
@@ -161,7 +162,7 @@ Antes de seguir, confira:
 - `SPEC.md` tem objetivo, não objetivos, critérios de aceite e verificação?
 - se houver `INVARIANTES.md`, a SPEC identifica os itens afetados e a prova de preservação ou mudança aprovada?
 - `AGENTS.md` está curto?
-- A versão está identificada e a política local `.pacto/validacao.md` está disponível?
+- A versão está identificada e as políticas locais de validação e operação estão disponíveis?
 - `CLAUDE.md` usa a ponte curta para `AGENTS.md`, se aplicável?
 - se o projeto usa Git remoto, o agente verificou se a branch local está sincronizada, à frente, atrás ou divergente antes de retomar?
 - `.env.example` não tem segredo real?
@@ -175,21 +176,11 @@ Antes de seguir, confira:
 
 Use este prompt:
 
+<!-- pacto:executar -->
 ```text
-Implemente apenas o checkpoint 1 da SPEC.md.
-
-Regras:
-- não implemente checkpoints futuros;
-- mantenha o diff pequeno;
-- classifique o checkpoint silenciosamente como `T0`, `T1`, `T2` ou `T3`;
-- respeite a fronteira T0/T1 do AGENTS e consulte a política local somente pelo gatilho aplicável;
-- em `T0`, não rode teste, navegador, build, lint, typecheck, checklist ou plano de teste;
-- em `T1`, rode apenas uma prova curta; em `T2`, somente o necessário; em `T3`, smoke clássico e verificações relevantes;
-- verifique segurança, dados e licenciamento se tocar dependência ou entrada externa;
-- se for turning point, avalie backup mínimo e obsoletos antes de alterar;
-- não abra navegador ou capture screenshot por reflexo;
-- pare ao concluir o checkpoint 1 e resuma.
+Execute o escopo aprovado no pedido ou na SPEC vigente, em fatias verificáveis. Aproveite as decisões do projeto e siga o AGENTS, consultando só a seção pertinente da política local. Avance entre checkpoints já autorizados; pare por bloqueio ou ação fora desse alcance. Ao concluir, informe resultado, prova, limitações e próximo passo pertinentes.
 ```
+<!-- /pacto:executar -->
 
 Saída esperada:
 
@@ -202,21 +193,10 @@ Saída esperada:
 
 Use este prompt:
 
+<!-- pacto:revisar -->
 ```text
-Revise o diff atual contra SPEC.md.
-
-Procure:
-- bug;
-- regressão;
-- em bug, caminhos irmãos pela causa e comportamento, não só pelo nome, sem auditoria global;
-- escopo extra;
-- validação faltante proporcional ao risco;
-- risco de segurança;
-- risco legal/licenciamento;
-- dados sensíveis;
-- problemas de UX, se houver UI.
-
-Não implemente nada ainda. Apenas revise.
+Revise o diff contra o contrato vigente e a política local pertinente. Priorize defeitos, regressões, aceite, invariantes, escopo e riscos afetados, com evidência e localização. Em bug, confira caminhos irmãos pela causa e comportamento. Esta tarefa é revisão: apresente achados reais sem implementar nem criar exigências genéricas.
 ```
+<!-- /pacto:revisar -->
 
 Depois da revisão, corrija apenas problemas reais e siga para a próxima fatia.

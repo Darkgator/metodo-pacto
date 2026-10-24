@@ -4,7 +4,7 @@ Método PACTO, criado por Alexandre Barroso de Miranda, Consultor de Processos.
 
 Preparar contexto, Avaliar variáveis decisivas, Contratar escopo, Trabalhar em fatias e Observar resultados.
 
-- Kit `2026.10.22.3`: seis modelos de templates/, política local `.pacto/validacao.md` e estado opcional `.pacto/estado.json` no esquema 2, consultados somente quando aplicáveis. A continuidade tem CAS, sessões, evidência dirigida e instalador com prévia; veja `resultado-validacao-continuidade.md` para os limites ainda não comprovados.
+- Kit `2026.10.24.2`: seis modelos de templates/, políticas locais de validação e operação e estado opcional `.pacto/estado.json` no esquema 2, consultados somente quando aplicáveis. A continuidade tem CAS, sessões, evidência dirigida e instalador com prévia; a reengenharia atual e seus limites estão em PLAN.md, sem leitura do histórico por padrão.
 - Briefing declara a próxima decisão liberada, lacunas bloqueantes e premissas reversíveis, sem buscar completude infinita.
 - INVARIANTES.md é opcional: concentra somente regras de negócio, identidade visual/textual/sonora e contratos/dados que precisam de prova de preservação.
 - Tarefa trivial dispensa documento novo. SPEC para mudança relevante; BRIEF se faltar contexto; PLAN para execução complexa ou continuidade.
@@ -16,4 +16,4 @@ Preparar contexto, Avaliar variáveis decisivas, Contratar escopo, Trabalhar em 
 - Nenhuma ferramenta, skill ou memória automática é obrigatória; contratos continuam condicionais.
 - Kit versionado não atualiza projetos automaticamente. Licença final pendente; economia de tokens por tarefa não demonstrada.
 
-Rascunho v0 e relatórios de pesquisa são históricos. Políticas vigentes: docs/regras-universais.md e docs/validacao-proporcional.md.
+Rascunho v0 e relatórios de pesquisa são históricos. Fontes operacionais: docs/validacao-proporcional.md, docs/operacao.md e prompts/operacionais.md; regras-universais é índice.
